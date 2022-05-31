@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
     # Need indicator to redirect to indicator show
-    # @indicator = Indicator.find(params[:id])
+    @indicator = Indicator.find(params[:id])
   end
 
   # Create #create method for searches => no view associated but redirect_to => indicators#edit view
