@@ -1,0 +1,9 @@
+<h1>Vote for your priorities !!</h1>
+
+<% @indicators.each do |indicator| %>
+  <%= form_for(@indicator) do |f| %>
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
