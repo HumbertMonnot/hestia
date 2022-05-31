@@ -1,0 +1,2 @@
+class PolygonsController < ApplicationController
+end

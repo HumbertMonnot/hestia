@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_30_130329) do
+ActiveRecord::Schema.define(version: 2022_05_30_142246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "indicator_titles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "indicators", force: :cascade do |t|
+    t.bigint "indicator_title_id", null: false
+    t.bigint "search_id", null: false
+    t.float "weight", default: 1.0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["indicator_title_id"], name: "index_indicators_on_indicator_title_id"
+    t.index ["search_id"], name: "index_indicators_on_search_id"
+  end
+
+  create_table "infrastructures", force: :cascade do |t|
+    t.bigint "indicator_title_id", null: false
+    t.string "equipment"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["indicator_title_id"], name: "index_infrastructures_on_indicator_title_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "address"
+    t.integer "duration"
+    t.string "profile"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_searches_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +58,13 @@ ActiveRecord::Schema.define(version: 2022_05_30_130329) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "indicators", "indicator_titles"
+  add_foreign_key "indicators", "searches"
+  add_foreign_key "infrastructures", "indicator_titles"
+  add_foreign_key "searches", "users"
 end
