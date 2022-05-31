@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @search = Search.find(params[:search_id])
-    @paras = [@search.address, @search.profile, @search.duration].json()
+    @search = Search.find(params[:id])
+    @paras = [[@search.longitude,@search.latitude], @search.profile, @search.duration]
   end
 end

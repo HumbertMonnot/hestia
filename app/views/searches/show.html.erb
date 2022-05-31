@@ -2,10 +2,10 @@
 <p>Find me in app/views/searches/show.html.erb</p>
 
 <table data-controller="hexas"
-       data-hexas-hexalist-value=<%= @paras %> >
+       data-hexas-hexalist-value=<%= @paras.to_json() %> >
   <tr>
     <th>Classement</th>
-    <th>Quartier</th>    
+    <th>Quartier</th>     
     <% IndicatorTitle.all.each do |indic| %>
       <th><%= indic.name %></th> 
     <% end %>    
