@@ -1,0 +1,10 @@
+<h1>Hestya</h1>
+
+<%= simple_form_for @search do |f| %>
+  <%= f.input_field :address, placeholder:'Lieu de référence' %>
+  <%= f.input_field :duration, placeholder:'Durée' %> <span>min</span>
+  <%= f.input_field :profile, placeholder:'Moyen de transport préféré' %>
+  <%# <%= link_to edit_search_indicator_path(@search, @indicator.search) do %>
+    <%= f.button :submit, 'Voir mes résultats' %>
+  <%# <% end %>
+<% end %>

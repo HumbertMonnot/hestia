@@ -6,4 +6,8 @@ Rails.application.routes.draw do
     resources :indicators, only: [:edit, :update]
     resources :polygons, only: [:update]
   end
+
+  resources :users, only: [:index, :show] do
+    resources :searches, only: [:index, :show]
+  end
 end
