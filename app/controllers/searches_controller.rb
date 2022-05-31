@@ -8,15 +8,14 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
     # Need indicator to redirect to indicator show
-    @indicator = Indicator.find(params[:id])
   end
 
   # Create #create method for searches => no view associated but redirect_to => indicators#edit view
   def create
     @search = Search.new(search_params)
-    # @indicator = Indicator.find(params[:id])
+    @indicator = Indicator.find(params[:id])
     @search.user = current_user
-    @indicators = Indicator.where(weight: 1)
+    @indicators = Indicator.select(:weight)
     @indicators.create
     @indicator_titles = IndicatorTitle.all
     @indicator_titles.each do |indicator_title|
@@ -24,10 +23,11 @@ class SearchesController < ApplicationController
       #create sur indicator indicator_title: indicator_title
     end
     if @search.save
-      redirect_to edit_search_indicator_path(@search)
+      redirect_to edit_search_indicator_path(@indicator)
     else
       render :new
     end
+    raise
   end
 
   def show

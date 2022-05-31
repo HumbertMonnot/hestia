@@ -2,7 +2,7 @@
 
 <%= simple_form_for @search do |f| %>
   <%= f.input_field :address, placeholder:'Lieu de référence' %>
-  <%= f.input_field :duration, placeholder:'Durée' %> <span>min</span>
+  <%= f.input :duration, as: :numeric, placeholder:'Durée' %> <span>min</span>
   <%= f.input_field :profile, placeholder:'Moyen de transport préféré' %>
   <%= f.button :submit, 'Voir mes résultats' %>
 <% end %>
