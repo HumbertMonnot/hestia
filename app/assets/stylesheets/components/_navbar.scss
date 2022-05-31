@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  height: 100px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +10,18 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+// réduire la taille du h1 de la navbar
+.fs-24{
+  font-size: 24px;
+}
+
+#dropdownMenuLink{
+  cursor: default;
+}
+
+// border at the bottom of navbar
+.bb{
+  border-bottom: 1px solid black;
 }
