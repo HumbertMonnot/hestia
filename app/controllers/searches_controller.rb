@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
   # Create #create method for searches => no view associated but redirect_to => indicators#edit view
   def create
     @search = Search.new(search_params)
-    @indicator = Indicator.find(params[:id])
+    # @indicator = Indicator.find(params[:id])
     @search.user = current_user
     @indicators = Indicator.select(:weight)
     @indicators.create
@@ -27,7 +27,6 @@ class SearchesController < ApplicationController
     else
       render :new
     end
-    raise
   end
 
   def show
