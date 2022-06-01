@@ -13,8 +13,8 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(search_params)
     @search.user = current_user
-    IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_tile: indic) }
     if @search.save
+      IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_tile: indic) }
       redirect_to search_indicators_path(@search)
     else
       render :new

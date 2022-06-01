@@ -61,4 +61,3 @@ indicator_1 = Indicator.create!(indicator_title_id: 2, weight: 0.8, search: sear
 indicator_2 = Indicator.create!(indicator_title_id: 3, weight: 0.3, search: search_2)
 indicator_3 = Indicator.create!(indicator_title_id: 7, weight: 0.5, search: search_3)
 puts 'finished for Indicators...'
-
