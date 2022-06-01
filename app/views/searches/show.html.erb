@@ -1,7 +1,8 @@
-<h1>Searches#show</h1>
-<p>Find me in app/views/searches/show.html.erb</p>
+
+
 
 <table data-controller="hexas"
+       data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
        data-hexas-hexalist-value=<%= @paras.to_json() %> >
   <tr>
     <th>Classement</th>
@@ -11,3 +12,4 @@
     <% end %>    
   </tr>
 </table>
+
