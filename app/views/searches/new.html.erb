@@ -1,24 +1,36 @@
-<h1>Hestya</h1>
-<div data-controller= "form-search">
-  <div class="col-6 offset-3 d-flex justify-content-center">
-    <div class="w-100">
-    <%# Address input autocomplete %>
+
+<%# div to put d-flex %>
+<div class="d-flex justify-content-between">
+  <div class="col-4">
+  <%# banner %>
+    <div id="banner" class="d-flex">
+      <h2 id="text-right">trouvez <br>son <br>quartier  </h2>
+      <h2 id="text-left">selon <br>ses <br>critères</h2>
+    </div>
+  </div>
+
+  <%# form %>
+
+  <div class="col-4">
+    <div class="w-100 mt-5 form-search">
     <%= simple_form_for(@search) do |f| %>
        <%= f.input :address,
               label: 'Lieu de référence',
-              input_html: { data: { geocoder_target: "address" }, class:"d-none" },
+              input_html: { data: { geocoder_target: "address" }, class:"d-none mt-5" },
               wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], form_search_target: 'address' } } %>
+      <div class="ctr-flex justify-content-between mt-5">
         <%= f.input :duration,
                       label: 'Durée en min',
                       as: :numeric,
                       as: :select,
                       collection: 5..60,
                       placeholder:'Durée',
-                      class:"h-50",
+                      input_html: {class:"b-green"},
                       data: { form_search_target: 'duration'}  %>
-         <%= f.input :profile, label: 'Moyen de transport', as: :select, collection: Search::CATEGORIES %>
-
-         <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5" %>
+         <%= f.input :profile, label: 'Moyen de transport', as: :select, collection: Search::CATEGORIES, input_html: {class:"b-green"}%>
+      </div>
+      <%= f.button :submit, 'Je trouve mon quartier',class:"btn-basic pink w-100 mt-3" %>
     <% end %>
+    </div>
   </div>
-</div>
+<div>
