@@ -1,21 +1,24 @@
 <h1>Hestya</h1>
-<div class="col-6 offset-3 d-flex justify-content-center">
-  <div class="w-100">
-  <%= simple_form_for(@search) do |f| %>
-  <%# Address input autocomplete %>
-    <%= f.input :address,
+<div data-controller= "form-search">
+  <div class="col-6 offset-3 d-flex justify-content-center">
+    <div class="w-100">
+    <%# Address input autocomplete %>
+    <%= simple_form_for(@search) do |f| %>
+       <%= f.input :address,
+              label: 'Lieu de référence',
               input_html: { data: { geocoder_target: "address" }, class:"d-none" },
-              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
-    <%# part duration and profile in a div with flex to have them side by side %>
-    <div class="ctr-flex">
-      <div id="input-duration">
-        <%= f.input :duration, as: :numeric, as: :select, collection: 5..60, placeholder:'Durée', class:"h-50" %> <span>min</span>
-      </div>
-      <div id="input-profile">
-        <%= f.input_field :profile, placeholder:'Moyen de transport préféré', class:"h-50"%>
-      </div>
-    </div>
-    <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5"%>
-  <% end %>
+              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], form_search_target: 'address' } } %>
+        <%= f.input :duration,
+                      label: 'Durée en min',
+                      as: :numeric,
+                      as: :select,
+                      collection: 5..60,
+                      placeholder:'Durée',
+                      class:"h-50",
+                      data: { form_search_target: 'duration'}  %>
+         <%= f.input :profile, label: 'Moyen de transport', as: :select, collection: Search::CATEGORIES %>
+
+         <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5" %>
+    <% end %>
   </div>
 </div>
