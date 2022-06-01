@@ -3,15 +3,15 @@
 
 .btn-basic{
   opacity: 0.7;
-  padding: 12px 12px;
+  padding: 24px 12px;
   text-align: center;
   font-family: $headers-font;
   font-size: 21px;
   color: white;
   &:hover{
     opacity: 1;
+    color: white;
   }
-  width: 20%
 }
 
 .pink{

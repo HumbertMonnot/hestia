@@ -16,3 +16,11 @@
 body{
   font-family: $body-font;
 }
+
+// à mettre dans fichier form
+// .ctr-flex à utiliser sur div parent pour ajouter un display flex
+.ctr-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

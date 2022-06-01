@@ -1,12 +1,21 @@
 <h1>Hestya</h1>
+<div class="col-6 offset-3 d-flex justify-content-center">
+<div class="w-100">
+  <%= simple_form_for @search do |f| %>
+  <%= f.input_field :address, placeholder:'Lieu de référence', class:"w-100 mb-5 h-50" %>
+  <div class="ctr-flex">
+    <div id="input-duration">
+      <%= f.input :duration, as: :numeric, as: :select, collection: 5..60, placeholder:'Durée', class:"h-50" %> <span>min</span>
+    </div>
+    <div id="input-profile">
+      <%= f.input_field :profile, placeholder:'Moyen de transport préféré', class:"h-50"%>
+    </div>
+   </div>
+    <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5"%>
+  <% end %>
+</div>
+</div>
 
-<%= simple_form_for @search do |f| %>
-  <%= f.input_field :address, placeholder:'Lieu de référence' %>
-  <%= f.input :duration, as: :numeric, placeholder:'Durée' %> <span>min</span>
-  <%= f.input_field :profile, placeholder:'Moyen de transport préféré' %>
-  <%= f.button :submit, 'Voir mes résultats' %>
-<% end %>
-
-<div class="btn-basic pink">PINK</div>
-<div class="btn-basic black">BLACK</div>
-<div class="btn-basic green">GREEN</div>
+<div class="btn-basic pink mt-5">PINK</div>
+<div class="btn-basic black mt-3">BLACK</div>
+<div class="btn-basic green mt-3">GREEN</div>

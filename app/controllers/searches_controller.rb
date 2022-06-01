@@ -18,15 +18,17 @@ class SearchesController < ApplicationController
     @indicators = Indicator.select(:weight)
     @indicators.create
     @indicator_titles = IndicatorTitle.all
+    #  ou @indicator_titles = @indicator.indicator_title.all
     @indicator_titles.each do |indicator_title|
       indicator_title.create
       #create sur indicator indicator_title: indicator_title
     end
     if @search.save
-      redirect_to edit_search_indicator_path(@indicator)
+      redirect_to edit_search_indicator_path(search)
     else
       render :new
     end
+    raise
   end
 
   def show
