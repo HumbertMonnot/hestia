@@ -2,12 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'searches#new'
 
-  resources :searches, only: [:create, :index, :show] do
+  resources :searches, only: [:create, :show] do
     resources :indicators, only: [:index, :update]
-    resources :polygons, only: [:update]
   end
 
-  resources :users, only: [:index, :show] do
-    resources :searches, only: [:index, :show]
+  resources :users, only: [] do
+    resources :searches, only: [:index]
   end
 end

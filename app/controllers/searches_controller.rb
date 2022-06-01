@@ -7,28 +7,18 @@ class SearchesController < ApplicationController
   # Create #new method for searches => view associated (used as homepage if John approval)
   def new
     @search = Search.new
-    # Need indicator to redirect to indicator show
   end
 
   # Create #create method for searches => no view associated but redirect_to => indicators#edit view
   def create
     @search = Search.new(search_params)
-    # @indicator = Indicator.find(params[:id])
     @search.user = current_user
-    @indicators = Indicator.select(:weight)
-    @indicators.create
-    @indicator_titles = IndicatorTitle.all
-    #  ou @indicator_titles = @indicator.indicator_title.all
-    @indicator_titles.each do |indicator_title|
-      indicator_title.create
-      #create sur indicator indicator_title: indicator_title
-    end
+    IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_tile: indic) }
     if @search.save
-      redirect_to edit_search_indicator_path(search)
+      redirect_to search_indicators_path(@search)
     else
       render :new
     end
-    raise
   end
 
   def show

@@ -1,12 +1,15 @@
 class IndicatorsController < ApplicationController
   def index
-    @indicators = Indicator.all
+    @search = Search.find(params[:search_id])
+    @indicators = @search.indicators
   end
 
   def update
     # @search = Search.find(params[:id])
-    @indicator = Indicator.find(params[:id])
-    @indicator.update(indicator_params)
+    raise
+    # each
+      @indicator = Indicator.find(params[:id])
+      @indicator.update(indicator_params)
   end
 
   private
