@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_30_142246) do
+ActiveRecord::Schema.define(version: 2022_05_31_143742) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +35,11 @@ ActiveRecord::Schema.define(version: 2022_05_30_142246) do
   create_table "infrastructures", force: :cascade do |t|
     t.bigint "indicator_title_id", null: false
     t.string "equipment"
-    t.string "name"
+    t.string "domain"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["indicator_title_id"], name: "index_infrastructures_on_indicator_title_id"
   end
 
@@ -47,6 +50,8 @@ ActiveRecord::Schema.define(version: 2022_05_30_142246) do
     t.string "profile"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
