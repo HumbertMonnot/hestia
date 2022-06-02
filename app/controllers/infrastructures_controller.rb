@@ -14,27 +14,24 @@ class InfrastructuresController < ApplicationController
     "vie_culturelle" => 12
   }
 
-  def send
-    # coords = params[:coords]
-    # distance = params[:dist].to_f
-    # type = params[:type]
-    # min_long = coords[0] - distance * 0.02
-    # max_long = coords[0] + distance * 0.02
-    # min_lat = coords[1] - distance * 0.01
-    # max_lat = coords[1] - distance * 0.01
-    # @infras = Infrastructure.where([
-    #   "indicator_title_id  = ? and latitude > ? and latitude < ? and longitude > ? and longitude < ?",
-    #   TYPE_DICO[type],
-    #   min_lat,
-    #   max_lat,
-    #   min_long,
-    #   max_long
-    # ])
-
-    respond_to do |format|
-      format.json { 
-        render json: {yo: 3}
-      }
-    end
+  def send_coords
+    puts("------ on est là --------------")
+    coords = params[:coords].split(",").map(&:to_f)
+    distance = params[:dist].to_f
+    type = params[:type]
+    min_long = coords[0] - distance * 0.02
+    max_long = coords[0] + distance * 0.02
+    min_lat = coords[1] - distance * 0.01
+    max_lat = coords[1] + distance * 0.01
+    @infras = Infrastructure.where([
+      "indicator_title_id  = ? and latitude > ? and latitude < ? and longitude > ? and longitude < ?",
+      TYPE_DICO[type],
+      min_lat,
+      max_lat,
+      min_long,
+      max_long
+    ])
+    
+    render json: @infras
   end
 end

@@ -28,19 +28,29 @@ export default class extends Controller {
     const poly = data.features[0].geometry.coordinates
     const hexas = await this.#getGrid(poly)
     let hexas_scored = []
+
     // on calcul les scores de chaque hexagone pour les différents critères
-    hexas.forEach((hexa)=>{
-      hexas_scored.push(all_scores(hexa))
-    })
+    for (const hexa of hexas) {
+      const contents = await all_scores(hexa);
+      hexas_scored.push(contents);
+    }
+    this.#smoothScore(hexas_scored, "animaux")
+    this.#smoothScore(hexas_scored, "commerce_de_bouche")
+    this.#smoothScore(hexas_scored, "etablissements_scolaires")
+    this.#smoothScore(hexas_scored, "grandes_surfaces")
+    this.#smoothScore(hexas_scored, "installations_sportives")
+    this.#smoothScore(hexas_scored, "medecine_courante")
+    this.#smoothScore(hexas_scored, "medecine_specialisee")
+    this.#smoothScore(hexas_scored, "petite_enfance")
+    this.#smoothScore(hexas_scored, "restauration")
+    this.#smoothScore(hexas_scored, "services_de_proximite")
+    this.#smoothScore(hexas_scored, "shopping")
+    this.#smoothScore(hexas_scored, "vie_culturelle")
     this.#weightedAverageScore(hexas_scored)
     this.#smoothScore(hexas_scored, "weight_average")
     hexas_scored.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
+    console.log(hexas_scored)
     const top_hexas = hexas_scored
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[0], 1))
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[1], 2))
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[2], 3))
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[3], 4))
-    // console.log(top_hexas)
     // let compt = 1
     // top_hexas.forEach(async (hexa) => {
     //   await this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(hexa, compt))
@@ -76,6 +86,9 @@ export default class extends Controller {
     })
     const coef = 100 / max
     hexas.forEach(hexa => hexa.properties[attr] = Math.round(hexa.properties[attr] * coef))
+    if (["animaux", "etablissements_scolaires", "grandes_surfaces"].includes(attr)) {
+      hexas.forEach(hexa => hexa.properties[attr] = 100 - hexa.properties[attr])
+    }
   }
 
   // Méthode pour calculer les scores pour chaque hexagone d'une liste d'hexagones
@@ -90,6 +103,8 @@ export default class extends Controller {
       hexa.properties.weight_average = Math.round(total / compt)
     })
   }
+
+  #scores
 
   // Méthode pour construire le tableau
   #buildTableLine = async (hexa, num) => {
@@ -117,6 +132,7 @@ export default class extends Controller {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [this.hexalistValue[0][0], this.hexalistValue[0][1]],
+      pitch: 60,
       zoom: 12
     });
     return map
