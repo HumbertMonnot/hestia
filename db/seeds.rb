@@ -30,7 +30,7 @@
 #  )
 #  if Infrastructure.count % 8000 == 0
 #   puts Infrastructure.count
-# end
+#   end
 # end
 
 puts "cleaning database"
