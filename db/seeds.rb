@@ -23,14 +23,14 @@
 
 # CSV.foreach(filepath, headers: :first_row) do |row|
 #   Infrastructure.create!(
-#     longitude: row['lon'],
-#     latitude: row['lat'],
-#     equipment: row['equipment'],
-#     indicator_title_id: row['indicator_title_id']
-#   )
-#   if Infrastructure.count % 8000 == 0
-#     puts Infrastructure.count
-#   end
+#   longitude: row['lon'],
+#   latitude: row['lat'],
+#   equipment: row['equipment'],
+#   indicator_title_id: row['indicator_title_id']
+#  )
+#  if Infrastructure.count % 8000 == 0
+#   puts Infrastructure.count
+# end
 # end
 
 puts "cleaning database"
@@ -61,4 +61,3 @@ indicator_1 = Indicator.create!(indicator_title_id: 2, weight: 0.8, search: sear
 indicator_2 = Indicator.create!(indicator_title_id: 3, weight: 0.3, search: search_2)
 indicator_3 = Indicator.create!(indicator_title_id: 7, weight: 0.5, search: search_3)
 puts 'finished for Indicators...'
-
