@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :indicators, only: [:index, :update]
   end
 
-  resources :users, only: [] do
-    resources :searches, only: [:index]
-  end
+  resources :searches, only: [:index]
+
 end
