@@ -15,10 +15,12 @@
   <body>
 
   <div class="fixed-top">
-    <% unless params[:controller] == 'searches' && params[:action] == 'new' %>
+    <% if params[:controller] == 'searches' && params[:action] == 'new' %>
     <%= render 'shared/navbar2' %>
-    <% end %>
+    <% else %>
     <%= render 'shared/navbar' %>
+    <% end %>
+
   </div>
     <%= render 'shared/flashes' %>
 
