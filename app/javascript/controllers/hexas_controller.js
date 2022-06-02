@@ -112,9 +112,7 @@ export default class extends Controller {
   }
 
   #buildMap = () => {
-    console.log("on est là")
     mapboxgl.accessToken = this.apiKeyValue;
-    console.log("Et là on est là")
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
