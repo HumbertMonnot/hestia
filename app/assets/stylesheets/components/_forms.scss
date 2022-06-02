@@ -1,0 +1,53 @@
+// code all your forms here
+
+// style the form => address input on homepage
+#geocoder {
+  z-index: 1;
+  margin: 20px;
+  }
+
+.mapboxgl-ctrl-geocoder--input{
+  border: 1px solid lightgrey;
+  box-shadow: none;
+  width: 100%;
+  border: solid 3px $green-color;
+  height: 64px;
+  padding-left: 16px;
+}
+
+.mapboxgl-ctrl-geocoder--button{
+  display: none;
+}
+
+.mapboxgl-ctrl-geocoder--icon, .mapboxgl-ctrl-geocoder--icon-close{
+  display: none;
+}
+
+li{
+  list-style-type: none;
+}
+
+// à mettre dans fichier form
+// .ctr-flex à utiliser sur div parent pour ajouter un display flex
+.ctr-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.b-green{
+  border: solid 3px $green-color;
+}
+
+.select{
+  width: 92%;
+}
+
+.form-search {
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px lightgray;
+  padding: 24px 24px;
+  background-color: white;
+  position: absolute;
+  top: 40%;
+  width: 35%;
+}

@@ -12,18 +12,22 @@ class SearchesController < ApplicationController
   # Create #create method for searches => no view associated but redirect_to => indicators#edit view
   def create
     @search = Search.new(search_params)
-    @search.user = current_user
+    @search.profile = params[:search][:profile]
+    @search.user = User.last
+
     if @search.save
       IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_title: indic) }
       redirect_to search_indicators_path(@search)
     else
       render :new
     end
+
   end
 
   def show
     @search = Search.find(params[:id])
-    @paras = [[@search.longitude,@search.latitude], @search.profile, @search.duration]
+    @paras = [[@search.longitude, @search.latitude], @search.profile, @search.duration]
+    @indicators = @search.indicators.map { |indic| indic.weight }
   end
 
   private
