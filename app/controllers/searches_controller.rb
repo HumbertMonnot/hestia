@@ -1,7 +1,9 @@
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create]
 
+   # Create #index method for the dashboard
   def index
+    @searches = current_user.searches
   end
 
   # Create #new method for searches => view associated (used as homepage if John approval)
