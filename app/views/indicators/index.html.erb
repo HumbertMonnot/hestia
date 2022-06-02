@@ -1,49 +1,25 @@
 <div class= "ctr-pages">
+<%# partie Oceane à integrer sur partie Nico%>
   <h3>NOTEZ VOS CRITERES</h3>
+  <%# <div class="ctr-cards"> %>
+    <%# <div class="card-indicator"> %> 
+      <%# <%= form_with do |f| %> %>
+        <%# <%= f.text_field :weight %> %>
+        <%# <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p> %>
+      <%# <% end %>
+    <%# </div> %>
+  <%# <div class="btn-basic pink center">Mes résultats</div> %>
+<%# </div> %>
 
-<%# <% @indicators.each do |indicator| %>
-  <div class="ctr-cards">
-  <%# <%= form_for(@indicator) do |f| %>
-    <div class="card-indicator">
-      <%= form_with do |f| %>
-        <%= f.text_field :weight %>
-        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
-      <% end %>
-    </div>
-    <div class="card-indicator">
-      <%= form_with do |f| %>
-        <%= f.text_field :weight %>
-        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
-      <% end %>
-    </div>
-    <div class="card-indicator">
-      <%= form_with do |f| %>
-        <%= f.text_field :weight %>
-        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
-      <% end %>
-    </div>
-    <div class="card-indicator">
-      <%= form_with do |f| %>
-        <%= f.text_field :weight %>
-        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
-      <% end %>
-    </div>
-    <div class="card-indicator">
-     <%= form_with do |f| %>
-        <%= f.text_field :weight %>
-        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
-      <% end %>
-    </div>
-    <div class="card-indicator">
-      <%= form_with do |f| %>
-        <%= f.text_field :weight %>
-        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="btn-basic pink center">Mes résultats</div>
-
-
-<%# <% end %>
+<%# partie Nico à fronter %>
+<%= @indicators.each do |indicator| %>
+<div data-controller="search-indicators">
+  <h3><%= indicator.indicator_title.name %></h3>
+    <%= simple_form_for([@search, indicator], remote: true, data: {search_indicators_target: 'form'}) do |f| %>
+      <%= f.number_field :weight, data: { search_indicators_target: 'input', action: 'blur->search-indicators#update' }, value: indicator.weight*10 %>
+ <% end %>
+</div>
+<% end %>
+<div>
+<%= link_to "See your results", search_path(params[:search_id]) %>
 </div>
