@@ -1,21 +1,35 @@
-<h1>Hestya</h1>
-<div class="col-6 offset-3 d-flex justify-content-center">
-<div class="w-100">
-  <%= simple_form_for @search do |f| %>
-  <%= f.input_field :address, placeholder:'Lieu de référence', class:"w-100 mb-5 h-50" %>
-  <div class="ctr-flex">
-    <div id="input-duration">
-      <%= f.input :duration, as: :numeric, as: :select, collection: 5..60, placeholder:'Durée', class:"h-50" %> <span>min</span>
-    </div>
-    <div id="input-profile">
-      <%= f.input_field :profile, placeholder:'Moyen de transport préféré', class:"h-50"%>
-    </div>
-   </div>
-    <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5"%>
-  <% end %>
-</div>
-</div>
+<div class="banner">
+  <%# ATTENTION C'était dans la classe du dessous col-6 offset-3 d-flex %>
+  <div class="justify-content-center">
+    <div class="text-banner">
+    <div class="d-flex" ></div>
+      <h1>Trouvez votre futur quartier</h1>
+      <p>Selon <i>vos</i> critères !</p>
 
-<div class="btn-basic pink mt-5">PINK</div>
+    </div>
+  </div>
+</div>
+<%# <%= video_tag "hexagonal.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, %> %>
+<%# col-6 offset-3 %>
+<div class="container justify-content-center d-flex m-5">
+  <div class="w-100">
+      <%= simple_form_for @search do |f| %>
+      <%= f.input_field :address, placeholder:'Lieu de référence', class:"w-100 mb-5 h-50" %>
+      <div class="ctr-flex">
+        <div id="input-duration">
+          <%= f.input :duration, as: :numeric, as: :select, collection: 5..60, placeholder:'Durée', class:"h-50" %> <span>min</span>
+        </div>
+        <div id="input-profile">
+          <%= f.input_field :profile, placeholder:'Moyen de transport préféré', class:"h-50"%>
+        </div>
+        <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5"%>
+      <% end %>
+      </div>
+  </div>
+</div>
+<%# <div class="btn-basic pink mt-5">PINK</div>
 <div class="btn-basic black mt-3">BLACK</div>
-<div class="btn-basic green mt-3">GREEN</div>
+<div class="btn-basic green mt-3">GREEN</div> %>
+
+<%# ajouter une banner
+render la nav bar

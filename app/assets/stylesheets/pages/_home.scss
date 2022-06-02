@@ -1,1 +1,22 @@
 // Specific CSS for your home-page
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  }
+
+  .banner i {
+    color: $green-color;
+    background: #E4FFF3;
+    padding: 0 15px 3px;
+    font-style: normal;
+    border-radius: 3px
+  }
