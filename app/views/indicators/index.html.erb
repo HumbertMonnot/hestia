@@ -1,25 +1,30 @@
 <div class= "ctr-pages">
-<%# partie Oceane à integrer sur partie Nico%>
   <h3>NOTEZ VOS CRITERES</h3>
-  <%# <div class="ctr-cards"> %>
-    <%# <div class="card-indicator"> %> 
-      <%# <%= form_with do |f| %> %>
-        <%# <%= f.text_field :weight %> %>
-        <%# <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p> %>
-      <%# <% end %>
-    <%# </div> %>
-  <%# <div class="btn-basic pink center">Mes résultats</div> %>
-<%# </div> %>
+  <div class="ctr-cards">
+    <% @indicators.each do |indicator| %>
+      <div class="card-indicator px-5" data-controller="search-indicators">
+        <p class="pt-4"><%= indicator.indicator_title.name %></p>
+        <%= simple_form_for([@search, indicator], remote: true, data: {search_indicators_target: 'form'}) do |f| %>
 
-<%# partie Nico à fronter %>
-<%= @indicators.each do |indicator| %>
-<div data-controller="search-indicators">
-  <h3><%= indicator.indicator_title.name %></h3>
-    <%= simple_form_for([@search, indicator], remote: true, data: {search_indicators_target: 'form'}) do |f| %>
-      <%= f.number_field :weight, data: { search_indicators_target: 'input', action: 'blur->search-indicators#update' }, value: indicator.weight*10 %>
- <% end %>
+        <%= f.input :weight,
+          label: false,
+          as: :numeric,
+          as: :select,
+          collection: 0..10,
+          selected: 0,
+          input_html: {class:"b-green mt-4"},
+          data: { search_indicators_target: 'input', action: 'blur->search-indicators#update' }
+          %>
+
+          <%# value: indicator.weight*10 %>
+
+          <%# <%= f.number_field :weight, data: { search_indicators_target: 'input', action: 'blur->search-indicators#update' }, value: indicator.weight*10%>
+
+        <% end %>
+    </div>
+  <% end %>
 </div>
-<% end %>
-<div>
-<%= link_to "See your results", search_path(params[:search_id]) %>
+  <%= link_to search_path(params[:search_id]) do %>
+    <div class="btn-basic pink center">Mes résultats</div>
+  <% end %>
 </div>
