@@ -5,7 +5,8 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
-@import "font-awesome-sprockets";
+
+// @import "font-awesome-sprockets";
 @import "font-awesome";
 
 // Your CSS partials
@@ -13,6 +14,82 @@
 @import "pages/index";
 
 
+<<<<<<< HEAD
 canvas {
   height: 700px
 }
+=======
+// mettre ce qui sera utilisé dans le body/ basics
+body{
+  font-family: $body-font;
+  background-color: white;
+}
+
+// à metter dans un fichier banner => ici pour test
+#banner{
+  background-color: $green-color;
+  height: 100vh;
+  position: relative;
+}
+
+h2{
+  letter-spacing: 12px;
+  font-size: 24px;
+}
+
+#text-right{
+  text-align: right;
+  border-right: 2px solid black;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 35%;
+  left: 8%;
+}
+
+#text-left{
+  border-left: 2px solid black;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 45%;
+  right: 8%;
+  padding-left: 7px;
+}
+
+@media (max-width: 1300px) {
+  #text-left{
+  top: 55%;
+  right: 2%;
+  }
+}
+
+@media (max-width: 900px) {
+  #text-left{
+  top: 50%;
+  right: 2%;
+  font-size: 16px;
+  }
+  #text-right{
+    top: 35%;
+    left: 2%;
+    font-size: 16px;
+  }
+}
+
+
+// h1{
+//   margin: 24px;
+//   font-size: 16px;
+//   font-weight: bold;
+//   // text-decoration: underline #61E294 5px;
+//   // text-underline-offset: 3px;
+// }
+
+
+// h2{
+//   margin: 16px;
+//   font-size: 16px;
+//   font-weight: bold;
+// }
+>>>>>>> master

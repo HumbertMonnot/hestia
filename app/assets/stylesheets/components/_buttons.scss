@@ -1,0 +1,29 @@
+// btn-basic à utiliser pour avoir la forme de base du bouton
+// rajouter les classes .pink... pour ajouter un background de couleur
+
+.btn-basic{
+  opacity: 1;
+  padding: 12px 12px;
+  text-align: center;
+  font-family: $headers-font;
+  font-size: 21px;
+  color: white;
+  border-radius: 4px;
+  &:hover{
+    // opacity: 0.7;
+    color: white;
+    font-size: 22px;
+  }
+}
+
+.pink{
+  background-color: $pink-color;
+}
+
+.black{
+  background-color: black;
+}
+
+.green{
+  background-color: $green-color;
+}
