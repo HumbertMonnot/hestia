@@ -18,6 +18,23 @@ canvas {
   height: 700px
 }
 
+body{
+  background-color: white;
+}
+
+// containers that contain inside of page
+// one for homepage
+.ctr-homepage{
+  position: relative;
+}
+
+// to use on the other pages to add margin under navbar
+.ctr-pages{
+  margin-top: 150px;
+  margin-left: 64px;
+  margin-right: 64px;
+}
+
 // mettre ce qui sera utilisé dans le body/ basics
 // body{
 //   font-family: $body-font;

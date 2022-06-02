@@ -1,9 +1,47 @@
-<h1>Vote for your priorities !!</h1>
+<div class= "ctr-pages">
+  <h3>NOTEZ VOS CRITERES</h3>
 
-<% @indicators.each do |indicator| %>
-  <%= form_for(@indicator) do |f| %>
-    <%= f.label :weight %>
-    <%= f.text_field :weight %>
-    <%= f.submit %>
-  <% end %>
-<% end %>
+<%# <% @indicators.each do |indicator| %>
+  <div class="ctr-cards">
+  <%# <%= form_for(@indicator) do |f| %>
+    <div class="card-indicator">
+      <%= form_with do |f| %>
+        <%= f.text_field :weight %>
+        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
+      <% end %>
+    </div>
+    <div class="card-indicator">
+      <%= form_with do |f| %>
+        <%= f.text_field :weight %>
+        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
+      <% end %>
+    </div>
+    <div class="card-indicator">
+      <%= form_with do |f| %>
+        <%= f.text_field :weight %>
+        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
+      <% end %>
+    </div>
+    <div class="card-indicator">
+      <%= form_with do |f| %>
+        <%= f.text_field :weight %>
+        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
+      <% end %>
+    </div>
+    <div class="card-indicator">
+     <%= form_with do |f| %>
+        <%= f.text_field :weight %>
+        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
+      <% end %>
+    </div>
+    <div class="card-indicator">
+      <%= form_with do |f| %>
+        <%= f.text_field :weight %>
+        <p>Quelle importance donnez-vous à la proximité des commerces de bouche</p>
+      <% end %>
+    </div>
+     <div class="btn-basic pink">Mes résultats</div>
+  </div>
+
+<%# <% end %>
+</div>
