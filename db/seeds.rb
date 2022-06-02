@@ -21,17 +21,17 @@
 
 # Infrastructure.destroy_all
 
-CSV.foreach(filepath, headers: :first_row) do |row|
-  Infrastructure.create!(
-    longitude: row['lon'],
-    latitude: row['lat'],
-    equipment: row['equipment'],
-    indicator_title_id: row['indicator_title_id']
-  )
-  if Infrastructure.count % 8000 == 0
-    puts Infrastructure.count
-  end
-end
+# CSV.foreach(filepath, headers: :first_row) do |row|
+#   Infrastructure.create!(
+#   longitude: row['lon'],
+#   latitude: row['lat'],
+#   equipment: row['equipment'],
+#   indicator_title_id: row['indicator_title_id']
+#  )
+#  if Infrastructure.count % 8000 == 0
+#   puts Infrastructure.count
+#   end
+# end
 
 puts "cleaning database"
 User.destroy_all

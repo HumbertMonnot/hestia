@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon-pages px-5">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon bb px-5">
   <div class="container-fluid">
     <%= link_to "#", class: "navbar-brand" do %>
-      <h1>HESTYA</h1>
+      <h1 class="fs-24">HESTYA</h1>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item dropdown">
-        <i class=" fa-solid fa-bars fa-xl" href="#" role="button" id="dropdownMenuLink-black" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <i class="fa-solid fa-bars fa-xl" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
             <%= link_to "Profil", "#", class: "nav-link" %>

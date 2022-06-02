@@ -1,6 +1,48 @@
-.navbar-lewagon {
+// navbar for all the other pages (EXCEPT HP)
+.navbar-lewagon-pages {
   justify-content: space-between;
   background: white;
+  height: 100px;
+  border-bottom: 1px solid black;
+  color: black;
+  font-size: 24px;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+
+// réduire la taille du h1 de la navbar
+// .fs-24{
+//   font-size: 24px;
+// }
+
+#dropdownMenuLink-black{
+  cursor: default;
+  color: black;
+}
+
+
+
+// border at the bottom of navbar
+// .bb{
+//   border-bottom: 1px solid black;
+// }
+
+.dropdown-menu {
+  border: 1px solid black;
+  text-align: center;
+}
+
+
+// navbar2 for homepage
+.navbar-lewagon {
+  justify-content: space-between;
+  background: $green-color;
   height: 100px;
 }
 
@@ -14,19 +56,26 @@
 
 // réduire la taille du h1 de la navbar
 .fs-24{
-  font-size: 24px;
+  font-size: 38px;
+  color: white;
+  margin: 0;
+  font-weight: bold;
 }
 
 #dropdownMenuLink{
   cursor: default;
+  color: white;
+
 }
 
 // border at the bottom of navbar
 .bb{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
+
 .dropdown-menu {
-  border: 1px solid black;
+  border: 1px solid white;
   text-align: center;
+  color: white;
 }

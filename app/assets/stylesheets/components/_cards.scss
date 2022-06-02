@@ -1,0 +1,49 @@
+// cards for the indicators on views/indicators/index.html.erb
+.ctr-cards{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.card-indicator{
+  flex-grow: 1;
+  margin: 16px;
+  padding: 24px;
+  width: 45%;
+  background-color: $green-color;
+  border-radius: 12px;
+  color: white;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 12xpx black;
+  &:hover{
+    box-shadow: 5px 5px 10px lightgray;
+    border-radius: 12px;
+  }
+}
+
+form{
+  display: flex;
+  justify-content: space-around;
+}
+
+input{
+  border: 3px solid $green-color;
+  width: 21%;
+  margin-right: 16px;
+}
+
+@media (max-width:1300px) {
+  input{
+    border: 3px solid $green-color;
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+  }
+  .ctr-cards{
+    display: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}

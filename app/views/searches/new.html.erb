@@ -1,18 +1,18 @@
-<p>Version Océane</p>
 <%# div to put d-flex %>
-<div class="d-flex justify-content-between">
-  <div class="col-4">
-  <%# banner %>
-    <div id="banner" class="d-flex">
-      <h2 id="text-right">trouvez <br>son <br>quartier  </h2>
-      <h2 id="text-left">selon <br>ses <br>critères</h2>
+<div class="ctr-homepage">
+  <div class="banner">
+  <%# ATTENTION C'était dans la classe du dessous col-6 offset-3 d-flex %>
+    <div class="justify-content-center">
+      <div class="text-banner">
+        <h1>Trouver votre futur quartier</h1>
+        <p>Selon <span>vos</span> critères !</p>
+      </div>
     </div>
   </div>
+</div>
 
-  <%# form %>
-
-  <div class="col-4">
-    <div class="w-100 mt-5 form-search">
+  <div class="col-6 offset-4">
+    <div class="mt-5 form-search">
     <%= simple_form_for(@search) do |f| %>
        <%= f.input :address,
               label: 'Lieu de référence',
@@ -34,22 +34,8 @@
     </div>
   </div>
 <div>
-
-<p>Version Farah</p>
-<div class="banner">
-  <%# ATTENTION C'était dans la classe du dessous col-6 offset-3 d-flex %>
-  <div class="justify-content-center">
-    <div class="text-banner">
-    <div class="d-flex" ></div>
-      <h1>Trouvez votre futur quartier</h1>
-      <p>Selon <i>vos</i> critères !</p>
-
-    </div>
-  </div>
 </div>
-<%# <%= video_tag "hexagonal.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, %> %>
 
-</div>
 
 
 <%# ajouter une banner %>
