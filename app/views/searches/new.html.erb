@@ -1,3 +1,41 @@
+<p>Version Océane</p>
+<%# div to put d-flex %>
+<div class="d-flex justify-content-between">
+  <div class="col-4">
+  <%# banner %>
+    <div id="banner" class="d-flex">
+      <h2 id="text-right">trouvez <br>son <br>quartier  </h2>
+      <h2 id="text-left">selon <br>ses <br>critères</h2>
+    </div>
+  </div>
+
+  <%# form %>
+
+  <div class="col-4">
+    <div class="w-100 mt-5 form-search">
+    <%= simple_form_for(@search) do |f| %>
+       <%= f.input :address,
+              label: 'Lieu de référence',
+              input_html: { data: { geocoder_target: "address" }, class:"d-none mt-5" },
+              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], form_search_target: 'address' } } %>
+      <div class="ctr-flex justify-content-between mt-5">
+        <%= f.input :duration,
+                      label: 'Durée en min',
+                      as: :numeric,
+                      as: :select,
+                      collection: 5..60,
+                      placeholder:'Durée',
+                      input_html: {class:"b-green"},
+                      data: { form_search_target: 'duration'}  %>
+         <%= f.input :profile, label: 'Moyen de transport', as: :select, collection: Search::CATEGORIES, input_html: {class:"b-green"}%>
+      </div>
+      <%= f.button :submit, 'Je trouve mon quartier',class:"btn-basic pink w-100 mt-3" %>
+    <% end %>
+    </div>
+  </div>
+<div>
+
+<p>Version Farah</p>
 <div class="banner">
   <%# ATTENTION C'était dans la classe du dessous col-6 offset-3 d-flex %>
   <div class="justify-content-center">
@@ -10,26 +48,9 @@
   </div>
 </div>
 <%# <%= video_tag "hexagonal.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, %> %>
-<%# col-6 offset-3 %>
-<div class="container justify-content-center d-flex m-5">
-  <div class="w-100">
-      <%= simple_form_for @search do |f| %>
-      <%= f.input_field :address, placeholder:'Lieu de référence', class:"w-100 mb-5 h-50" %>
-      <div class="ctr-flex">
-        <div id="input-duration">
-          <%= f.input :duration, as: :numeric, as: :select, collection: 5..60, placeholder:'Durée', class:"h-50" %> <span>min</span>
-        </div>
-        <div id="input-profile">
-          <%= f.input_field :profile, placeholder:'Moyen de transport préféré', class:"h-50"%>
-        </div>
-        <%= f.button :submit, 'Voir mes résultats', class:"btn-basic pink mt-5"%>
-      <% end %>
-      </div>
-  </div>
-</div>
-<%# <div class="btn-basic pink mt-5">PINK</div>
-<div class="btn-basic black mt-3">BLACK</div>
-<div class="btn-basic green mt-3">GREEN</div> %>
 
-<%# ajouter une banner
-render la nav bar
+</div>
+
+
+<%# ajouter une banner %>
+<%# render la nav bar %>
