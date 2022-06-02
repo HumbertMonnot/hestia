@@ -1,15 +1,17 @@
 
-
-
 <table data-controller="hexas"
        data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
+       data-hexas-weights-value=<%= @indicators.to_json() %>
        data-hexas-hexalist-value=<%= @paras.to_json() %> >
   <tr>
     <th>Classement</th>
     <th>Quartier</th>     
     <% IndicatorTitle.all.each do |indic| %>
       <th><%= indic.name %></th> 
-    <% end %>    
+    <% end %>   
+    <th>Note moyenne</th>  
   </tr>
 </table>
-
+<div>
+<map id="map"></map>
+</div>
