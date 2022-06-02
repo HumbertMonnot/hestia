@@ -4,3 +4,15 @@
   font-weight: 400;
   padding-bottom: 12px;
 }
+
+.center{
+  margin-left: 38%;
+  width: 25%;
+}
+
+@media (max-width: 1300px) {
+  .center{
+    margin-left: 25%;
+    width: 45%;
+  }
+}
