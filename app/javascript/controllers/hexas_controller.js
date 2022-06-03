@@ -155,11 +155,12 @@ export default class extends Controller {
         paint: {
           "fill-color": [
             "interpolate", ["linear"], ["get", "weight_average"],
-            50, "red",
-            75, "orange",
-            100, "green"
+            0, "red",
+            25, "orange",
+            50, "green",
+            100, "purple"
           ],
-          "fill-opacity": 0.4
+          "fill-opacity": 0.6
         }
       });
     });
