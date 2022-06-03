@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
+  # skip_before_action :authenticate_user!, only: [:new, :create]
 
    # Create #index method for the dashboard
   def index

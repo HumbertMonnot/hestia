@@ -27,12 +27,23 @@ body{
   position: relative;
 }
 // to use on the other pages to add margin under navbar
+
+// to use if we want a background image
+// .bg-img{
+//   background-image: url(bg_hestya.png);
+//   background-position: center;
+//   background-size: cover;
+//   margin: 0px;
+// }
+
 .ctr-pages{
   margin-top: 150px;
   margin-left: 64px;
   margin-right: 64px;
+  // background-image: url(bg_hestya.png);
+  // background-position: center;
+  // background-size: cover;
 }
-
 
 h1 h3 {
   font-family: $body-font;
