@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(search_params)
     @search.profile = params[:search][:profile]
-    @search.user = User.last
+    @search.user = current_user
 
     if @search.save
       IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_title: indic) }
