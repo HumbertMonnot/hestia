@@ -1,10 +1,6 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "form"]
-  static values = {
-    id: Number
-  }
 
   connect() {
   }
@@ -12,6 +8,6 @@ export default class extends Controller {
 
   update(event) {
     event.preventDefault()
-    this.formTarget.submit()
+    this.element.submit();
 }
 }

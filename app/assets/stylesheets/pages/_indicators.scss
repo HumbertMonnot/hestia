@@ -3,11 +3,15 @@
   font-size: 21px;
   font-weight: 400;
   padding-bottom: 12px;
+  padding-left: 48px;
 }
 
+// utilisé sur le bouton "mes résultats" page indicators
 .center{
   margin-left: 38%;
   width: 25%;
+  margin-bottom: 50px;
+  margin-top: 24px;
 }
 
 @media (max-width: 1300px) {
