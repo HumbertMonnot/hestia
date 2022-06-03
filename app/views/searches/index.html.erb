@@ -29,7 +29,7 @@
         </div>
         <div class="d-flex card-pastsearches justify-content-center">
           <% current_user.searches.each do |search|%>
-            <%= link_to searches_path(@search) do %>
+            <%= link_to search_path(search) do %>
             <p> Adresse : <%=  search.address %> </p>
             <br> <p> Temps : <%= search.duration %> minutes </p>
             <br> <p> Mode de transport :<%= search.profile %> </p>
