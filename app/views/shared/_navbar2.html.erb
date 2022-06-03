@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon bb px-5">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand" do %>
       <h1 class="fs-24">HESTYA</h1>
     <% end %>
 
@@ -14,7 +14,7 @@
         <i class="fa-solid fa-bars fa-xl" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
-            <%= link_to "Profil", "#", class: "nav-link" %>
+            <%= link_to "Profil", "/searches", class: "nav-link" %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           <% else %>
             <%= link_to "Se connecter", new_user_session_path, class: "nav-link" %>
