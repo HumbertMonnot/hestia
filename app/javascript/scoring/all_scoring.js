@@ -11,18 +11,18 @@ import services_de_proximite from "./services_de_proximite.js"
 import shopping from "./shopping.js"
 import vie_culturelle from "./vie_culturelle.js"
 
-export default (hexagon) => {
-  animaux(hexagon)
-  commerce_de_bouche(hexagon)
-  etablissements_scolaires(hexagon)
-  grandes_surfaces(hexagon)
-  installations_sportives(hexagon)
-  medecine_courante(hexagon)
-  medecine_specialisee(hexagon)
-  petite_enfance(hexagon)
-  restauration(hexagon)
-  services_de_proximite(hexagon)
-  shopping(hexagon)
-  vie_culturelle(hexagon)
+export default async (hexagon) => {
+  await animaux(hexagon)
+  await commerce_de_bouche(hexagon)
+  await etablissements_scolaires(hexagon)
+  await grandes_surfaces(hexagon)
+  await installations_sportives(hexagon)
+  await medecine_courante(hexagon)
+  await medecine_specialisee(hexagon)
+  await petite_enfance(hexagon)
+  await restauration(hexagon)
+  await services_de_proximite(hexagon)
+  await shopping(hexagon)
+  await vie_culturelle(hexagon)
   return hexagon
 }
