@@ -46,6 +46,7 @@ export default class extends Controller {
     this.#smoothScore(hexas_scored, "services_de_proximite")
     this.#smoothScore(hexas_scored, "shopping")
     this.#smoothScore(hexas_scored, "vie_culturelle")
+    console.log(hexas_scored)
     this.#weightedAverageScore(hexas_scored)
     this.#smoothScore(hexas_scored, "weight_average")
     hexas_scored.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
@@ -71,7 +72,7 @@ export default class extends Controller {
   // Méthode pour construire la grid dans le polygon passé en object (dans le cas du projet, un isochrone)
   #getGrid = async (polygon) => {
     const bbox = [this.hexalistValue[0][0]-0.3, this.hexalistValue[0][1]-0.3, this.hexalistValue[0][0]+0.3, this.hexalistValue[0][1]+0.3];
-    const cellSide = 0.5;
+    const cellSide = 0.4;
     const options = { mask: turf.polygon(polygon) };
     return turf.hexGrid(bbox, cellSide, options).features;
   };
@@ -99,6 +100,7 @@ export default class extends Controller {
       Object.entries(hexa.properties).forEach((property) => {
         total += hexa.properties[property[0]] * this.weightsValue[compt]
         compt += 1
+        console.log(total, compt)
       })
       hexa.properties.weight_average = Math.round(total / compt)
     })
@@ -132,7 +134,7 @@ export default class extends Controller {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [this.hexalistValue[0][0], this.hexalistValue[0][1]],
-      pitch: 60,
+      pitch: 45,
       zoom: 12
     });
     return map

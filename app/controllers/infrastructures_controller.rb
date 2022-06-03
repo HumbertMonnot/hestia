@@ -22,34 +22,36 @@ class InfrastructuresController < ApplicationController
     max_long = coords[0] + distance * 0.02
     min_lat = coords[1] - distance * 0.01
     max_lat = coords[1] + distance * 0.01
-    # @infras = Infrastructure.where([
-    #   "indicator_title_id  = ? and latitude > ? and latitude < ? and longitude > ? and longitude < ?",
-    #   TYPE_DICO[type],
-    #   min_lat,
-    #   max_lat,
-    #   min_long,
-    #   max_long
-    # ])
+    @infras = Infrastructure.where([
+      "indicator_title_id  = ? and latitude > ? and latitude < ? and longitude > ? and longitude < ?",
+      TYPE_DICO[type],
+      min_lat,
+      max_lat,
+      min_long,
+      max_long
+    ])
+
+    render json: @infras
     
-    render json: JSON.parse('[{
-      "id": 14829,
-      "indicator_title_id": 4,
-      "equipment": "Supermarché",
-      "domain": null,
-      "created_at": "2022-05-31T15:57:37.504Z",
-      "updated_at": "2022-05-31T15:57:37.504Z",
-      "latitude": 44.844804,
-      "longitude": -0.601117
-      },
-      {
-      "id": 14814,
-      "indicator_title_id": 4,
-      "equipment": "Supermarché",
-      "domain": null,
-      "created_at": "2022-05-31T15:57:37.404Z",
-      "updated_at": "2022-05-31T15:57:37.404Z",
-      "latitude": 44.804188,
-      "longitude": -0.558063
-      }]')
+    # render json: JSON.parse('[{
+    #   "id": 14829,
+    #   "indicator_title_id": 4,
+    #   "equipment": "Supermarché",
+    #   "domain": null,
+    #   "created_at": "2022-05-31T15:57:37.504Z",
+    #   "updated_at": "2022-05-31T15:57:37.504Z",
+    #   "latitude": 44.844804,
+    #   "longitude": -0.601117
+    #   },
+    #   {
+    #   "id": 14814,
+    #   "indicator_title_id": 4,
+    #   "equipment": "Supermarché",
+    #   "domain": null,
+    #   "created_at": "2022-05-31T15:57:37.404Z",
+    #   "updated_at": "2022-05-31T15:57:37.404Z",
+    #   "latitude": 44.804188,
+    #   "longitude": -0.558063
+    #   }]')
   end
 end

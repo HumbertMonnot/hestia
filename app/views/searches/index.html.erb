@@ -27,15 +27,18 @@
           <%# <h2> Recherches récentes </h2> %>
           <h2> Recherches récentes</h2>
         </div>
-        <div class="d-flex card-pastsearches justify-content-center">
+        <div class="justify-content-around d-flex">
           <% current_user.searches.each do |search|%>
-            <%= link_to searches_path(@search) do %>
+          <div class="card-pastsearches">
+            <%= link_to search_path(search) do %>
             <p> Adresse : <%=  search.address %> </p>
             <br> <p> Temps : <%= search.duration %> minutes </p>
             <br> <p> Mode de transport :<%= search.profile %> </p>
               <% end %>
-          <% end %>
         </div>
+          <% end %>
+      </div>
+      </div>
       </div>
 
 </div>

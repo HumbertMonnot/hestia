@@ -1158,6 +1158,12 @@
     "webpack-sources" "^1.4.3"
 
 "@sindresorhus/is@^2.0.0":
+<<<<<<< HEAD
+  version "2.1.1"
+
+  resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-2.1.1.tgz"
+
+=======
   "integrity" "sha512-/aPsuoj/1Dw/kzhkgz+ES6TxG0zfTMGLwuK2ZG00k/iJzYHTLCE8mVU8EPqEOp/lmxPoq1C1C9RYToRKb2KEfg=="
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-2.1.1.tgz"
   "version" "2.1.1"
@@ -1167,11 +1173,16 @@
   "resolved" "https://registry.npmjs.org/@szmarczak/http-timer/-/http-timer-4.0.6.tgz"
   "version" "4.0.6"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-2.1.1.tgz"
+>>>>>>> 6b5764cf61cfff3e55fcc49d8b5e92219820d5ad
   integrity sha512-/aPsuoj/1Dw/kzhkgz+ES6TxG0zfTMGLwuK2ZG00k/iJzYHTLCE8mVU8EPqEOp/lmxPoq1C1C9RYToRKb2KEfg==
 
 "@szmarczak/http-timer@^4.0.0":
   version "4.0.6"
   resolved "https://registry.npmjs.org/@szmarczak/http-timer/-/http-timer-4.0.6.tgz"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6b5764cf61cfff3e55fcc49d8b5e92219820d5ad
   integrity sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==
   dependencies:
     "defer-to-connect" "^2.0.0"
