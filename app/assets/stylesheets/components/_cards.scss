@@ -4,33 +4,32 @@
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin-left: 64px;
+  margin-right: 64px;
 }
 
 .card-indicator{
   flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
   margin: 16px;
-  padding: 24px;
+  padding: 16px;
   width: 45%;
   background-color: $green-color;
   border-radius: 12px;
   color: white;
   letter-spacing: 2px;
   text-shadow: 2px 2px 12xpx black;
+  font-size: 20px;
+  height: 120px;
   &:hover{
     box-shadow: 5px 5px 10px lightgray;
     border-radius: 12px;
   }
 }
 
-form{
-  display: flex;
-  justify-content: space-around;
-}
-
-input{
-  border: 3px solid $green-color;
-  width: 21%;
-  margin-right: 16px;
+.indicator_weight{
+  width: 100%;
 }
 
 @media (max-width:1300px) {
