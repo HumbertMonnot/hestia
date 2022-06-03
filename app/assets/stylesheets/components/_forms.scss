@@ -27,6 +27,16 @@
   display: none;
 }
 
+.mapboxgl-ctrl-geocoder--powered-by a{
+  display: none;
+}
+
+.suggestions{
+  border: solid 3px $green-color;
+  padding: 12px;
+  margin: 12px 0px;
+}
+
 li{
   list-style-type: none;
 }
@@ -44,6 +54,10 @@ li{
 
 .select{
   width: 92%;
+}
+
+#search_duration, #search_profile{
+  background-color: white;
 }
 
 .form-search {
