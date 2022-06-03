@@ -4,7 +4,7 @@
   <%# ATTENTION C'était dans la classe du dessous col-6 offset-3 d-flex %>
     <div class="justify-content-center">
       <div class="text-banner">
-        <h1>Trouver votre futur quartier</h1>
+        <h1>Trouvez votre futur quartier</h1>
         <p>Selon <span id="span-banner">vos</span> critères !</p>
       </div>
     </div>
@@ -27,7 +27,11 @@
                       placeholder:'Durée',
                       input_html: {class:"b-green"},
                       data: { form_search_target: 'duration'}  %>
-         <%= f.input :profile, label: 'Moyen de transport', as: :select, collection: Search::CATEGORIES, input_html: {class:"b-green"}%>
+         <%= f.input :profile,
+                     label: 'Moyen de transport',
+                     as: :select,
+                     collection: Search::CATEGORIES.map {|cat| [I18n.t("#{cat}"), cat]},
+                     input_html: {class:"b-green"}%>
       </div>
       <%= f.button :submit, 'Je trouve mon quartier',class:"btn-basic pink w-100 mt-3" %>
     <% end %>

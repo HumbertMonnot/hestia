@@ -1,10 +1,11 @@
+<div class="bg-img">
 <div class= "ctr-pages">
   <h3>NOTEZ VOS CRITERES</h3>
   <div class="ctr-cards">
     <% @indicators.each do |indicator| %>
-      <div class="card-indicator px-5" data-controller="search-indicators">
+      <div class="card-indicator px-5" >
         <p class="pt-4"><%= indicator.indicator_title.name %></p>
-        <%= simple_form_for([@search, indicator], remote: true, data: {search_indicators_target: 'form'}) do |f| %>
+        <%= simple_form_for([@search, indicator], remote: true, data: {controller:"search-indicators"}) do |f| %>
 
         <%= f.input :weight,
           label: false,
@@ -12,8 +13,8 @@
           as: :select,
           collection: 0..10,
           selected: 0,
-          input_html: {class:"b-green mt-4"},
-          data: { search_indicators_target: 'input', action: 'blur->search-indicators#update' }
+          input_html: {class:"b-green mt-4", data: { action: "change->search-indicators#update" }
+}
           %>
 
           <%# value: indicator.weight*10 %>
@@ -21,10 +22,11 @@
           <%# <%= f.number_field :weight, data: { search_indicators_target: 'input', action: 'blur->search-indicators#update' }, value: indicator.weight*10%>
 
         <% end %>
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
   <%= link_to search_path(params[:search_id]) do %>
     <div class="btn-basic pink center">Mes résultats</div>
   <% end %>
+</div>
 </div>
