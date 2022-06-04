@@ -24,41 +24,55 @@ export default class extends Controller {
   }
 
   connect = async () => {
+    var startTime = performance.now()
     const data = await this.#getIso()
     const poly = data.features[0].geometry.coordinates
     const hexas = await this.#getGrid(poly)
-    let hexas_scored = []
-
-    // on calcul les scores de chaque hexagone pour les différents critères
+    const base_url = `/infras/api?address=${this.hexalistValue[0][0]},${this.hexalistValue[0][1]}&coords=`
+    var my_query = ""
     for (const hexa of hexas) {
-      const contents = await all_scores(hexa);
-      hexas_scored.push(contents);
+      my_query += `${hexa.geometry.coordinates[0][3][0]},${hexa.geometry.coordinates[0][3][1]},`
     }
-    this.#smoothScore(hexas_scored, "animaux")
-    this.#smoothScore(hexas_scored, "commerce_de_bouche")
-    this.#smoothScore(hexas_scored, "etablissements_scolaires")
-    this.#smoothScore(hexas_scored, "grandes_surfaces")
-    this.#smoothScore(hexas_scored, "installations_sportives")
-    this.#smoothScore(hexas_scored, "medecine_courante")
-    this.#smoothScore(hexas_scored, "medecine_specialisee")
-    this.#smoothScore(hexas_scored, "petite_enfance")
-    this.#smoothScore(hexas_scored, "restauration")
-    this.#smoothScore(hexas_scored, "services_de_proximite")
-    this.#smoothScore(hexas_scored, "shopping")
-    this.#smoothScore(hexas_scored, "vie_culturelle")
-    console.log(hexas_scored)
-    this.#weightedAverageScore(hexas_scored)
-    this.#smoothScore(hexas_scored, "weight_average")
-    hexas_scored.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
-    console.log(hexas_scored)
-    const top_hexas = hexas_scored
-    // let compt = 1
-    // top_hexas.forEach(async (hexa) => {
-    //   await this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(hexa, compt))
-    //   compt += 1
-    // })
+    const response = await fetch(base_url + my_query)
+    const scores = await response.json()
+    var i = 0
+    for (const hexa of hexas) {
+      hexa.properties = await scores[i]
+      i += 1
+    }
+    
+    //
+    // // on calcul les scores de chaque hexagone pour les différents critères
+    // for (const hexa of hexas) {
+    //   const contents = await all_scores(hexa);
+    //   hexas_scored.push(contents);
+    // }
+    this.#smoothScore(hexas, "animaux")
+    this.#smoothScore(hexas, "commerce_de_bouche")
+    this.#smoothScore(hexas, "etablissements_scolaires")
+    this.#smoothScore(hexas, "grandes_surfaces")
+    this.#smoothScore(hexas, "installations_sportives")
+    this.#smoothScore(hexas, "medecine_courante")
+    this.#smoothScore(hexas, "medecine_specialisee")
+    this.#smoothScore(hexas, "petite_enfance")
+    this.#smoothScore(hexas, "restauration")
+    this.#smoothScore(hexas, "services_de_proximite")
+    this.#smoothScore(hexas, "shopping")
+    this.#smoothScore(hexas, "vie_culturelle")
+    this.#weightedAverageScore(hexas)
+    this.#smoothScore(hexas, "weight_average")
+    hexas.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
+    // console.log(hexas_scored)
+    // const top_hexas = hexas_scored
+    // // let compt = 1
+    // // top_hexas.forEach(async (hexa) => {
+    // //   await this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(hexa, compt))
+    // //   compt += 1
+    // // })
     const map = this.#buildMap()
-    this.#buildGrid(top_hexas, map)
+    this.#buildGrid(hexas, map)
+    var endTime = performance.now()
+    console.log(endTime - startTime)
   }
   
   // Méthode pour obtenir un isochrone après un appel API Mapbox à partir d'une adresse, une distance et un moyen de transport
@@ -100,7 +114,6 @@ export default class extends Controller {
       Object.entries(hexa.properties).forEach((property) => {
         total += hexa.properties[property[0]] * this.weightsValue[compt]
         compt += 1
-        console.log(total, compt)
       })
       hexa.properties.weight_average = Math.round(total / compt)
     })
