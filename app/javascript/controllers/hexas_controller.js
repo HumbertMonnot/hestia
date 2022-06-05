@@ -11,12 +11,12 @@
     // console.log(base_url + query)
 
 import * as turf from '@turf/turf';
-import { Controller } from "stimulus"
+import { add, Controller } from "stimulus"
 import all_scores from "../scoring/all_scoring.js"
 import mapboxgl from "mapbox-gl"
 
 export default class extends Controller {
-  static targets = [ "output" ]
+  static targets = [ "output" , "scorecard"]
   static values = {
     apiKey: String,
     hexalist: Array,
@@ -25,18 +25,33 @@ export default class extends Controller {
 
   connect = async () => {
     var startTime = performance.now()
+    this.map = this.#buildMap()
+    this.map.resize()
     const data = await this.#getIso()
+    this.map.addLayer({
+      id: 'isotime',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: data
+      },
+      layout: {},
+      paint: {
+        "line-color": "#61E294",
+        'line-width': 5
+      }
+    });
     const poly = data.features[0].geometry.coordinates
-    const hexas = await this.#getGrid(poly)
+    this.hexas = await this.#getGrid(poly)
     const base_url = `/infras/api?address=${this.hexalistValue[0][0]},${this.hexalistValue[0][1]}&coords=`
     var my_query = ""
-    for (const hexa of hexas) {
+    for (const hexa of this.hexas) {
       my_query += `${hexa.geometry.coordinates[0][3][0]},${hexa.geometry.coordinates[0][3][1]},`
     }
     const response = await fetch(base_url + my_query)
     const scores = await response.json()
     var i = 0
-    for (const hexa of hexas) {
+    for (const hexa of this.hexas) {
       hexa.properties = await scores[i]
       i += 1
     }
@@ -44,34 +59,35 @@ export default class extends Controller {
     //
     // // on calcul les scores de chaque hexagone pour les différents critères
     // for (const hexa of hexas) {
-    //   const contents = await all_scores(hexa);
-    //   hexas_scored.push(contents);
-    // }
-    this.#smoothScore(hexas, "animaux")
-    this.#smoothScore(hexas, "commerce_de_bouche")
-    this.#smoothScore(hexas, "etablissements_scolaires")
-    this.#smoothScore(hexas, "grandes_surfaces")
-    this.#smoothScore(hexas, "installations_sportives")
-    this.#smoothScore(hexas, "medecine_courante")
-    this.#smoothScore(hexas, "medecine_specialisee")
-    this.#smoothScore(hexas, "petite_enfance")
-    this.#smoothScore(hexas, "restauration")
-    this.#smoothScore(hexas, "services_de_proximite")
-    this.#smoothScore(hexas, "shopping")
-    this.#smoothScore(hexas, "vie_culturelle")
-    this.#weightedAverageScore(hexas)
-    this.#smoothScore(hexas, "weight_average")
-    hexas.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
-    // console.log(hexas_scored)
+      //   const contents = await all_scores(hexa);
+      //   hexas_scored.push(contents);
+      // }
+      this.#smoothScore(this.hexas, "animaux")
+      this.#smoothScore(this.hexas, "commerce_de_bouche")
+      this.#smoothScore(this.hexas, "etablissement_scolaire")
+      this.#smoothScore(this.hexas, "grandes_surfaces")
+      this.#smoothScore(this.hexas, "installation_sportive")
+      this.#smoothScore(this.hexas, "medecine_courante")
+      this.#smoothScore(this.hexas, "medecine_specialisee")
+      this.#smoothScore(this.hexas, "petite_enfance")
+      this.#smoothScore(this.hexas, "restauration")
+      this.#smoothScore(this.hexas, "services_de_proximite")
+      this.#smoothScore(this.hexas, "shopping")
+      this.#smoothScore(this.hexas, "vie_culturelle")
+      this.#weightedAverageScore(this.hexas)
+      this.#smoothScore(this.hexas, "weight_average")
+      this.hexas.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
+      // console.log(hexas_scored)
     // const top_hexas = hexas_scored
     // // let compt = 1
     // // top_hexas.forEach(async (hexa) => {
     // //   await this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(hexa, compt))
     // //   compt += 1
     // // })
-    const map = this.#buildMap()
-    this.#buildGrid(hexas, map)
+    console.log(this.hexas[0])
+    this.buildGrid(this.hexas, this.map, "weight_average")
     var endTime = performance.now()
+    this.map.moveLayer('isotime')
     console.log(endTime - startTime)
   }
   
@@ -86,7 +102,7 @@ export default class extends Controller {
   // Méthode pour construire la grid dans le polygon passé en object (dans le cas du projet, un isochrone)
   #getGrid = async (polygon) => {
     const bbox = [this.hexalistValue[0][0]-0.3, this.hexalistValue[0][1]-0.3, this.hexalistValue[0][0]+0.3, this.hexalistValue[0][1]+0.3];
-    const cellSide = 0.4;
+    const cellSide = 0.35;
     const options = { mask: turf.polygon(polygon) };
     return turf.hexGrid(bbox, cellSide, options).features;
   };
@@ -101,7 +117,7 @@ export default class extends Controller {
     })
     const coef = 100 / max
     hexas.forEach(hexa => hexa.properties[attr] = Math.round(hexa.properties[attr] * coef))
-    if (["animaux", "etablissements_scolaires", "grandes_surfaces"].includes(attr)) {
+    if (["etablissement_scolaire", "grandes_surfaces"].includes(attr)) {
       hexas.forEach(hexa => hexa.properties[attr] = 100 - hexa.properties[attr])
     }
   }
@@ -116,6 +132,7 @@ export default class extends Controller {
         compt += 1
       })
       hexa.properties.weight_average = Math.round(total / compt)
+      hexa.properties.weight_average_height = Math.round(total / compt) * 10
     })
   }
 
@@ -153,12 +170,12 @@ export default class extends Controller {
     return map
   }
 
-  #buildGrid = (hexas_list, the_map) => {
+  buildGrid = (hexas_list, the_map, attr) => {
     const hexas_object = {
       features: hexas_list,
       type: "FeatureCollection" 
     }
-    the_map.on('load', () => {
+    // the_map.on('load', () => {
       the_map.addLayer({
         id: 'maine',
         type: 'fill',
@@ -169,15 +186,99 @@ export default class extends Controller {
         layout: {},
         paint: {
           "fill-color": [
-            "interpolate", ["linear"], ["get", "weight_average"],
-            0, "red",
-            25, "orange",
-            50, "green",
-            100, "purple"
+            "interpolate", ["linear"], ["get", attr],
+            0, "#EC1162",
+            50, "orange",
+            100, "#61E294"
           ],
-          "fill-opacity": 0.6
-        }
+          "fill-opacity": 0.7
+        },
       });
-    });
+    //   the_map.addLayer({
+    //     'id': 'poly-extrusion',
+    //     'type': 'fill-extrusion',
+    //     source: {
+    //       type: 'geojson',
+    //       data: hexas_object
+    //     },
+    //     'paint': {
+    //     // Get the `fill-extrusion-color` from the source `color` property.
+    //     'fill-extrusion-color': [
+    //       "interpolate", ["linear"], ["get", "weight_average"],
+    //       0, "red",
+    //       25, "orange",
+    //       50, "green",
+    //       100, "purple"
+    //     ],
+         
+    //     // Get `fill-extrusion-height` from the source `height` property.
+    //     'fill-extrusion-height': ['get', 'weight_average_height'],
+         
+         
+    //     // Make extrusions slightly opaque to see through indoor walls.
+    //     'fill-extrusion-opacity': 0.8
+    //     }
+    // });
+      the_map.on('click', (e) => {
+        // Find features intersecting the bounding box.
+        const selectedFeatures = the_map.queryRenderedFeatures(e.point, {
+        layers: ['maine']
+        });
+        if (the_map.getLayer("contour")) {
+          the_map.removeLayer('contour')
+          the_map.removeSource('contour')
+        }
+        this.scorecardTarget.innerHTML = ""
+        this.scorecardTarget.classList.add("d-none")
+        console.log(selectedFeatures)
+        if (selectedFeatures.length == 0) {
+          console.log("c'est vide")
+          this.scorecardTarget.classList.add("d-none")
+        } else {
+          this.scorecardTarget.classList.remove("d-none")
+          this.#addScoreDiv(selectedFeatures[0].properties)
+          the_map.flyTo({center: selectedFeatures[0].geometry.coordinates[0][3], zoom:15, pitch:0});
+          the_map.addLayer({
+            id: 'contour',
+            type: 'line',
+            source: {
+              type: 'geojson',
+              data: selectedFeatures[0]
+            },
+            layout: {},
+            paint: {
+              "line-color": "#61E294",
+              'line-width': 6
+            },
+          });
+        }
+        });
+    // });
+  }
+
+  #addScoreDiv = (properties) => {
+    let html_to_insert = "<h4>SCORES</h4>"
+    let i = 0
+    for (const prop of Object.entries(properties)) {
+      if (i === 11) break;
+      let to_add = `<label for="file">${this.#capitalize(prop[0].split("_").join(" "))}</label>
+      <progress id="file" max="100" value="${prop[1]}"> ${prop[1]}% </progress>`
+      html_to_insert += to_add
+      i += 1
+    }
+    this.scorecardTarget.innerHTML = html_to_insert
+  }
+
+  filter = (event) => {
+    event.preventDefault()
+    const attr = event.currentTarget.id.toLowerCase().replaceAll(' ', '_').replaceAll('é', 'e')
+    console.log(attr)
+    this.map.removeLayer('maine')
+    this.map.removeSource('maine')
+    this.buildGrid(this.hexas, this.map, attr)
+  }
+
+  #capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

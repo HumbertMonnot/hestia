@@ -16,24 +16,25 @@ class InfrastructuresController < ApplicationController
 
   def send_coords
     t= Time.now
-    # center = params[:address].split(",").map(&:to_f).reverse
-    # all_infras = Infrastructure.near(center, 4)
+    center = params[:address].split(",").map(&:to_f).reverse
     scores = []
     params[:coords].split(",").map(&:to_f).each_slice(2) do |coords|
+      infras_700 = Infrastructure.near(coords.reverse, 0.7)
+      infras_500 = Infrastructure.near(coords.reverse, 0.5)
       # infras = Infrastructure.near(coords.reverse, 1.5)
       scores << {
-                  "animaux" => Infrastructure.near(coords.reverse, 0.5).where(indicator_title_id: 1).length,
-                  "commerce_de_bouche" => Infrastructure.near(coords.reverse, 0.5).where(indicator_title_id: 2).length,
-                  "etablissements_scolaires" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 3).near(coords.reverse).first),
+                  "animaux" => infras_500.where(indicator_title_id: 1).length,
+                  "commerce_de_bouche" => infras_500.where(indicator_title_id: 2).length,
+                  "etablissement_scolaire" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 3).near(coords.reverse).first),
                   "grandes_surfaces" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 4).near(coords.reverse).first),
-                  "installations_sportives" => Infrastructure.near(coords.reverse, 0.5).where(indicator_title_id: 5).length,
-                  "medecine_courante" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 6).length,
-                  "medecine_specialisee" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 7).length,
-                  "petite_enfance" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 8).length,
-                  "restauration" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 9).length,
-                  "services_de_proximite" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 10).length,
-                  "shopping" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 11).length,
-                  "vie_culturelle" => Infrastructure.near(coords.reverse, 0.7).where(indicator_title_id: 12).length
+                  "installation_sportive" => infras_500.where(indicator_title_id: 5).length,
+                  "medecine_courante" => infras_700.where(indicator_title_id: 6).length,
+                  "medecine_specialisee" => infras_700.where(indicator_title_id: 7).length,
+                  "petite_enfance" => infras_700.where(indicator_title_id: 8).length,
+                  "restauration" => infras_700.where(indicator_title_id: 9).length,
+                  "services_de_proximite" => infras_700.where(indicator_title_id: 10).length,
+                  "shopping" => infras_700.where(indicator_title_id: 11).length,
+                  "vie_culturelle" => infras_700.where(indicator_title_id: 12).length
                 }
     end
     puts "--------------"

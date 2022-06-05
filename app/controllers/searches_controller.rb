@@ -30,6 +30,7 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
     @paras = [[@search.longitude, @search.latitude], @search.profile, @search.duration]
     @indicators = @search.indicators.map { |indic| indic.weight }
+    @indic_names = IndicatorTitle.all
   end
 
   private

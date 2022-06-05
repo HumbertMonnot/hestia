@@ -1,17 +1,19 @@
-
-<table data-controller="hexas"
-       data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
-       data-hexas-weights-value=<%= @indicators.to_json() %>
-       data-hexas-hexalist-value=<%= @paras.to_json() %> >
-  <tr>
-    <th>Classement</th>
-    <th>Quartier</th>     
-    <% IndicatorTitle.all.each do |indic| %>
-      <th><%= indic.name %></th> 
-    <% end %>   
-    <th>Note moyenne</th>  
-  </tr>
-</table>
-<div>
-<map id="map"></map>
+<%= render 'shared/navbar' %>
+<div data-controller="hexas" 
+      data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
+      data-hexas-weights-value=<%= @indicators.to_json() %>
+      data-hexas-hexalist-value=<%= @paras.to_json() %>    >
+  <div>
+    
+      <div class="filter-group">
+              <button class="btn-basic btn-filter green" data-action="click->hexas#filter" id="weight_average"><p>Général</p></button>
+              <% @indic_names.each do |indic_name| %>
+                <button class="btn-basic btn-filter green"data-action="click->hexas#filter" id="<%= indic_name.name %>"><p><%= indic_name.name %></p></button>
+              <% end %>
+      </div>
+    
+    <map id="map"></map>
+    <div id="over_map_scores" data-hexas-target="scorecard" class="d-none">
+    </div>
+  </div>
 </div>
