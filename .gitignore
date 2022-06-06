@@ -40,3 +40,6 @@ yarn-debug.log*
 *.swp
 .DS_Store
 .env*
+
+# ignore ke package JSON qui fou la merde sur tous les ordis
+package-lock.json
