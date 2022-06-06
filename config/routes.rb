@@ -10,4 +10,8 @@ Rails.application.routes.draw do
 
   resources :searches, only: [:index]
 
+  resources :users, only: [] do
+    resources :tasks
+  end
+
 end
