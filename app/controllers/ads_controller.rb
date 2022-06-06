@@ -1,8 +1,8 @@
 class AdsController < ApplicationController
   def index
-    @ads = Ad.all
+    @ads = Ad.where(user: current_user)
     @ad = Ad.new
-    @user = current_user # User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
   end
 
   def create

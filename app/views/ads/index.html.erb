@@ -1,4 +1,73 @@
 <div class="ctr-pages">
 <h1>Hello, you are on the right page</h1>
+<h2>Where are my cards</h2>
+<div class="ctr-cards-ad d-flex">
+  <% @ads.select {|state| state.state == "pending" }.each do |ad|  %>
+ 		<div class="card-ad-pending">
+ 			<%= ad.title %>
+      <%= link_to ad.url do %>
+        <i class="fa-solid fa-link"></i><%= ad.url %>
+      <% end %>
+ 			<ul><i class="fa-solid fa-align-left"></i>
+        <li><%= ad.address %></li>
+        <li><%= ad.price %>€</li>
+        <li><%= ad.size %>m²</li>
+      </ul>
+<%# => delete %>
+ 			<%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			  <i class="fa-solid fa-xmark"></i>
+      <% end %>
+<%# => update %>
+ 			<%= simple_form_for [@user, ad] do |f| %>
+        <%= f.button :submit, name: "state", value: "liked" do %>
+            <i class="fa-solid fa-heart"></i>
+        <% end %>
+        <%= f.button :submit, name: "state", value: "not liked" do %>
+            <i class="fa-solid fa-heart-crack"></i>
+        <% end %>
+      <% end %>
+ 		</div>
+  <% end %>
+<%# end card "pending" %>
 
+ 			<% @ads.select {|ad_state| ad_state.state == "liked" }.each do |ad|  %>
+ 				<div class="card-ad-liked">
+ 					<%= ad.title %>
+ 					<%= link_to ad.url do %>
+            <i class="fa-solid fa-link"></i><%= ad.url %>
+          <% end %>
+ 					<i class="fa-solid fa-align-left"></i>
+              <%= ad.address %>
+              <%= ad.price %>€
+              <%= ad.size %>m²
+<%# delete %>
+          <%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			      <i class="fa-solid fa-xmark"></i>
+          <% end %>
+<%# updated %>
+ 					<i class="fa-solid fa-heart"></i>
+ 				</div>
+      <% end %>
+<%# end card "liked" %>
+
+ 			<% @ads.select {|ad_state| ad_state.state == "not liked" }.each do |ad|  %>
+ 				<div class="card-ad-disliked">
+ 					<%= ad.title %>
+          <%= link_to ad.url do %>
+            <i class="fa-solid fa-link"></i><%= ad.url %>
+          <% end %>
+            <i class="fa-solid fa-align-left"></i>
+            <%= ad.address %>
+            <%= ad.price %>€
+            <%= ad.size %>m²
+<%# delete %>
+          <%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			      <i class="fa-solid fa-xmark"></i>
+          <% end %>
+<%# => updated %>
+ 					<i class="fa-solid fa-heart-crack"></i>
+        </div>
+      <% end %>
+<%# end card "not liked" %>
+  </div>
 </div>
