@@ -1,73 +1,132 @@
 <div class="ctr-pages">
-<h1>Hello, you are on the right page</h1>
-<h2>Where are my cards</h2>
-<div class="ctr-cards-ad d-flex">
-  <% @ads.select {|state| state.state == "pending" }.each do |ad|  %>
- 		<div class="card-ad-pending">
- 			<%= ad.title %>
-      <%= link_to ad.url do %>
-        <i class="fa-solid fa-link"></i><%= ad.url %>
-      <% end %>
- 			<ul><i class="fa-solid fa-align-left"></i>
-        <li><%= ad.address %></li>
-        <li><%= ad.price %>€</li>
-        <li><%= ad.size %>m²</li>
-      </ul>
+<div class="d-flex justify-content-between">
+  <h3>Mes annonces immobilières</h2>
+
+  <%# modal %>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-basic orange" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Sauvegarder une annonce
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Créer une annonce</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @ad do |f| %>
+          <%= f.input :title, label: "Titre", input_html: {class:"test"} %>
+          <%= f.input :url %>
+          <%= f.input :price, label: "Prix", required: false %>
+          <%= f.input :size, label: "Surface", required: false %>
+          <%= f.input :address, label: "Adresse", required: false %>
+          <%= f.input :comment, label: "Commentaire", required: false %>
+          <%= f.button :submit, "Sauvegarder", class:"btn btn-basic orange" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="ctr-cards">
+    <div class="col-3">
+      <p>Aucun avis</p>
+
+    <% @ads.select {|state| state.state == "pending" }.each do |ad|  %>
+ 		  <div class="card-ad-pending">
+ 			 <p><%= ad.title %></p>
+
+          <%= link_to ad.url do %>
+          <div id="link" class="d-flex">
+            <i class="fa-solid fa-link"></i><p>Lien vers l'annonce</p>
+          </div>
+          <% end %>
+
+           <ul><i class="fa-solid fa-align-left"></i>
+              <li><p><%= ad.size %>m²</p></li>
+              <li><p><%= ad.address %></p></li>
+              <li><p><strong><%= ad.price %>€</strong></p></li>
+            </ul>
 <%# => delete %>
- 			<%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
- 			  <i class="fa-solid fa-xmark"></i>
-      <% end %>
+ 			  <%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			    <i class="fa-solid fa-xmark"></i>
+        <% end %>
 <%# => update %>
- 			<%= simple_form_for [@user, ad] do |f| %>
-        <%= f.button :submit, name: "state", value: "liked" do %>
-            <i class="fa-solid fa-heart"></i>
+ 			  <%= simple_form_for ad do |f| %>
+          <%= f.button :submit, name: "state", value: "liked" do %>
+            <i class="fa-solid fa-heart green-hover"></i>
+          <% end %>
+          <%= f.button :submit, name: "state", value: "not liked" do %>
+            <i class="fa-solid fa-heart-crack pink-hover"></i>
+          <% end %>
         <% end %>
-        <%= f.button :submit, name: "state", value: "not liked" do %>
-            <i class="fa-solid fa-heart-crack"></i>
-        <% end %>
-      <% end %>
- 		</div>
-  <% end %>
+ 		  </div>
+    <% end %>
+  </div>
 <%# end card "pending" %>
 
+<div class="col-3">
+ <p>coups de coeur</p>
  			<% @ads.select {|ad_state| ad_state.state == "liked" }.each do |ad|  %>
  				<div class="card-ad-liked">
- 					<%= ad.title %>
- 					<%= link_to ad.url do %>
-            <i class="fa-solid fa-link"></i><%= ad.url %>
+ 					<p><%= ad.title %></p>
+
+          <%= link_to ad.url do %>
+          <div id="link" class="d-flex">
+            <i class="fa-solid fa-link"></i><p>Lien vers l'annonce</p>
+          </div>
           <% end %>
- 					<i class="fa-solid fa-align-left"></i>
-              <%= ad.address %>
-              <%= ad.price %>€
-              <%= ad.size %>m²
+
+            <ul><i class="fa-solid fa-align-left"></i>
+              <li><p><%= ad.size %>m²</p></li>
+              <li><p><%= ad.address %></p></li>
+              <li><p><strong><%= ad.price %>€</strong></p></li>
+            </ul>
 <%# delete %>
           <%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
  			      <i class="fa-solid fa-xmark"></i>
           <% end %>
 <%# updated %>
- 					<i class="fa-solid fa-heart"></i>
+ 					<i class="fa-solid fa-heart green-heart"></i>
  				</div>
       <% end %>
+</div>
 <%# end card "liked" %>
 
+<div class="col-3">
+ <p>Pas pour moi</p>
  			<% @ads.select {|ad_state| ad_state.state == "not liked" }.each do |ad|  %>
  				<div class="card-ad-disliked">
- 					<%= ad.title %>
+ 					<p><%= ad.title %></p>
+
           <%= link_to ad.url do %>
-            <i class="fa-solid fa-link"></i><%= ad.url %>
+          <div id="link" class="d-flex">
+            <i class="fa-solid fa-link"></i><p>Lien vers l'annonce</p>
+          </div>
           <% end %>
-            <i class="fa-solid fa-align-left"></i>
-            <%= ad.address %>
-            <%= ad.price %>€
-            <%= ad.size %>m²
+
+            <ul><i class="fa-solid fa-align-left"></i>
+              <li><p><%= ad.size %>m²</p></li>
+              <li><p><%= ad.address %></p></li>
+              <li><p><strong><%= ad.price %>€</strong></p></li>
+            </ul>
 <%# delete %>
           <%= link_to user_ads_path(current_user), method: :delete, data: { confirm: "Are you sure?" } do %>
  			      <i class="fa-solid fa-xmark"></i>
           <% end %>
 <%# => updated %>
- 					<i class="fa-solid fa-heart-crack"></i>
+ 					<i class="fa-solid fa-heart-crack pink-heart"></i>
         </div>
       <% end %>
+    </div>
 <%# end card "not liked" %>
+
   </div>
 </div>

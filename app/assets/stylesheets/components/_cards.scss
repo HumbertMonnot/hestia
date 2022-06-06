@@ -46,3 +46,56 @@
     flex-wrap: wrap;
   }
 }
+
+// card for ads index
+.card-ad-pending, .card-ad-liked, .card-ad-disliked{
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px lightgray;
+  position: relative;
+}
+
+
+
+.fa-heart, .fa-heart-crack{
+  font-size: 21px;
+}
+
+.fa-xmark{
+  position: absolute;
+  left: 90%;
+  top: 5%;
+}
+
+.card-ad-pending{
+  border: 3px solid $orange-color;
+}
+
+.card-ad-liked{
+  border: 3px solid $green-color;
+}
+
+.card-ad-disliked{
+  border: 3px solid $pink-color;
+}
+
+.pink-heart{
+  color: $pink-color;
+}
+
+.green-heart{
+  color: $green-color;
+}
+
+.green-hover:hover{
+  color: $green-color;
+}
+
+.pink-hover:hover{
+  color: $pink-color;
+}
+
+i, p{
+  text-decoration: none;
+  color: black;
+}

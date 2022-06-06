@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   resources :searches, only: [:index]
 
   resources :users, only: [] do
-    resources :ads, only: [:index, :create, :update, :delete]
+    resources :ads, only: [:index, :delete]
     resources :tasks, only: [:index, :create, :update, :delete]
   end
+  resources :ads, only: [:create, :update]
+
 
 end

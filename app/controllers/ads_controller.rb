@@ -2,18 +2,19 @@ class AdsController < ApplicationController
   def index
     @ads = Ad.where(user: current_user)
     @ad = Ad.new
-    # @user = User.find(params[:user_id])
+    # @user = current_user
   end
 
   def create
+    raise
     @ad = Ad.new(ad_params)
-		@ad.user = current_user
-		@ad.state = "pending"
-		if @ad.save
-			redirect_to user_ads_path(current_user)
-		else
-			render "ads/index"
-		end
+    @ad.user = current_user
+    @ad.state = "pending"
+    if @ad.save
+      redirect_to user_ads_path(current_user)
+    else
+      render "ads/index"
+    end
   end
 
   def update
@@ -35,7 +36,7 @@ class AdsController < ApplicationController
 
   private
 
-	def ad_params
-		params.require(:ad).permit(:title, :url, :size, :address, :price, :comment, :state)
-	end
+  def ad_params
+    params.require(:ad).permit(:title, :url, :size, :address, :price, :comment, :state)
+  end
 end
