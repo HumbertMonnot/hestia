@@ -2,8 +2,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   height: 100px;
-  border-bottom: 1px solid black;
   font-size: 24px;
+}
+
+.bb{
+  border-bottom: 1px solid black;
 }
 
 
@@ -45,7 +48,7 @@
 // navbar2 for homepage
 .navbar-lewagon {
   justify-content: space-between;
-  background: $green-color;
+  // background: $green-color;
   height: 100px;
 }
 
@@ -58,11 +61,12 @@
 // }
 
 // réduire la taille du h1 de la navbar
-.fs-24{
-  font-size: 38px;
+.title-hp{
+  font-size: 48px;
   color: white;
   margin: 0;
   font-weight: bold;
+  padding-top: 24px;
 }
 
 #dropdownMenuLink{
@@ -72,9 +76,7 @@
 }
 
 // border at the bottom of navbar
-.bb{
-  border-bottom: 1px solid $green-color;
-}
+
 
 
 .dropdown-menu {
