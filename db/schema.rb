@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_06_081101) do
+ActiveRecord::Schema.define(version: 2022_06_06_122641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ads", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.integer "size"
+    t.integer "price"
+    t.string "address"
+    t.string "state"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_ads_on_user_id"
+  end
 
   create_table "indicator_titles", force: :cascade do |t|
     t.string "name"
@@ -77,6 +90,7 @@ ActiveRecord::Schema.define(version: 2022_06_06_081101) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ads", "users"
   add_foreign_key "indicators", "indicator_titles"
   add_foreign_key "indicators", "searches"
   add_foreign_key "infrastructures", "indicator_titles"
