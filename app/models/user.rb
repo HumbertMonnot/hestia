@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   validates :username, presence: true
   has_many :searches
+  has_many :tasks
 end
