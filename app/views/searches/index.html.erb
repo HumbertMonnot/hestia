@@ -1,24 +1,44 @@
 
-<div class="container">
+<div class="ctr-pages container-dashboard">
+  <div class="d-flex justify-content-center">
+          <div class= "profil">
+          <h2> Mon profil </h2>
+            <br> <p>  Identifiant : <%= current_user.username.capitalize  %></p>
+            <p> Email : <%= current_user.email  %></p>
+            <br>
+        </div>
 
-<div class="profil d_flex m-6">
-
-  <h1> MON PROFIL </h1>
-      <div>
-              <br><%= current_user.username  %>
-              <br><%= current_user.email  %>
-              <br>
-              <%= button_to "logout", destroy_user_session_path, method: :delete %>
-      </div>
+        <div>
+            <button class="cta">
+              <span> Faire une nouvelle recherche </span>
+              <svg viewBox="0 0 13 10" height="10px" width="15px">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>
+        </div>
+            <%# <%= button_to "logout", destroy_user_session_path, method: :delete %>
   </div>
 
-    <div class="profil d_flex m-6">
-    <h1> Recherches Sauvegardées </h1>
-      <% current_user.searches.each do |search|%>
-        <%= link_to searches_path(@search) do %>
-        <%= search.address %>
+      <div class= "ctr-past ">
+        <div>
+
+
+          <%# <h2> Recherches récentes </h2> %>
+          <h2> Recherches récentes</h2>
+        </div>
+        <div class="justify-content-around d-flex">
+          <% current_user.searches.each do |search|%>
+          <div class="card-pastsearches">
+            <%= link_to search_path(search) do %>
+            <p> Adresse : <%=  search.address %> </p>
+            <br> <p> Temps : <%= search.duration %> minutes </p>
+            <br> <p> Mode de transport :<%= search.profile %> </p>
+              <% end %>
+        </div>
           <% end %>
-      <% end %>
-    </div>
+      </div>
+      </div>
+      </div>
 
 </div>

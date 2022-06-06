@@ -41,5 +41,6 @@ yarn-debug.log*
 .DS_Store
 .env*
 
-# ignore ke package JSON qui fou la merde sur tous les ordis
+# ignore le package JSON qui fout la merde sur tous les ordis
 package-lock.json
+

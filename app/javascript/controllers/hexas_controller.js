@@ -28,19 +28,30 @@ export default class extends Controller {
     const poly = data.features[0].geometry.coordinates
     const hexas = await this.#getGrid(poly)
     let hexas_scored = []
+
     // on calcul les scores de chaque hexagone pour les différents critères
-    hexas.forEach((hexa)=>{
-      hexas_scored.push(all_scores(hexa))
-    })
+    for (const hexa of hexas) {
+      const contents = await all_scores(hexa);
+      hexas_scored.push(contents);
+    }
+    this.#smoothScore(hexas_scored, "animaux")
+    this.#smoothScore(hexas_scored, "commerce_de_bouche")
+    this.#smoothScore(hexas_scored, "etablissements_scolaires")
+    this.#smoothScore(hexas_scored, "grandes_surfaces")
+    this.#smoothScore(hexas_scored, "installations_sportives")
+    this.#smoothScore(hexas_scored, "medecine_courante")
+    this.#smoothScore(hexas_scored, "medecine_specialisee")
+    this.#smoothScore(hexas_scored, "petite_enfance")
+    this.#smoothScore(hexas_scored, "restauration")
+    this.#smoothScore(hexas_scored, "services_de_proximite")
+    this.#smoothScore(hexas_scored, "shopping")
+    this.#smoothScore(hexas_scored, "vie_culturelle")
+    console.log(hexas_scored)
     this.#weightedAverageScore(hexas_scored)
     this.#smoothScore(hexas_scored, "weight_average")
     hexas_scored.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
+    console.log(hexas_scored)
     const top_hexas = hexas_scored
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[0], 1))
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[1], 2))
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[2], 3))
-    // this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(top_hexas[3], 4))
-    // console.log(top_hexas)
     // let compt = 1
     // top_hexas.forEach(async (hexa) => {
     //   await this.element.insertAdjacentHTML("beforeend", await this.#buildTableLine(hexa, compt))
@@ -61,7 +72,7 @@ export default class extends Controller {
   // Méthode pour construire la grid dans le polygon passé en object (dans le cas du projet, un isochrone)
   #getGrid = async (polygon) => {
     const bbox = [this.hexalistValue[0][0]-0.3, this.hexalistValue[0][1]-0.3, this.hexalistValue[0][0]+0.3, this.hexalistValue[0][1]+0.3];
-    const cellSide = 0.5;
+    const cellSide = 0.4;
     const options = { mask: turf.polygon(polygon) };
     return turf.hexGrid(bbox, cellSide, options).features;
   };
@@ -76,6 +87,9 @@ export default class extends Controller {
     })
     const coef = 100 / max
     hexas.forEach(hexa => hexa.properties[attr] = Math.round(hexa.properties[attr] * coef))
+    if (["animaux", "etablissements_scolaires", "grandes_surfaces"].includes(attr)) {
+      hexas.forEach(hexa => hexa.properties[attr] = 100 - hexa.properties[attr])
+    }
   }
 
   // Méthode pour calculer les scores pour chaque hexagone d'une liste d'hexagones
@@ -86,10 +100,13 @@ export default class extends Controller {
       Object.entries(hexa.properties).forEach((property) => {
         total += hexa.properties[property[0]] * this.weightsValue[compt]
         compt += 1
+        console.log(total, compt)
       })
       hexa.properties.weight_average = Math.round(total / compt)
     })
   }
+
+  #scores
 
   // Méthode pour construire le tableau
   #buildTableLine = async (hexa, num) => {
@@ -112,13 +129,12 @@ export default class extends Controller {
   }
 
   #buildMap = () => {
-    console.log("on est là")
     mapboxgl.accessToken = this.apiKeyValue;
-    console.log("Et là on est là")
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [this.hexalistValue[0][0], this.hexalistValue[0][1]],
+      pitch: 45,
       zoom: 12
     });
     return map
@@ -141,11 +157,12 @@ export default class extends Controller {
         paint: {
           "fill-color": [
             "interpolate", ["linear"], ["get", "weight_average"],
-            50, "red",
-            75, "orange",
-            100, "green"
+            0, "red",
+            25, "orange",
+            50, "green",
+            100, "purple"
           ],
-          "fill-opacity": 0.4
+          "fill-opacity": 0.6
         }
       });
     });
