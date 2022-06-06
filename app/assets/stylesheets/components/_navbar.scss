@@ -26,13 +26,8 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 200px;
+  width: 150px;
 }
-
-// réduire la taille du h1 de la navbar
-// .fs-24{
-//   font-size: 24px;
-// }
 
 #dropdownMenuLink-black{
   cursor: default;
@@ -42,6 +37,10 @@
 .dropdown-menu {
   border: 1px solid black;
   text-align: center;
+}
+
+.navbar-brand, .navbar-collapse {
+  margin: 0px 64px;
 }
 
 
@@ -56,10 +55,6 @@
   flex-grow: 0;
 }
 
-// .navbar-lewagon .navbar-brand img {
-//   width: 40px;
-// }
-
 // réduire la taille du h1 de la navbar
 .title-hp{
   font-size: 48px;
@@ -69,15 +64,22 @@
   padding-top: 24px;
 }
 
+#img-navbar{
+  position: relative;
+}
+
+#text-navbar{
+  position: absolute;
+  top: 42px;
+  left: 42px;
+  font-size: 32px;
+}
+
 #dropdownMenuLink{
   cursor: default;
   color: white;
 
 }
-
-// border at the bottom of navbar
-
-
 
 .dropdown-menu {
   border: 1px solid white;
