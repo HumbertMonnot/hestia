@@ -1,5 +1,5 @@
 <div class="ctr-pages">
-<div class="d-flex justify-content-between">
+<div>
   <h3>Mes annonces immobilières</h2>
 
   <%# modal %>
@@ -45,7 +45,7 @@
         <p><em><%= ad.comment %></em></p>
         <div id="link-heart">
         <%= link_to advert_path(ad.id, state: "liked"), method: :patch do %>
- 			    <i class="fa-solid fa-heart green-hover pr-12"></i>
+ 			    <i class="fa-solid fa-heart green-hover py-12"></i>
         <% end %>
         <%= link_to advert_path(ad.id, state: "not liked"), method: :patch do %>
  			    <i class="fa-solid fa-heart-crack pink-hover"></i>
@@ -54,7 +54,7 @@
       </div>
           <%= link_to ad.url do %>
           <div class="d-flex">
-            <i class="fa-solid fa-link pr-12"></i>
+            <i class="fa-solid fa-link py-12"></i>
             <p>Lien vers l'annonce</p>
           </div>
           <% end %>
@@ -80,7 +80,7 @@
           </div>
           <%= link_to ad.url do %>
           <div class="d-flex">
-            <i class="fa-solid fa-link pr-12"></i><p>Lien vers l'annonce</p>
+            <i class="fa-solid fa-link py-12"></i><p>Lien vers l'annonce</p>
           </div>
           <% end %>
               <li><p>Surface: <%= ad.size %>m²</p></li>
