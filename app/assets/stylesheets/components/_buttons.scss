@@ -6,12 +6,13 @@
   padding: 12px 12px;
   text-align: center;
   font-family: $headers-font;
-  font-size: 21px;
+  font-size: 18px;
   color: white;
   border-radius: 4px;
   &:hover{
     color: white;
-    font-size: 22px;
+    // font-size: 18px;
+    opacity: 0.9;
   }
 }
 
@@ -21,6 +22,22 @@ a {
 
 .pink{
   background-color: $pink-color;
+}
+
+.orange{
+  background-color: $orange-color;
+}
+
+// btn-advert de la page mes annonces immo pour harmoniser avec la page
+.btn-advert{
+  margin-left: 64px;
+  width: 250px;
+  height: 75px;
+}
+
+.btn-save{
+  width: 200px;
+  height: 50px;
 }
 
 .black{

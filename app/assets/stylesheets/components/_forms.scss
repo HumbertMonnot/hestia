@@ -82,3 +82,26 @@ li{
   width: 42%;
   left: 48%
 }
+
+
+// range form
+input[type='range'] {
+  overflow: hidden;
+  width: 80%;
+  -webkit-appearance: none;
+  background-color: white;
+  border-radius: 12px;
+  border: solid 2px $green-color;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 20px;
+  -webkit-appearance: none;
+  height: 20px;
+  border-radius: 50%;
+  background: $green-color;
+  &:hover{
+    background: $orange-color;
+
+  }
+}
