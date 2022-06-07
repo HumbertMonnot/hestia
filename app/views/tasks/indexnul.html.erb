@@ -1,0 +1,114 @@
+
+
+  <div class="ctr-pages">
+<% @tasks.each do |task| %>
+  <% if task.state === "pas fait" %>
+      <div>
+        <div>
+          <%= task.title %>
+        </div>
+        <div>
+          <%= task.state %>
+        </div>
+        <div>
+          <%= task.description %>
+        </div>
+      </div>
+      <div>
+        <div>
+          <%= link_to task_path(task) do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </div>
+        <div>
+      
+        </div>
+        <div>
+          <%= link_to  task_path(task), method: :delete do %>
+            <i class="fa-solid fa-trash-can"></i>
+          <% end %>
+        </div>
+      </div>
+  <% else %>
+      <div>
+        <div>
+          <%= task.title %>
+        </div>
+        <div>
+          <%= task.state %>
+        </div>
+        <div>
+          <%= task.description %>
+        </div>
+      </div>
+      <div>
+        <div>
+          <%= link_to task_path(task) do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </div>
+        <div>
+      
+        </div>
+        <div>
+          <%= link_to  task_path(task), method: :delete do %>
+            <i class="fa-solid fa-trash-can"></i>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+<% end %>
+<button type="button" class="btn-basic pink" data-toggle="modal" data-target="#exampleModalCenter">
+  Créer une nouvelle tache!
+</button>
+    </div>
+
+
+<!-- Modal for create -->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nouvelle Tâche</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <%= simple_form_for [ @task ] do |f| %>
+          <%= f.input :title %>
+          <%= f.input :description %>
+          <%= f.submit "Créer la Tâche", class: "btn-basic pink" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for edit -->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nouvelle Tâche</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <%= simple_form_for [ @task ] do |f| %>
+          <%= f.input :title %>
+          <%= f.input :description %>
+          <%= f.input :state, collection: [ "fait", "en cours" ] %>
+          <%= f.submit "Modifier la Tâche", class: "btn-basic pink" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
