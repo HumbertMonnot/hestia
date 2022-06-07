@@ -65,14 +65,14 @@ puts 'finished for Indicators...'
 
 puts 'Creating ads...'
 # user: not user_id: !!
-ad_1 = Ad.create!(title: "Appartement 4 pièces", size: 85, price: 455_000, address: "Rue Saint Genès", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2169390755.htm", user: user_1 )
-ad_2 = Ad.create!(title: "Appartement 2 pièces", size: 36, price: 207_500, address: "Tram B arrêt cours du Médoc", state: "liked", url: "https://www.leboncoin.fr/ventes_immobilieres/2168280014.htm", user: user_2 )
-ad_3 = Ad.create!(title: "Appartement 5 pièces", size: 129, price: 618_000, address: "Rive droite, tram A station Jean Jaures", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2169495252.htm", user: user_3 )
-ad_4 = Ad.create!(title: "Appartement meublé et rénové", size: 53, price: 997, address: "Quartier St Michel", state: "pending", url:"https://www.leboncoin.fr/locations/2170818126.htm", user: user_4 )
-ad_5 = Ad.create!(title: "Appartement 4 pièces", size: 84, price: 1517, address: "Rue Tanesse, Bordeaux", state: "liked", comment: "Super vue",url: "https://www.leboncoin.fr/locations/2170042943.htm", user: user_5 )
-ad_6 = Ad.create!(title: "Duplex avec terrasse", size: 84, price: 486_000, address: "Quai des Chartrons", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2153445419.htm", user: user_1 )
-ad_7 = Ad.create!(title: "Superbe T3", size: 63, price: 285_000, address: "Rue Pasteur, Caudéran", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2168020019.htm", user: user_2 )
-ad_8 = Ad.create!(title: "Maison 9 pièces", size: 257, price: 799_500, address: "Rive droite, Camblanes-et-Meynac", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2156512151.htm", user: user_3 )
-ad_9 = Ad.create!(title: "T2 Bis centre ville", size: 45, price: 895, address: "Gambetta Meriadeck", state: "not liked", url: "https://www.leboncoin.fr/locations/2170339515.htm", user: user_4 )
-ad_10 = Ad.create!(title: "Superbe T3", size: 76, price: 1250, address: "Quartier Saint Genès", state: "not liked", url: "https://www.leboncoin.fr/locations/2166977373.htm", user: user_5 )
+ad_1 = Advert.create!(title: "Appartement 4 pièces", size: 85, price: 455_000, address: "Rue Saint Genès", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2169390755.htm", user: user_1 )
+ad_2 = Advert.create!(title: "Appartement 2 pièces", size: 36, price: 207_500, address: "Tram B arrêt cours du Médoc", state: "liked", url: "https://www.leboncoin.fr/ventes_immobilieres/2168280014.htm", user: user_2 )
+ad_3 = Advert.create!(title: "Appartement 5 pièces", size: 129, price: 618_000, address: "Rive droite, tram A station Jean Jaures", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2169495252.htm", user: user_3 )
+ad_4 = Advert.create!(title: "Appartement meublé et rénové", size: 53, price: 997, address: "Quartier St Michel", state: "pending", url:"https://www.leboncoin.fr/locations/2170818126.htm", user: user_4 )
+ad_5 = Advert.create!(title: "Appartement 4 pièces", size: 84, price: 1517, address: "Rue Tanesse, Bordeaux", state: "liked", comment: "Super vue",url: "https://www.leboncoin.fr/locations/2170042943.htm", user: user_5 )
+ad_6 = Advert.create!(title: "Duplex avec terrasse", size: 84, price: 486_000, address: "Quai des Chartrons", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2153445419.htm", user: user_1 )
+ad_7 = Advert.create!(title: "Superbe T3", size: 63, price: 285_000, address: "Rue Pasteur, Caudéran", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2168020019.htm", user: user_2 )
+ad_8 = Advert.create!(title: "Maison 9 pièces", size: 257, price: 799_500, address: "Rive droite, Camblanes-et-Meynac", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2156512151.htm", user: user_3 )
+ad_9 = Advert.create!(title: "T2 Bis centre ville", size: 45, price: 895, address: "Gambetta Meriadeck", state: "not liked", url: "https://www.leboncoin.fr/locations/2170339515.htm", user: user_4 )
+ad_10 = Advert.create!(title: "Superbe T3", size: 76, price: 1250, address: "Quartier Saint Genès", state: "not liked", url: "https://www.leboncoin.fr/locations/2166977373.htm", user: user_5 )
 puts 'finished for ads...'

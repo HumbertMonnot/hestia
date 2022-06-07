@@ -56,7 +56,6 @@
 }
 
 
-
 .fa-heart, .fa-heart-crack{
   font-size: 21px;
 }
@@ -68,15 +67,15 @@
 }
 
 .card-ad-pending{
-  border: 3px solid $orange-color;
+  border-top: 5px solid $orange-color;
 }
 
 .card-ad-liked{
-  border: 3px solid $green-color;
+  border-top: 5px solid $green-color;
 }
 
 .card-ad-disliked{
-  border: 3px solid $pink-color;
+  border-top: 5px solid $pink-color;
 }
 
 .pink-heart{

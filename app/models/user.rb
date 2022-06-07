@@ -7,5 +7,5 @@ class User < ApplicationRecord
   # validates :username, presence: true
   has_many :searches, dependent: :destroy
   has_many :tasks, dependent: :destroy
-  has_many :ads, dependent: :destroy
+  has_many :adverts, dependent: :destroy
 end
