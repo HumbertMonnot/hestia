@@ -1,23 +1,24 @@
 
 <%# div to put d-flex %>
+<%# <div class="bg-img"> %>
 <div class="ctr-homepage">
   <div class="banner">
   <%# ATTENTION C'était dans la classe du dessous col-6 offset-3 d-flex %>
     <div class="justify-content-center">
       <div class="text-banner">
-        <h1>Trouvez votre futur quartier</h1>
+        <h1 class="text-shadow">Trouvez votre futur quartier</h1>
         <p>Selon <span id="span-banner">vos</span> critères !</p>
       </div>
     </div>
   </div>
-</div>
+
 
   <div class="col-6 offset-4 ">
     <div class="mt-5 form-search">
     <%= simple_form_for(@search) do |f| %>
        <%= f.input :address,
               label: 'Lieu de référence',
-              input_html: { data: { geocoder_target: "address" }, class:"d-none mt-5" },
+              input_html: { data: { geocoder_target: "address" }, class:"d-none mt-5 dropup" },
               wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], form_search_target: 'address' } } %>
       <div class="ctr-flex justify-content-between mt-5">
         <%= f.input :duration,
@@ -34,12 +35,10 @@
                      collection: Search::CATEGORIES.map {|cat| [I18n.t("#{cat}"), cat]},
                      input_html: {class:"b-green"}%>
       </div>
-      <%= f.button :submit, 'Je trouve mon quartier',class:"btn-basic pink w-100 mt-3" %>
+      <%= f.button :submit, 'Je trouve mon quartier',class:"btn-basic orange w-100 mt-3" %>
     <% end %>
     </div>
   </div>
-<div>
-
 </div>
 
 

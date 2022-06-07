@@ -7,8 +7,8 @@
 
 .profil {
   width: 35vh;
-  background-color: $pink-color;
-  // border: 1px solid $pink-color;
+  background-color: $orange-color;
+  // border: 1px solid $orange-color;
   margin: 15px 0px;
   margin-bottom: 15px;
   padding: 15px 25px;
@@ -19,7 +19,7 @@
    font-size: 14px;
    font-weight: 700;
    text-align: left;
-  //  color: $pink-color;
+  //  color: $orange-color;
   }
   p {
     color: white;
@@ -78,7 +78,7 @@
     left: 0;
     display: block;
     border-radius: 50px;
-    background: $pink-color;
+    background: $orange-color;
     width: 45px;
     height: 45px;
     transition: all 0.3s ease;
@@ -99,7 +99,7 @@
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: $pink-color;
+    stroke: $orange-color;
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.3s ease;
@@ -107,7 +107,7 @@
 
    .cta:hover:before {
     width: 100%;
-    background: $pink-color;
+    background: $orange-color;
    }
 
    .cta:hover svg {
