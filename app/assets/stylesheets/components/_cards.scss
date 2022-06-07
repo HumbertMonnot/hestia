@@ -9,12 +9,11 @@
 }
 
 .card-indicator{
-  flex-grow: 1;
   display: flex;
   justify-content: space-between;
   margin: 16px;
   padding: 16px;
-  width: 45%;
+  width: 350px;
   background-color: $green-color;
   border-radius: 12px;
   color: white;

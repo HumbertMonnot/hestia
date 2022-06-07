@@ -5,15 +5,12 @@ Rails.application.routes.draw do
   get "infras/api", to: 'infrastructures#send_coords'
 
   resources :searches, only: [:create, :show] do
-    resources :indicators, only: [:index, :update]
+    resources :indicators, only: [:index]
   end
 
-  resources :searches, only: [:index]
+  resources :indicators, only: :update
 
-  # resources :users, only: [] do
-  #   resources :ads, only: [:index, :delete]
-  #   resources :tasks, only: [:index, :create, :update, :delete]
-  # end
+  resources :searches, only: [:index]
 
   resources :adverts, only: [:create, :update, :index, :destroy]
   resources :tasks, only: [:index, :create, :update, :destroy]
