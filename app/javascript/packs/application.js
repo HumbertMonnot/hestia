@@ -14,3 +14,25 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+
+// carrousel
+
+import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
+import { Carousel } from "bootstrap"
+
+new Glide('.glide', {
+  autoplay: 2000,
+  gap: 16,
+  peek: {
+    before: 150,
+    after: 150
+  },
+  perView: 1,
+  breakpoints: {
+    576: {
+      perView: 1
+    }
+  },
+  type: "carousel"
+}
+).mount({ Controls, Breakpoints })
