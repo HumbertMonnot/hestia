@@ -7,15 +7,18 @@
 
       <%= simple_form_for(indicator, data: {controller:"search-indicators"}) do |f| %>
       <div class="d-flex w-100">
-        <p data-search-indicators-target= "weight"></p>
+        <%# <p data-search-indicators-target= "weight"></p> %>
+        <i class="fa-solid fa-minus px-3"></i>
         <input type="range"
                 name="indicator[weight]"
                 class="range-indicators"
-                value= "<%= indicator.weight %>"
-                min="0"
+                value= "0"
+                min="-10"
                 max="10"
                 step="1"
                 data-action= "change->search-indicators#update">
+        <i class="fa-solid fa-plus px-3"></i>
+
       </div>
       <% end %>
     </div>
