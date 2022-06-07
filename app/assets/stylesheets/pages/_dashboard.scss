@@ -7,29 +7,38 @@
 
 .profil {
   width: 35vh;
+<<<<<<< HEAD
+  box-shadow: 0.3em 0.3em 0.7em #00000015;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: $pink-color 0.1em lightness($color: $pink-color);
+   margin: 15px 0px;
+=======
   background-color: $orange-color;
   // border: 1px solid $orange-color;
   margin: 15px 0px;
+>>>>>>> master
   margin-bottom: 15px;
   padding: 15px 25px;
   height: 25vh;
-  border-radius: 5%;
+  border-radius: 2%;
   h2 {
-   color: white;
+   color: black;
    font-size: 14px;
    font-weight: 700;
    text-align: left;
+<<<<<<< HEAD
+=======
   //  color: $orange-color;
+>>>>>>> master
   }
   p {
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 14px;
   }
 }
 
 .card-pastsearches{
   padding: 10px;
-  width: 60vh;
   height: 30vh;
   background: rgb(255, 255, 255);
   border-radius: 0.4em;
@@ -118,6 +127,10 @@
     transform: scale(0.95);
    }
 
+  .glide__arrow {
+    font-weight: 700;
+    color: $green-color;
+     }
 
 
 

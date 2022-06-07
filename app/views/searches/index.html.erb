@@ -1,44 +1,64 @@
+<div class="ctr-pages">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class= "profil">
+        <h2> Mon profil </h2>
+        <br> <p>  Identifiant : <%= current_user.username.capitalize  %></p>
+        <p> Email : <%= current_user.email  %></p>
+        <br>
+      </div>
+      <div>
+        <button class="cta">
+         <span> Faire une nouvelle recherche </span>
+         <svg viewBox="0 0 13 10" height="10px" width="15px">
+         <path d="M1,5 L11,5"></path>
+         <polyline points="8 1 12 5 8 9"></polyline>
+         </svg>
+        </button>
+        <button class="cta">
+         <span> Voir mes annonces immobilieres </span>
+         <svg viewBox="0 0 13 10" height="10px" width="15px">
+         <path d="M1,5 L11,5"></path>
+         <polyline points="8 1 12 5 8 9"></polyline>
+         </svg>
+        </button>
+        <button class="cta">
+          <span> Préparer mon déménagement </span>
+          <svg viewBox="0 0 13 10" height="10px" width="15px">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+   <%# <%= button_to "logout", destroy_user_session_path, method: :delete %>
+    <div class="col-lg-9">
+        <h2> Recherches récentes</h2>
 
-<div class="ctr-pages container-dashboard">
-  <div class="d-flex justify-content-center">
-          <div class= "profil">
-          <h2> Mon profil </h2>
-            <br> <p>  Identifiant : <%= current_user.username.capitalize  %></p>
-            <p> Email : <%= current_user.email  %></p>
-            <br>
+      <% if current_user.searches == nil %>
+        <p> Vous n'avez pas de recherches </p>
+      <% else  %>
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <% current_user.searches.each do |search|%>
+              <li class="glide__slide">
+                <%= link_to search_path(search) do %>
+                  <div class="card-pastsearches">
+                    <p> Adresse : <%=  search.address %> </p>
+                    <br> <p> Temps : <%= search.duration %> minutes </p>
+                    <br> <p> Mode de transport : <%= search.profile %> </p>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-
-        <div>
-            <button class="cta">
-              <span> Faire une nouvelle recherche </span>
-              <svg viewBox="0 0 13 10" height="10px" width="15px">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </button>
-        </div>
-            <%# <%= button_to "logout", destroy_user_session_path, method: :delete %>
+      <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+      </div>
+    </div>
+    <% end %>
   </div>
-
-      <div class= "ctr-past ">
-        <div>
-
-
-          <%# <h2> Recherches récentes </h2> %>
-          <h2> Recherches récentes</h2>
-        </div>
-        <div class="justify-content-around d-flex">
-          <% current_user.searches.each do |search|%>
-          <div class="card-pastsearches">
-            <%= link_to search_path(search) do %>
-            <p> Adresse : <%=  search.address %> </p>
-            <br> <p> Temps : <%= search.duration %> minutes </p>
-            <br> <p> Mode de transport :<%= search.profile %> </p>
-              <% end %>
-        </div>
-          <% end %>
-      </div>
-      </div>
-      </div>
-
 </div>
