@@ -37,7 +37,7 @@ puts "cleaning database"
 User.destroy_all
 Search.destroy_all
 Indicator.destroy_all
-Ad.destroy_all
+Advert.destroy_all
 
 
 puts 'Creating users...'

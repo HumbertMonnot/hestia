@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
     @search.user = current_user
 
     if @search.save
+      puts "on est là"
       IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_title: indic) }
       redirect_to search_indicators_path(@search)
     else

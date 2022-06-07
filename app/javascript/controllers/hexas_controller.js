@@ -188,6 +188,7 @@ export default class extends Controller {
       // Add a symbol layer
       this.map.addLayer({'id': 'points', 'type': 'symbol', 'source': 'points',
                           'layout': { 'icon-image': 'custom-marker',
+                                      'icon-size': 0.5,
                                       'text-field': ['get', 'price'],
                                       'text-font': ['Open Sans Semibold'],
                                       'text-offset': [0, 1.25],
