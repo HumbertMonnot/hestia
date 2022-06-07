@@ -3,17 +3,36 @@
       data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
       data-hexas-weights-value=<%= @indicators.to_json() %>
       data-hexas-hexalist-value=<%= @paras.to_json() %>    >
-  <div>
+  <div>    
     
+    <map id="map"></map>
+    <div id="over_map_gauges" data-hexas-target="gaugecard" class="">
+      <% @indic_names.each do |indic_name| %>
+        <label for="weight"><%= indic_name.name %></label>
+        <input type="range" 
+              name="weight" 
+              min="1" 
+              max="10" 
+              id="<%= indic_name.id %>" 
+              value="<%= @indicators[indic_name.id - 1] * 10 %>"
+              data-action="change->hexas#changeweights">
+      <% end %>
+    </div>
       <div class="filter-group">
               <button class="btn-basic btn-filter green" data-action="click->hexas#filter" id="weight_average"><p>Général</p></button>
               <% @indic_names.each do |indic_name| %>
                 <button class="btn-basic btn-filter green"data-action="click->hexas#filter" id="<%= indic_name.name %>"><p><%= indic_name.name %></p></button>
               <% end %>
       </div>
-    
-    <map id="map"></map>
-    <div id="over_map_scores" data-hexas-target="scorecard" class="d-none">
+
+    <div class="left-col">
+      <div id="over_map_scores" data-hexas-target="scorecard" class="d-none">
+      </div>
+
+      <div class="card_map_annonces p-4 d-none" data-hexas-target="annoncecard">
+        
+      </div>
+
     </div>
   </div>
 </div>

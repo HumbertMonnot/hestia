@@ -12,44 +12,6 @@
 @import "components/index";
 @import "pages/index";
 
-.mapboxgl-ctrl-attrib {
-  display: none
-}
-
-#map { 
-  position: relative; 
-}
-
-.filter-group {
-  position: absolute; 
-  top: 100px; 
-  left: 10px; 
-  z-index: 99;
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-right: 20px;
-  margin-top: 10px;
-}
-
-#over_map_scores { 
-  position: absolute; 
-  top: 200px; 
-  left: 10px; 
-  z-index: 99;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 15px;
-  padding: 15px;
-  align-items: flex-start;
-  border: $green-color 0.2em solid;
-  margin: 15px;
-  label {
-    font-size: 10px;
-  }
-}
-
 canvas {
   height: 95vh;
   width: 100%
