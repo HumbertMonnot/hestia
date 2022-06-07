@@ -16,6 +16,20 @@
   }
 }
 
+.btn-filter {
+  height: 27px;
+  opacity: 1;
+  padding: 4px 7px;
+  text-align: center;
+  font-family: $headers-font;
+  color: white;
+  border-radius: 10px;
+}
+
+.btn-filter > p{
+  font-size: 11px;
+}
+
 a {
   text-decoration: none;
 }

@@ -1,0 +1,98 @@
+.left-col {
+  position: absolute; 
+  top: 140px; 
+  left: 10px; 
+  z-index: 99;
+  margin: 15px;
+}
+
+.mapboxgl-ctrl-attrib {
+  display: none
+}
+
+#map { 
+  position: relative; 
+}
+
+.favoris {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.filter-group {
+  position: absolute;
+  top: 100px;
+  display: flex;
+  z-index: 99;
+  justify-content: space-around;
+  width: 100%;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+#over_map_scores { 
+  background-color: white;
+  border-radius: 3px;
+  padding: 15px;
+  margin-bottom: 15px;
+  align-items: flex-start;
+  border: $green-color 0.2em solid;
+  label {
+    font-size: 9px;
+  }
+}
+
+#over_map_gauges { 
+  position: absolute; 
+  top: 140px; 
+  right: 10px; 
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 3px;
+  padding: 15px;
+  align-items: flex-start;
+  border: $green-color 0.2em solid;
+  margin: 15px;
+  label {
+    font-size: 10px;
+  }
+}
+
+.annonce-immo {
+  position: absolute;
+  top: 200px; 
+  left: 10px; 
+  z-index: 99;
+}
+
+.card_map_annonces {
+  width: 335px;
+  height: 250px;
+  background-color: white;
+  border-radius: 3px;
+  padding: 15px;
+  border: $green-color 0.2em solid;
+  box-sizing: content-box;
+  position: relative;
+}
+
+.img-annonces {
+  width: 150px;
+  height: 100px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.img-annonces img {
+  // height:fit-content;
+  height: 100%;
+  object-fit: contain;
+}
+
+.left-column-scores {
+  margin-right: 15px
+}

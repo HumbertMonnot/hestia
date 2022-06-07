@@ -15,23 +15,43 @@ class InfrastructuresController < ApplicationController
   } 
 
   def send_coords
-    coords = params[:coords].split(",").map(&:to_f)
-    distance = params[:dist].to_f
-    type = params[:type]
-    min_long = coords[0] - distance * 0.02
-    max_long = coords[0] + distance * 0.02
-    min_lat = coords[1] - distance * 0.01
-    max_lat = coords[1] + distance * 0.01
-    @infras = Infrastructure.where([
-      "indicator_title_id  = ? and latitude > ? and latitude < ? and longitude > ? and longitude < ?",
-      TYPE_DICO[type],
-      min_lat,
-      max_lat,
-      min_long,
-      max_long
-    ])
+    t= Time.now
+    # center = params[:address].split(",").map(&:to_f)
+    # infras = Infrastructure.near(center.reverse, 1.5)
+    scores = []
+    params[:coords].split(",").map(&:to_f).each_slice(2) do |coords|
+      infras_700 = Infrastructure.near(coords.reverse, 0.7)
+      infras_500 = Infrastructure.near(coords.reverse, 0.5)
+      # infras = infras_500.where(indicator_title_id: 1)
+      #                   .or(infras_500.where(indicator_title_id: 2))
+                                    
+      scores << {
+                  "animaux" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 1).near(coords.reverse).first),
+                  "commerce_de_bouche" => infras_500.where(indicator_title_id: 2).length,
+                  "etablissement_scolaire" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 3).near(coords.reverse).first),
+                  "grandes_surfaces" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 4).near(coords.reverse).first),
+                  "installation_sportive" => infras_500.where(indicator_title_id: 5).length,
+                  "medecine_courante" => infras_700.where(indicator_title_id: 6).length,
+                  "medecine_specialisee" => infras_700.where(indicator_title_id: 7).length,
+                  "petite_enfance" => infras_700.where(indicator_title_id: 8).length,
+                  "restauration" => infras_700.where(indicator_title_id: 9).length,
+                  "services_de_proximite" => infras_700.where(indicator_title_id: 10).length,
+                  "shopping" => infras_700.where(indicator_title_id: 11).length,
+                  "vie_culturelle" => infras_700.where(indicator_title_id: 12).length
+                }
+    end
+    puts "--------------"
+    puts Time.now - t
+    puts "--------------"
+    # distance = params[:dist].to_f
+    # type = params[:type]
+    # min_long = coords[0] - distance * 0.02
+    # max_long = coords[0] + distance * 0.02
+    # min_lat = coords[1] - distance * 0.01
+    # max_lat = coords[1] + distance * 0.01
+    # @infras = Infrastructure.near(coords, 1)
 
-    render json: @infras
+    render json: scores
     
     # render json: JSON.parse('[{
     #   "id": 14829,
