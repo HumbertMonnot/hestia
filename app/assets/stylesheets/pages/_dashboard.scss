@@ -7,10 +7,16 @@
 
 .profil {
   width: 35vh;
+<<<<<<< HEAD
   box-shadow: 0.3em 0.3em 0.7em #00000015;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: $pink-color 0.1em lightness($color: $pink-color);
    margin: 15px 0px;
+=======
+  background-color: $orange-color;
+  // border: 1px solid $orange-color;
+  margin: 15px 0px;
+>>>>>>> master
   margin-bottom: 15px;
   padding: 15px 25px;
   height: 25vh;
@@ -20,6 +26,10 @@
    font-size: 14px;
    font-weight: 700;
    text-align: left;
+<<<<<<< HEAD
+=======
+  //  color: $orange-color;
+>>>>>>> master
   }
   p {
     color: rgb(0, 0, 0);
@@ -77,7 +87,7 @@
     left: 0;
     display: block;
     border-radius: 50px;
-    background: $pink-color;
+    background: $orange-color;
     width: 45px;
     height: 45px;
     transition: all 0.3s ease;
@@ -98,7 +108,7 @@
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: $pink-color;
+    stroke: $orange-color;
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.3s ease;
@@ -106,7 +116,7 @@
 
    .cta:hover:before {
     width: 100%;
-    background: $pink-color;
+    background: $orange-color;
    }
 
    .cta:hover svg {

@@ -7,7 +7,6 @@
   }
 
 .mapboxgl-ctrl-geocoder--input{
-  border: 1px solid lightgrey;
   box-shadow: none;
   width: 100%;
   border: solid 3px $green-color;
@@ -53,19 +52,56 @@ li{
 }
 
 .select{
-  width: 92%;
+  width: 250px;
+}
+
+@media (max-width: 1300px) {
+  .ctr-flex{
+    flex-wrap: wrap;
+  }
+  .select{
+    width: 100%;
+  }
+
+  .btn-basic{
+    font-size: 16px;
+  }
 }
 
 #search_duration, #search_profile{
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .form-search {
   border-radius: 12px;
   box-shadow: 5px 5px 10px lightgray;
   padding: 24px 24px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
   top: 30%;
-  width: 35%;
+  width: 42%;
+  left: 48%
+}
+
+
+// range form
+input[type='range'] {
+  overflow: hidden;
+  width: 80%;
+  -webkit-appearance: none;
+  background-color: white;
+  border-radius: 12px;
+  border: solid 2px $green-color;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 20px;
+  -webkit-appearance: none;
+  height: 20px;
+  border-radius: 50%;
+  background: $green-color;
+  &:hover{
+    background: $orange-color;
+
+  }
 }

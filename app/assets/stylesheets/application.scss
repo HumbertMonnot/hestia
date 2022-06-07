@@ -14,9 +14,9 @@
 @import "components/index";
 @import "pages/index";
 
-
 canvas {
-  height: 90vh
+  height: 95vh;
+  width: 100%
 }
 
 body{
@@ -24,34 +24,30 @@ body{
 }
 
 // containers that contain inside of page
-// one for homepage
+// one for homepage with bg-img
 .ctr-homepage{
-  position: relative;
+  position: fixed;
+  background-image: url("bg-hestya.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
+  height: 100vh;
+  width: 100%;
+  top: 0;
 }
+
 // to use on the other pages to add margin under navbar
-
-// to use if we want a background image
-// .bg-img{
-//   background-image: url(bg.png);
-//   background-position: center;
-//   background-size: cover;
-//   margin: 0px;
-// }
-
 .ctr-pages{
   margin-top: 150px;
   margin-left: 64px;
   margin-right: 64px;
-  // background-image: url(bg_hestya.png);
-  // background-position: center;
-  // background-size: cover;
 }
 
-h1 h3 {
-  font-family: $body-font;
+h1, h3 {
+  font-family: $headers-font;
 }
 
 
 body {
-  font-family: $headers-font;
+  font-family: $body-font;
 }

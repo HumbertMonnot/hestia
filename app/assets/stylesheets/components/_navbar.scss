@@ -2,8 +2,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   height: 100px;
-  border-bottom: 1px solid black;
   font-size: 24px;
+}
+
+.bb{
+  border-bottom: 1px solid black;
 }
 
 
@@ -23,13 +26,8 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 200px;
+  width: 150px;
 }
-
-// réduire la taille du h1 de la navbar
-// .fs-24{
-//   font-size: 24px;
-// }
 
 #dropdownMenuLink-black{
   cursor: default;
@@ -41,11 +39,15 @@
   text-align: center;
 }
 
+.navbar-brand, .navbar-collapse {
+  margin: 0px 64px;
+}
+
 
 // navbar2 for homepage
 .navbar-lewagon {
   justify-content: space-between;
-  background: $green-color;
+  // background: $green-color;
   height: 100px;
 }
 
@@ -53,16 +55,24 @@
   flex-grow: 0;
 }
 
-// .navbar-lewagon .navbar-brand img {
-//   width: 40px;
-// }
-
 // réduire la taille du h1 de la navbar
-.fs-24{
-  font-size: 38px;
+.title-hp{
+  font-size: 48px;
   color: white;
   margin: 0;
   font-weight: bold;
+  padding-top: 24px;
+}
+
+#img-navbar{
+  position: relative;
+}
+
+#text-navbar{
+  position: absolute;
+  top: 55px;
+  left: 58px;
+  font-size: 28px;
 }
 
 #dropdownMenuLink{
@@ -70,12 +80,6 @@
   color: white;
 
 }
-
-// border at the bottom of navbar
-.bb{
-  border-bottom: 1px solid $green-color;
-}
-
 
 .dropdown-menu {
   border: 1px solid white;
