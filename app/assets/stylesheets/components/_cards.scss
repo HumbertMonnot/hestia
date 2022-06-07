@@ -9,21 +9,23 @@
 }
 
 .card-indicator{
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   margin: 16px;
   padding: 16px;
   width: 350px;
-  background-color: $green-color;
+  box-shadow: 10px 10px 12px lightgray;
+  border-top: solid 5px $green-color;
   border-radius: 12px;
   color: white;
   letter-spacing: 2px;
   text-shadow: 2px 2px 12xpx black;
-  font-size: 20px;
+  font-size: 18px;
   height: 120px;
   &:hover{
-    box-shadow: 5px 5px 10px lightgray;
     border-radius: 12px;
+    // border: solid 5px $green-color;
+    background-color: $green-color;
   }
 }
 

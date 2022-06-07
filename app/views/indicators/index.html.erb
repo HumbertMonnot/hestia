@@ -3,8 +3,11 @@
   <div class="ctr-cards">
     <% @indicators.each do |indicator| %>
       <div class="card-indicator px-5" >
-        <p class="pt-4"><%= indicator.indicator_title.name %></p>
+        <p class="pt-2"><%= indicator.indicator_title.name %></p>
+
       <%= simple_form_for(indicator, data: {controller:"search-indicators"}) do |f| %>
+      <div class="d-flex w-100">
+        <p data-search-indicators-target= "weight"></p>
         <input type="range"
                 name="indicator[weight]"
                 class="range-indicators"
@@ -13,9 +16,9 @@
                 max="10"
                 step="1"
                 data-action= "change->search-indicators#update">
-          <h3 data-search-indicators-target= "weight"></h3>
-      <% end %>
       </div>
+      <% end %>
+    </div>
     <% end %>
   </div>
   <%= link_to search_path(params[:search_id]) do %>
