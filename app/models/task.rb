@@ -3,5 +3,5 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :state, presence: true, inclusion: { in: ["done", "not done yet", "not done"] }
+  validates :state, presence: true, inclusion: { in: ["fait", "en cours", "pas fait"] }
 end
