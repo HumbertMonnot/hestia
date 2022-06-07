@@ -43,3 +43,4 @@ yarn-debug.log*
 
 # essai
 yarn.lock
+/yarn.lock
