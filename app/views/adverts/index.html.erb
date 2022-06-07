@@ -4,7 +4,7 @@
 
   <%# modal %>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-basic orange" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="btn btn-basic orange btn-advert" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Sauvegarder une annonce
   </button>
 </div>
@@ -25,7 +25,7 @@
           <%= f.input :size, label: "Surface", required: false %>
           <%= f.input :address, label: "Adresse", required: false %>
           <%= f.input :comment, label: "Commentaire", required: false %>
-          <%= f.button :submit, "Sauvegarder", class:"btn btn-basic orange" %>
+          <%= f.button :submit, "Sauvegarder", class:"btn btn-basic btn-save orange" %>
         <% end %>
       </div>
       <div class="modal-footer">
@@ -35,51 +35,56 @@
   </div>
 </div>
 
-  <div class="ctr-cards pt-5">
-    <div class="col-3">
+  <div class="ctr-cards pt-4">
+    <div class="col-sm-12 col-md-3">
     <% @ads.select {|state| state.state == "pending" }.each do |ad|  %>
- 		  <div class="card-ad-pending">
- 			 <p><%= ad.title %></p>
+ 		  <div class="card-pending">
+ 			 <p class="title-card"><%= ad.title %></p>
+      <%# => update %>
+      <div class="d-flex justify-content-between">
         <p><em><%= ad.comment %></em></p>
-          <%= link_to ad.url do %>
-          <div id="link" class="d-flex">
-            <i class="fa-solid fa-link"></i><p>Lien vers l'annonce</p>
-          </div>
-          <% end %>
-           <ul><i class="fa-solid fa-align-left"></i>
-              <li><p><%= ad.size %>m²</p></li>
-              <li><p><%= ad.address %></p></li>
-              <li><p><strong><%= ad.price %>€</strong></p></li>
-            </ul>
-<%# => delete %>
- 			  <%= link_to advert_path(ad), method: :delete, data: { confirm: "Are you sure?" } do %>
- 			    <i class="fa-solid fa-xmark"></i>
-        <% end %>
-<%# => update %>
+        <div id="link-heart">
         <%= link_to advert_path(ad.id, state: "liked"), method: :patch do %>
- 			    <i class="fa-solid fa-heart green-hover"></i>
+ 			    <i class="fa-solid fa-heart green-hover pr-12"></i>
         <% end %>
         <%= link_to advert_path(ad.id, state: "not liked"), method: :patch do %>
  			    <i class="fa-solid fa-heart-crack pink-hover"></i>
+        <% end %>
+        </div>
+      </div>
+          <%= link_to ad.url do %>
+          <div class="d-flex">
+            <i class="fa-solid fa-link pr-12"></i>
+            <p>Lien vers l'annonce</p>
+          </div>
+          <% end %>
+            <p>Surface: <%= ad.size %>m²</p>
+            <p>Adresse: <%= ad.address %></p>
+            <p><strong><%= ad.price %>€</strong></p>
+<%# => delete %>
+ 			  <%= link_to advert_path(ad), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			    <i class="fa-solid fa-xmark"></i>
         <% end %>
  		  </div>
     <% end %>
   </div>
 <%# end card "pending" %>
 
-<div class="col-3">
+<div class="col-sm-12 col-md-3">
  			<% @ads.select {|ad_state| ad_state.state == "liked" }.each do |ad|  %>
- 				<div class="card-ad-liked">
- 					<p><%= ad.title %></p>
-          <p><em><%= ad.comment %></em></p>
+ 				<div class="card-liked">
+ 					<p class="title-card"><%= ad.title %></p>
+          <div class="d-flex justify-content-between">
+            <p><em><%= ad.comment %></em></p>
+            <i class="fa-solid fa-heart green-heart"></i>
+          </div>
           <%= link_to ad.url do %>
-          <div id="link" class="d-flex">
-            <i class="fa-solid fa-link"></i><p>Lien vers l'annonce</p>
+          <div class="d-flex">
+            <i class="fa-solid fa-link pr-12"></i><p>Lien vers l'annonce</p>
           </div>
           <% end %>
-            <ul><i class="fa-solid fa-align-left"></i>
-              <li><p><%= ad.size %>m²</p></li>
-              <li><p><%= ad.address %></p></li>
+              <li><p>Surface: <%= ad.size %>m²</p></li>
+              <li><p>Adresse: <%= ad.address %></p></li>
               <li><p><strong><%= ad.price %>€</strong></p></li>
             </ul>
 <%# delete %>
@@ -87,34 +92,32 @@
  			      <i class="fa-solid fa-xmark"></i>
           <% end %>
 <%# updated %>
- 					<i class="fa-solid fa-heart green-heart"></i>
  				</div>
       <% end %>
 </div>
 <%# end card "liked" %>
 
-<div class="col-3">
+<div class="col-sm-12 col-md-3">
  			<% @ads.select {|ad_state| ad_state.state == "not liked" }.each do |ad|  %>
- 				<div class="card-ad-disliked">
- 					<p><%= ad.title %></p>
-        	<p><em><%= ad.comment %></em></p>
+ 				<div class="card-disliked">
+ 					<p class="title-card"><%= ad.title %></p>
+          <div class="d-flex justify-content-between">
+        	  <p><em><%= ad.comment %></em></p>
+          <%# => updated %>
+            <i class="fa-solid fa-heart-crack pink-heart"></i>
+          </div>
           <%= link_to ad.url do %>
-          <div id="link" class="d-flex">
-            <i class="fa-solid fa-link"></i><p>Lien vers l'annonce</p>
+          <div class="d-flex">
+            <i class="fa-solid fa-link pr-12"></i><p>Lien vers l'annonce</p>
           </div>
           <% end %>
-
-            <ul><i class="fa-solid fa-align-left"></i>
-              <li><p><%= ad.size %>m²</p></li>
-              <li><p><%= ad.address %></p></li>
-              <li><p><strong><%= ad.price %>€</strong></p></li>
-            </ul>
+            <p>Surface: <%= ad.size %>m²</p>
+            <p>Adresse: <%= ad.address %></p>
+            <p><strong><%= ad.price %>€</strong></p>
 <%# delete %>
           <%= link_to advert_path(ad), method: :delete, data: { confirm: "Are you sure?" } do %>
  			      <i class="fa-solid fa-xmark"></i>
           <% end %>
-<%# => updated %>
- 					<i class="fa-solid fa-heart-crack pink-heart"></i>
         </div>
       <% end %>
     </div>

@@ -4,8 +4,8 @@
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-left: 64px;
-  margin-right: 64px;
+  // margin-left: 64px;
+  // margin-right: 64px;
 }
 
 .card-indicator{
@@ -48,10 +48,10 @@
 }
 
 // card for ads index
-.card-ad-pending, .card-ad-liked, .card-ad-disliked{
+.card-pending, .card-liked, .card-disliked{
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 5px 5px 10px lightgray;
+  box-shadow: 10px 10px 12px lightgray;
   position: relative;
 }
 
@@ -66,15 +66,15 @@
   top: 5%;
 }
 
-.card-ad-pending{
+.card-pending{
   border-top: 5px solid $orange-color;
 }
 
-.card-ad-liked{
+.card-liked{
   border-top: 5px solid $green-color;
 }
 
-.card-ad-disliked{
+.card-disliked{
   border-top: 5px solid $pink-color;
 }
 
@@ -86,6 +86,7 @@
   color: $green-color;
 }
 
+// hover sur les coeurs pour le update
 .green-hover:hover{
   color: $green-color;
 }
@@ -94,7 +95,25 @@
   color: $pink-color;
 }
 
+// textes des cards sur la page mes annonces immobilières
 i, p{
   text-decoration: none;
   color: black;
+  line-height: 24px;
+}
+
+.pr-12{
+  padding-right: 12px;
+}
+
+
+.title-card{
+  font-family: $headers-font;
+  font-size: 21px;
+  border-bottom: 2px solid;
+  padding-bottom: 12px;
+}
+
+a:hover{
+  color: $green-color;
 }
