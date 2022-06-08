@@ -85,23 +85,44 @@ li{
 
 
 // range form
-input[type='range'] {
+// input[type='range']
+
+.range-duration, .range-indicators{
   overflow: hidden;
-  width: 80%;
+  width: 100%;
   -webkit-appearance: none;
   background-color: white;
   border-radius: 12px;
   border: solid 2px $green-color;
 }
 
+.range-duration {
+  height: 25px;
+}
+
+.range-indicators{
+  height: 15px;
+}
+
 input[type='range']::-webkit-slider-thumb {
-  width: 20px;
+  width: 12px;
   -webkit-appearance: none;
-  height: 20px;
+  height: 12px;
   border-radius: 50%;
   background: $green-color;
+  box-shadow:  5px 5px 10px lightgrey;
   &:hover{
     background: $orange-color;
-
   }
+}
+
+// padding left for text duration hp
+.pl-12{
+  padding-left: 12px;
+  padding-right: 4px;
+}
+
+// + et - des ranges sur page indicators
+.fa-minus, .fa-plus {
+  font-size: 12px;
 }

@@ -20,8 +20,22 @@
               label: 'Lieu de référence',
               input_html: { data: { geocoder_target: "address" }, class:"d-none mt-5 dropup" },
               wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], form_search_target: 'address' } } %>
-      <div class="ctr-flex justify-content-between mt-5">
-        <%= f.input :duration,
+
+      <div data-controller="new-searches">
+        <div class="d-flex w-100">
+          <input type="range"
+                  name="search[duration]"
+                  class="range-duration"
+                  value= "30"
+                  min="0"
+                  max="60"
+                  step="1"
+                  data-action= "change->new-searches#update">
+          <p class= "pl-12" data-new-searches-target= "duration">30</p><span> min</span>
+        </div>
+      </div>
+
+        <%# <%= f.input :duration,
                       label: 'Durée en min',
                       as: :numeric,
                       as: :select,
@@ -29,12 +43,12 @@
                       placeholder:'Durée',
                       input_html: {class:"b-green"},
                       data: { form_search_target: 'duration'}  %>
+
          <%= f.input :profile,
                      label: 'Moyen de transport',
                      as: :select,
                      collection: Search::CATEGORIES.map {|cat| [I18n.t("#{cat}"), cat]},
                      input_html: {class:"b-green"}%>
-      </div>
       <%= f.button :submit, 'Je trouve mon quartier',class:"btn-basic orange w-100 mt-3" %>
     <% end %>
     </div>

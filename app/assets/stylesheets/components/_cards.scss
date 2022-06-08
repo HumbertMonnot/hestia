@@ -21,12 +21,16 @@
   letter-spacing: 2px;
   text-shadow: 2px 2px 12xpx black;
   font-size: 18px;
-  height: 120px;
+  height: 220px;
   &:hover{
     border-radius: 12px;
     // border: solid 5px $green-color;
     background-color: $green-color;
   }
+}
+
+.text-indicator{
+  font-size: 12px;
 }
 
 .indicator_weight{
