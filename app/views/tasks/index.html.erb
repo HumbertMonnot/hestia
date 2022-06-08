@@ -1,114 +1,94 @@
+<div class="ctr-pages">
+  <div>
+    <h3>Mes Taches pour mon déménagement</h2>
 
+    <%# modal %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-basic orange btn-advert" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Créer une nouvelle tâche
+    </button>
+  </div>
 
-  <div class="ctr-pages">
-<% @tasks.each do |task| %>
-  <% if task.state === "pas fait" %>
-      <div>
-        <div>
-          <%= task.title %>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Créer une annonce</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div>
-          <%= task.state %>
-        </div>
-        <div>
-          <%= task.description %>
-        </div>
-      </div>
-      <div>
-        <div>
-          <%= link_to task_path(task) do %>
-            <i class="fa-solid fa-plus"></i>
+        <div class="modal-body">
+          <%= simple_form_for @task do |f| %>
+            <%= f.input :title, label: "Titre" %>
+            <%= f.input :description, label: "Description" %>
+            <%= f.button :submit, "Créer", class:"btn btn-basic btn-save orange" %>
           <% end %>
         </div>
-        <div>
-      
-        </div>
-        <div>
-          <%= link_to  task_path(task), method: :delete do %>
-            <i class="fa-solid fa-trash-can"></i>
-          <% end %>
-        </div>
-      </div>
-  <% else %>
-      <div>
-        <div>
-          <%= task.title %>
-        </div>
-        <div>
-          <%= task.state %>
-        </div>
-        <div>
-          <%= task.description %>
-        </div>
-      </div>
-      <div>
-        <div>
-          <%= link_to task_path(task) do %>
-            <i class="fa-solid fa-plus"></i>
-          <% end %>
-        </div>
-        <div>
-      
-        </div>
-        <div>
-          <%= link_to  task_path(task), method: :delete do %>
-            <i class="fa-solid fa-trash-can"></i>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
-<% end %>
-<button type="button" class="btn-basic pink" data-toggle="modal" data-target="#exampleModalCenter">
-  Créer une nouvelle tache!
-</button>
-    </div>
-
-
-<!-- Modal for create -->
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Nouvelle Tâche</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <%= simple_form_for [ @task ] do |f| %>
-          <%= f.input :title %>
-          <%= f.input :description %>
-          <%= f.submit "Créer la Tâche", class: "btn-basic pink" %>
-          <% end %>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal for edit -->
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Nouvelle Tâche</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <%= simple_form_for [ @task ] do |f| %>
-          <%= f.input :title %>
-          <%= f.input :description %>
-          <%= f.input :state, collection: [ "fait", "en cours" ] %>
-          <%= f.submit "Modifier la Tâche", class: "btn-basic pink" %>
-          <% end %>
+  <div class="ctr-cards pt-4">
+    <div class="col-sm-12 col-md-3">
+    <% @tasks.select {|state| state.state == "pas fait" }.each do |task|  %>
+ 		  <div class="card-pending">
+ 			 <p class="title-card"><%= task.title %></p>
+      <%# => update %>
+      <div class="d-flex justify-content-between">
+        <p><em><%= task.description %></em></p>
+        <div id="link-heart">
+        <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
+ 			    <i class="fa-solid fa-list-check green-hover py-12"></i>
+        <% end %>
         </div>
       </div>
-    </div>
+<%# => delete %>
+ 			  <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			    <i class="fa-solid fa-trash-can"></i>
+        <% end %>
+ 		  </div>
+    <% end %>
   </div>
+<%# end card "pending" %>
+
+  <div class="col-sm-12 col-md-3">
+ 			<% @tasks.select {|task_state| task_state.state == "en cours" }.each do |task|  %>
+ 				<div class="card-liked">
+ 					<p class="title-card"><%= task.title %></p>
+          <div class="d-flex justify-content-between">
+            <p><em><%= task.description %></em></p>
+            <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
+ 			        <i class="fa-solid fa-list-check pink-heart green-hover py-12"></i>
+            <% end %>
+          </div>
+<%# delete %>
+          <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			      <i class="fa-solid fa-trash-can"></i>
+          <% end %>
+<%# updated %>
+ 				</div>
+      <% end %>
+  </div>
+<%# end card "liked" %>
+
+  <div class="col-sm-12 col-md-3">
+ 			<% @tasks.select {|task_state| task_state.state == "fait" }.each do |task|  %>
+ 				<div class="card-disliked">
+ 					<p class="title-card"><%= task.title %></p>
+          <div class="d-flex justify-content-between">
+        	  <p><em><%= task.description %></em></p>
+          <%# => updated %>
+            <i class="fa-solid fa-list-check green-heart"></i>
+          </div>
+<%# delete %>
+          <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			      <i class="fa-solid fa-trash-can"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+<%# end card "not liked" %>
 </div>

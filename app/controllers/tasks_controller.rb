@@ -31,7 +31,7 @@ class TasksController < ApplicationController
   def update
     @user = current_user
     @task = Task.find(params[:id])
-    @task.update(task_params)
+    @task.update(state: params[:state])
     redirect_to tasks_path
   end
 
@@ -44,6 +44,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :state)
+    params.require(:task).permit(:title, :description)
   end
 end
