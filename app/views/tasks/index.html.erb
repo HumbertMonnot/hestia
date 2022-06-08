@@ -56,7 +56,7 @@
 
   <div class="col-sm-12 col-md-3">
  			<% @tasks.select {|task_state| task_state.state == "en cours" }.each do |task|  %>
- 				<div class="card-liked">
+ 				<div class="card-disliked">
  					<p class="title-card"><%= task.title %></p>
           <div class="d-flex justify-content-between">
             <p><em><%= task.description %></em></p>
@@ -76,7 +76,7 @@
 
   <div class="col-sm-12 col-md-3">
  			<% @tasks.select {|task_state| task_state.state == "fait" }.each do |task|  %>
- 				<div class="card-disliked">
+ 				<div class="card-liked">
  					<p class="title-card"><%= task.title %></p>
           <div class="d-flex justify-content-between">
         	  <p><em><%= task.description %></em></p>
