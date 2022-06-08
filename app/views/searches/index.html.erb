@@ -58,7 +58,7 @@
                   <div class="card-liked mt-5">
                     <p> Adresse : <%=  search.address %> </p>
                     <br> <p> Temps : <%= search.duration %> minutes </p>
-                    <br> <p> Mode de transport : <%= search.profile %> </p>
+                    <br> <p> Mode de transport : <%= I18n.t("#{search.profile}")  %> </p>
                   </div>
                 <% end %>
               </li>

@@ -4679,6 +4679,13 @@ gl-matrix@^3.3.0:
   resolved "https://registry.yarnpkg.com/gl-matrix/-/gl-matrix-3.4.3.tgz#fc1191e8320009fd4d20e9339595c6041ddc22c9"
   integrity sha512-wcCp8vu8FT22BnvKVPjXa/ICBWRq/zjFfdofZy1WSpQZpphblv12/bOQLBC1rMM7SGOFS9ltVmKOHil5+Ml7gA==
 
+glide@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/glide/-/glide-0.2.0.tgz#d62da76bae30ebc2e488da231e4214105bbd73d2"
+  integrity sha512-Yq4N0+OLVBtQ/gegZAo54p/1ZWWjpNVBQ85Hr2V2JABifFs87vavAjME79Ej2lrOpNGK/WykRMvL1+MpoGYIIw==
+  dependencies:
+    tween.js "~0.14.0"
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -8547,6 +8554,11 @@ turf-jsts@*:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/turf-jsts/-/turf-jsts-1.2.3.tgz#59757f542afbff9a577bbf411f183b8f48d38aa4"
   integrity sha512-Ja03QIJlPuHt4IQ2FfGex4F4JAr8m3jpaHbFbQrgwr7s7L6U8ocrHiF3J1+wf9jzhGKxvDeaCAnGDot8OjGFyA==
+
+tween.js@~0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/tween.js/-/tween.js-0.14.0.tgz#22df2bd40947e3421901b9fd091bfa43829e2668"
+  integrity sha1-It8r1AlH40IZAbn9CRv6Q4KeJmg=
 
 type-fest@^0.10.0:
   version "0.10.0"
