@@ -19,7 +19,9 @@ class InfrastructuresController < ApplicationController
     # center = params[:address].split(",").map(&:to_f)
     # infras = Infrastructure.near(center.reverse, 1.5)
     scores = []
-    params[:coords].split(",").map(&:to_f).each_slice(2) do |coords|
+    params[:coords].split(",").map(&:to_f).each_slice(2).with_index do |coords, ind|
+      deb = Time.now
+      puts "#{ind + 1}ème polygone"
       infras_700 = Infrastructure.near(coords.reverse, 0.7)
       # infras_500 = Infrastructure.near(coords.reverse, 0.5)
       # infras = Infrastructure.near(coords.reverse, 0.7)
@@ -37,7 +39,7 @@ class InfrastructuresController < ApplicationController
                   "shopping" => infras_700.select{ |infra| infra.indicator_title_id == 11 }.length,
                   "vie_culturelle" => infras_700.select{ |infra| infra.indicator_title_id == 12 }.length
                 }
-    
+    puts Time.now - deb
     end
     puts "--------------"
     puts Time.now - t
