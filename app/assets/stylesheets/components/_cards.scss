@@ -88,9 +88,18 @@
   color: $green-color;
 }
 
+.gold-heart{
+  color: gold;
+}
+
 // hover sur les coeurs pour le update
 .green-hover:hover{
   color: $green-color;
+}
+
+// hover sur les coeurs pour le update
+.gold-hover:hover{
+  color: gold;
 }
 
 .pink-hover:hover{
