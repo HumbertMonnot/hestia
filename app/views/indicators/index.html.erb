@@ -1,23 +1,38 @@
 <div class= "ctr-pages">
   <h3>NOTEZ VOS CRITERES SUR 10</h3>
   <div class="ctr-cards">
+
     <% @indicators.each do |indicator| %>
-      <div class="card-indicator px-5" >
-        <p class="pt-2"><%= indicator.indicator_title.name %></p>
+    <div class="card-indicator px-5" >
+      <p class="pt-2"><%= indicator.indicator_title.name %></p>
+
+      <p class="text-indicator"> Pour vous, il est plus ou moins important d'habiter dans un lieu proche des commodités pour
+        <%= @texts["#{indicator.id}"]%>
+      </p>
+
+      <%# <button class="btn"><i id= "link-info" class="fa-solid fa-info">
+      <div id="infras" class="d-none">
+        <p><%= infrastructures[@indicators.find_index(indicator)]</p>%>
+      <%# </div> %>
+      <%# </i></button> %>
 
       <%= simple_form_for(indicator, data: {controller:"search-indicators"}) do |f| %>
       <div class="d-flex w-100">
-        <p data-search-indicators-target= "weight"></p>
+        <i class="fa-solid fa-minus px-3"></i>
         <input type="range"
                 name="indicator[weight]"
                 class="range-indicators"
-                value= "<%= indicator.weight %>"
-                min="0"
+                value= "0"
+                min="-10"
                 max="10"
                 step="1"
                 data-action= "change->search-indicators#update">
+        <p class= "pl-12 d-none" data-search-indicators-target= "weight"></p>
+        <i class="fa-solid fa-plus px-3"></i>
+
       </div>
       <% end %>
+
     </div>
     <% end %>
   </div>

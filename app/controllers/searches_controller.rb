@@ -19,7 +19,6 @@ class SearchesController < ApplicationController
     @search.user = current_user
 
     if @search.save
-      puts "on est là"
       IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_title: indic) }
       redirect_to search_indicators_path(@search)
     else
@@ -31,7 +30,8 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @paras = [[@search.longitude, @search.latitude], @search.profile, @search.duration]
-    @indicators = @search.indicators.map { |indic| indic.weight }
+    @indicators = {}
+    @search.indicators.each { |indic| @indicators[indic.indicator_title_id] = indic.weight }
     @indic_names = IndicatorTitle.all
   end
 

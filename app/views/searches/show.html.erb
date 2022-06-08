@@ -11,10 +11,10 @@
         <label for="weight"><%= indic_name.name %></label>
         <input type="range" 
               name="weight" 
-              min="1" 
+              min="-10" 
               max="10" 
               id="<%= indic_name.id %>" 
-              value="<%= @indicators[indic_name.id - 1] * 10 %>"
+              value="<%= @indicators[indic_name.id] * 10 %>"
               data-action="change->hexas#changeweights">
       <% end %>
     </div>
