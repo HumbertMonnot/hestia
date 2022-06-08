@@ -103,13 +103,16 @@ export default class extends Controller {
   // Méthode pour ramener la meilleure note dans attr à 100
   #smoothScore = (hexas, attr) => {
     let max = 0
+    let min = 0
     hexas.forEach((hexa) => {
       if (hexa.properties[attr] > max) {
         max = hexa.properties[attr]
+      } else if (hexa.properties[attr] < min) {
+        min = hexa.properties[attr]
       }
     })
     const coef = 100 / max
-    hexas.forEach(hexa => hexa.properties[attr] = Math.round(hexa.properties[attr] * coef))
+    hexas.forEach(hexa => hexa.properties[attr] = Math.round((hexa.properties[attr] - min )* coef))
     if (["etablissement_scolaire", "grandes_surfaces"].includes(attr)) {
       hexas.forEach(hexa => hexa.properties[attr] = 100 - hexa.properties[attr])
     }
