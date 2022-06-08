@@ -195,7 +195,7 @@ export default class extends Controller {
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [this.hexalistValue[0][0], this.hexalistValue[0][1]],
       pitch: 45,
-      zoom: 12
+      zoom: 13.2
     });
     return map
   }
