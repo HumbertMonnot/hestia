@@ -4,6 +4,18 @@ class IndicatorsController < ApplicationController
   def index
     @search = Search.find(params[:search_id])
     @indicators = @search.indicators
+    @texts = {'1': "votre animal",
+      '2': "les commerces de bouche",
+      '3': "votre enfant",
+      '4': "les grandes surfaces",
+      '5': "le sport",
+      '6': "la médecine courante",
+      '7': "la médecine spécialisée",
+      '8': "la petite enfance",
+      '9': "la restauration",
+      '10': "le shopping", 
+      '11': "les services de proximité",
+      '12': "la vie culturelle"}
   end
 
   def update

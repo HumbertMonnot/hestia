@@ -1,15 +1,13 @@
 <div class= "ctr-pages">
   <h3>NOTEZ VOS CRITERES SUR 10</h3>
   <div class="ctr-cards">
-<% texts = ["votre animal", "le shopping", "les services de proximité", "la vie culturelle", "les commerces de bouche", "la petite enfance", "votre enfant", "les grandes surfaces", "la médecine courante", "le sport", "la médecine spécialisée", "la restauration"] %>
-<% infrastructures = ["vétérinaires", "magasins de vêtements"] %>
 
     <% @indicators.each do |indicator| %>
     <div class="card-indicator px-5" >
       <p class="pt-2"><%= indicator.indicator_title.name %></p>
 
       <p class="text-indicator"> Pour vous, il est plus ou moins important d'habiter dans un lieu proche des commodités pour
-        <%= texts[@indicators.find_index(indicator)] %>
+        <%= @texts["#{indicator.id}"]%>
       </p>
 
       <%# <button class="btn"><i id= "link-info" class="fa-solid fa-info">
@@ -29,6 +27,7 @@
                 max="10"
                 step="1"
                 data-action= "change->search-indicators#update">
+        <p class= "pl-12 d-none" data-search-indicators-target= "weight"></p>
         <i class="fa-solid fa-plus px-3"></i>
 
       </div>

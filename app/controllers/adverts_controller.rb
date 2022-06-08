@@ -7,7 +7,6 @@ class AdvertsController < ApplicationController
   end
 
   def create
-
     @ads = Advert.where(user: current_user)
     @ad = Advert.new(ad_params)
     @ad.user = current_user

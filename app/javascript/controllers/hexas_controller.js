@@ -88,13 +88,20 @@ export default class extends Controller {
 
     // On calcul la moyenne puis on la lisse, on trie par meilleur score et on affiche la grid colorée
     this.#weightedAverageScore(this.hexas, this.weightsValue)
+    console.log(this.hexas[0])
     this.#smoothScore(this.hexas, "weight_average")
+    console.log(this.hexas[0])
     this.hexas.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
     this.buildGrid(this.hexas, this.map, "weight_average")
     this.map.moveLayer('isotime')
     this.map.moveLayer('my-address')
     var endTime = performance.now()
     console.log(endTime - startTime)
+
+    // On charge l'image qu'on utilisera pour les markers
+    const icon_url = "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png"
+    this.map.loadImage(icon_url, (error, image) => { if (error) throw error;
+      this.map.addImage('custom-marker', image)});
   }
 
   // Méthode pour obtenir un isochrone après un appel API Mapbox à partir d'une adresse, une distance et un moyen de transport
@@ -150,8 +157,8 @@ export default class extends Controller {
         min = hexa.properties[attr]
       }
     })
-    const coef = 100 / max
-    hexas.forEach(hexa => hexa.properties[attr] = Math.round((hexa.properties[attr] - min )* coef))
+    const coef = 100 / (max - min)
+    hexas.forEach(hexa => hexa.properties[attr] = Math.round((hexa.properties[attr] - min ) * coef))
     if (["etablissement_scolaire", "grandes_surfaces"].includes(attr)) {
       hexas.forEach(hexa => hexa.properties[attr] = 100 - hexa.properties[attr])
     }
@@ -164,7 +171,7 @@ export default class extends Controller {
       let compt = 0
       for (const property of Object.entries(hexa.properties)) {
         if (compt === 12) break;
-        total += hexa.properties[property[0]] * this.weightsValue[this.dicoweights[property[0]]]
+        total += hexa.properties[property[0]] * weights[this.dicoweights[property[0]]]
         compt += 1
       }
       hexa.properties.weight_average = Math.round(total / compt)
@@ -209,11 +216,11 @@ export default class extends Controller {
         "fill-opacity": 0.7
       },
     });
-
+    if (the_map.getLayer("points")) {
+      the_map.removeLayer('points')
+      the_map.removeSource('points')
+    }
     // On ajout le layer symbole (vide) à la map
-    const icon_url = "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png"
-    this.map.loadImage(icon_url, (error, image) => { if (error) throw error;
-      this.map.addImage('custom-marker', image);
       this.map.addSource('points', {'type': 'geojson', 'data': { 'type': 'FeatureCollection', 'features': [] }});
 
       // Add a symbol layer
@@ -223,7 +230,7 @@ export default class extends Controller {
                                       'text-field': ['get', 'price'],
                                       'text-font': ['Open Sans Semibold'],
                                       'text-offset': [0, 1.25],
-                                      'text-anchor': 'top'}});});
+                                      'text-anchor': 'top'}});
 
     // On ajout une action en cas de clique sur un hexagone
     the_map.on('click', async (e) => {
@@ -345,6 +352,7 @@ export default class extends Controller {
     }
     this.map.removeLayer('maine')
     this.map.removeSource('maine')
+    console.log(this.hexas[0].properties)
     this.buildGrid(this.hexas, this.map, attr)
     if (this.map.getLayer("points")) {
       this.map.moveLayer('points')
@@ -384,6 +392,7 @@ export default class extends Controller {
     if (typeof(this.new_weights) == 'undefined') {
       this.new_weights = this.weightsValue
     }
+    console.log(this.new_weights)
     this.new_weights[event.currentTarget.id] = Number(event.currentTarget.value) / 10
     this.#weightedAverageScore(this.hexas, this.new_weights)
     this.#smoothScore(this.hexas, "weight_average")
