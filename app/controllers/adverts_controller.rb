@@ -1,18 +1,25 @@
 class AdvertsController < ApplicationController
+  skip_forgery_protection
+
   def index
     @ads = Advert.where(user: current_user)
     @ad = Advert.new
   end
 
   def create
+
     @ads = Advert.where(user: current_user)
     @ad = Advert.new(ad_params)
     @ad.user = current_user
     @ad.state = "pending"
-    if @ad.save
-      redirect_to adverts_path
-    else
-      render :index
+    respond_to do |format|
+      if @ad.save
+        format.html { redirect_to adverts_path }
+        format.json {}
+      else
+        format.html { render :index }
+        format.json {}
+      end
     end
   end
 
@@ -37,6 +44,7 @@ class AdvertsController < ApplicationController
   private
 
   def ad_params
+    puts params
     params.require(:advert).permit(:title, :url, :size, :address, :price, :comment)
   end
 end
