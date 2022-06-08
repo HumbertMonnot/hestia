@@ -7,7 +7,7 @@ export default class extends Controller {
   static values = { apiKey: String, hexalist: Array, weights: Object, annonce: String }
 
   connect = async () => {
-    console.log(this.weightsValue)
+    // console.log(this.weightsValue)
     this.dicoweights = {"animaux":1,
                         "commerce_de_bouche":2,
                         "etablissement_scolaire":3,
@@ -22,12 +22,12 @@ export default class extends Controller {
                         "vie_culturelle":12}
     var startTime = performance.now()
     // On récup la requête au centre de bordeaux (qui sert de test, à effacer)
-    const api_base_url = `https://api.notif.immo/documents/properties?lon=-0.57918&lat=44.837789&radius=1&transactionType=1&itemsPerPage=30&expired=false`
-    const api_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NTQ1MTE1NzgsImV4cCI6MTY1NTExNjM3OCwiZW1haWwiOiJhcGlfZGVtb19oZXN0eWFAbWVsby5pbyIsImlwIjoiODYuMjEzLjEzLjEyNCIsInVzZXIiOnsiaWQiOiJcL3VzZXJzXC80NTQyNjNmNC01MTgyLTExZWMtYTBhNi03YzEwYzkyMWY1YjMiLCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfQ1VTVE9NRVIiLCJST0xFX1VTRVIiXSwicGxhdGZvcm0iOnsiaWQiOjIsImlkZW50aWZpZXIiOiJtZWxvIiwibmFtZSI6Ik1lbG8iLCJiYXNlVXJsIjoiaHR0cHM6XC9cL3d3dy5tZWxvLmlvIn19fQ.mctvuXTPKIcDK5Fqa8cJcWHz9cg9vSOg3xLacT_GLoXga50dOALoKa4-jE3BGWzAKgnsvoq55dVLbyJWElTc0KMpR6REi80oMym1WAOsthXZNPuhEfnEgjxH1szFl3uLSdkgZj8e7LEKGtMEkr0LwLUMf4Nh2bMYI0RfXNwx024lkL010Zq8BW-fnC78M3y87VAIB-fcWt4CSIuPW7uxHVdObnSXEseE-Tr_3e3AAEMYQ5A9gSnvbXLtlipXZIswj56ysiJSD-nQPYGHSdM1BuVWSPq_bvq531pCC0WnprkiNuGfCtm0N0vRAT_xkBLAAuikFs7aFRFScszfA7A2pLNF23YtxWPjwblsLevdZofzEx7l7XO3cXWUSSBRDCrpSqNdfih7TsAh4AAkEzYMd94KZwuMPCBeohpGbhdVbFWJ9ABhupu0c8I3TE147Z8XyI1F2U7wHvZ82Cti2yn8DaHAFeP7xu-zWca_0VuezlfQoRZ_AXaNzwxGIiKLrBu8aCNCGUBrCZDU8eOGEsPhS6hgrPxuSUgPaNNqa1r6DO5TLlTff2XYppef4pC9BAkqrBCbqBNifC-nM2iPLsDGgT0KryMGaBloXfTsUWe7jRvFM8w1h3Wwe_5pUj3CxgEdJd7bR5yLsojRrpaQoH8st40S8Tnt0OdiEoSmC55Exho"
-    const my_headers = new Headers({ 'Authorization': `Bearer ${api_token}`, 'Content-Type': 'application/json', 'platformOrigin': "melo" })
-    const options = { method: 'GET', withCredentials: true, headers: my_headers}
-    fetch(api_base_url, options).then(response => response.json()).then(data => console.log(data))
-
+    // const api_base_url = `https://api.notif.immo/documents/properties?lon=-0.57918&lat=44.837789&radius=1&transactionType=1&itemsPerPage=30&expired=false`
+    // const api_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NTQ1MTE1NzgsImV4cCI6MTY1NTExNjM3OCwiZW1haWwiOiJhcGlfZGVtb19oZXN0eWFAbWVsby5pbyIsImlwIjoiODYuMjEzLjEzLjEyNCIsInVzZXIiOnsiaWQiOiJcL3VzZXJzXC80NTQyNjNmNC01MTgyLTExZWMtYTBhNi03YzEwYzkyMWY1YjMiLCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfQ1VTVE9NRVIiLCJST0xFX1VTRVIiXSwicGxhdGZvcm0iOnsiaWQiOjIsImlkZW50aWZpZXIiOiJtZWxvIiwibmFtZSI6Ik1lbG8iLCJiYXNlVXJsIjoiaHR0cHM6XC9cL3d3dy5tZWxvLmlvIn19fQ.mctvuXTPKIcDK5Fqa8cJcWHz9cg9vSOg3xLacT_GLoXga50dOALoKa4-jE3BGWzAKgnsvoq55dVLbyJWElTc0KMpR6REi80oMym1WAOsthXZNPuhEfnEgjxH1szFl3uLSdkgZj8e7LEKGtMEkr0LwLUMf4Nh2bMYI0RfXNwx024lkL010Zq8BW-fnC78M3y87VAIB-fcWt4CSIuPW7uxHVdObnSXEseE-Tr_3e3AAEMYQ5A9gSnvbXLtlipXZIswj56ysiJSD-nQPYGHSdM1BuVWSPq_bvq531pCC0WnprkiNuGfCtm0N0vRAT_xkBLAAuikFs7aFRFScszfA7A2pLNF23YtxWPjwblsLevdZofzEx7l7XO3cXWUSSBRDCrpSqNdfih7TsAh4AAkEzYMd94KZwuMPCBeohpGbhdVbFWJ9ABhupu0c8I3TE147Z8XyI1F2U7wHvZ82Cti2yn8DaHAFeP7xu-zWca_0VuezlfQoRZ_AXaNzwxGIiKLrBu8aCNCGUBrCZDU8eOGEsPhS6hgrPxuSUgPaNNqa1r6DO5TLlTff2XYppef4pC9BAkqrBCbqBNifC-nM2iPLsDGgT0KryMGaBloXfTsUWe7jRvFM8w1h3Wwe_5pUj3CxgEdJd7bR5yLsojRrpaQoH8st40S8Tnt0OdiEoSmC55Exho"
+    // const my_headers = new Headers({ 'Authorization': `Bearer ${api_token}`, 'Content-Type': 'application/json', 'platformOrigin': "melo" })
+    // const options = { method: 'GET', withCredentials: true, headers: my_headers}
+    // fetch(api_base_url, options).then(response => response.json()).then(data => console.log(data))
+    // console.log(performance.now() - startTime)
     // On construit la map
     this.map = this.#buildMap()
     this.map.resize()
@@ -88,9 +88,9 @@ export default class extends Controller {
 
     // On calcul la moyenne puis on la lisse, on trie par meilleur score et on affiche la grid colorée
     this.#weightedAverageScore(this.hexas, this.weightsValue)
-    console.log(this.hexas[0])
+    // console.log(this.hexas[0])
     this.#smoothScore(this.hexas, "weight_average")
-    console.log(this.hexas[0])
+    // console.log(this.hexas[0])
     this.hexas.sort((a,b) => (a.properties.weight_average < b.properties.weight_average) ? 1 : -1)
     this.buildGrid(this.hexas, this.map, "weight_average")
     this.map.moveLayer('isotime')
@@ -352,7 +352,7 @@ export default class extends Controller {
     }
     this.map.removeLayer('maine')
     this.map.removeSource('maine')
-    console.log(this.hexas[0].properties)
+    // console.log(this.hexas[0].properties)
     this.buildGrid(this.hexas, this.map, attr)
     if (this.map.getLayer("points")) {
       this.map.moveLayer('points')
@@ -363,7 +363,7 @@ export default class extends Controller {
     event.preventDefault()
     const url = `/adverts/`
     //title=${this.annonce.title}&url=${this.annonce.url_annonce}&size=${this.annonce.surface}&price=${this.annonce.price}&address=${this.#getAddFromCoord(this.annonce.coords)}`
-    console.log(event.currentTarget)
+    // console.log(event.currentTarget)
     event.currentTarget.classList.add("gold-heart")
     fetch(url, {
       method: "POST",
@@ -392,7 +392,7 @@ export default class extends Controller {
     if (typeof(this.new_weights) == 'undefined') {
       this.new_weights = this.weightsValue
     }
-    console.log(this.new_weights)
+    // console.log(this.new_weights)
     this.new_weights[event.currentTarget.id] = Number(event.currentTarget.value) / 10
     this.#weightedAverageScore(this.hexas, this.new_weights)
     this.#smoothScore(this.hexas, "weight_average")
