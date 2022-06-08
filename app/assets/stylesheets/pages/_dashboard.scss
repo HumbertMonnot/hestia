@@ -4,25 +4,28 @@
   justify-content: space-evenly;
 }
 
+.block-profil {
+box-shadow: 10px 10px 12px lightgrey;
+padding: 3vh;
+width: 25%;
+
+}
 
 .profil {
   width: 35vh;
-  box-shadow: 0.3em 0.3em 0.7em #00000015;
+
+  // box-shadow: 0.3em 0.3em 0.7em #00000015;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: $orange-color 0.1em lightness($color: $orange-color);
-  background-color: $orange-color;
-  // border: 1px solid $orange-color;
   margin: 15px 0px;
   margin-bottom: 15px;
-  padding: 15px 25px;
-  height: 25vh;
+  //padding: 15px 25px;
+  //height: 25vh;
   border-radius: 2%;
   h2 {
    color: black;
    font-size: 14px;
    font-weight: 700;
    text-align: left;
-  //  color: $orange-color;
   }
   p {
     color: rgb(0, 0, 0);
@@ -32,7 +35,7 @@
 
 .card-pastsearches{
   padding: 10px;
-  height: 30vh;
+  // height: 30vh;
   background: rgb(255, 255, 255);
   border-radius: 0.4em;
   box-shadow: 0.3em 0.3em 0.7em #00000015;
@@ -65,8 +68,8 @@
 
   .cta {
     position: relative;
-    margin-top: 10vh;
-    margin-left: 10vh;
+    margin-top: 6vh;
+    margin-left: 2vh;
     padding: 12px 18px;
     transition: all 0.2s ease;
     border: none;
@@ -80,7 +83,7 @@
     left: 0;
     display: block;
     border-radius: 50px;
-    background: $orange-color;
+    background: $green-color;
     width: 45px;
     height: 45px;
     transition: all 0.3s ease;
@@ -101,7 +104,7 @@
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: $orange-color;
+    stroke: $green-color;
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.3s ease;
@@ -109,7 +112,7 @@
 
    .cta:hover:before {
     width: 100%;
-    background: $orange-color;
+    background: $green-color;
    }
 
    .cta:hover svg {
@@ -122,11 +125,6 @@
 
   .glide__arrow {
     font-weight: 700;
-    color: $green-color;
+    color: white;
+    background-color: $green-color;
      }
-
-
-
-// .past-searches {
-
-// }

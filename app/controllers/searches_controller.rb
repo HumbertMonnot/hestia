@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
    # Create #index method for the dashboard
   def index
     @searches = current_user.searches
+    @adverts = current_user.adverts
   end
 
   # Create #new method for searches => view associated (used as homepage if John approval)
