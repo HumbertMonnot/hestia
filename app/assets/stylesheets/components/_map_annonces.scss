@@ -1,7 +1,7 @@
 .left-col {
-  position: absolute; 
-  top: 140px; 
-  left: 10px; 
+  position: absolute;
+  top: 140px;
+  left: 10px;
   z-index: 99;
   margin: 15px;
 }
@@ -10,8 +10,8 @@
   display: none
 }
 
-#map { 
-  position: relative; 
+#map {
+  position: relative;
 }
 
 .favoris {
@@ -31,7 +31,7 @@
   margin-top: 10px;
 }
 
-#over_map_scores { 
+#over_map_scores {
   background-color: white;
   border-radius: 3px;
   padding: 15px;
@@ -43,10 +43,10 @@
   }
 }
 
-#over_map_gauges { 
-  position: absolute; 
-  top: 140px; 
-  right: 10px; 
+#over_map_gauges {
+  position: absolute;
+  top: 140px;
+  right: 10px;
   z-index: 99;
   display: flex;
   flex-direction: column;
@@ -63,8 +63,8 @@
 
 .annonce-immo {
   position: absolute;
-  top: 200px; 
-  left: 10px; 
+  top: 200px;
+  left: 10px;
   z-index: 99;
 }
 
@@ -72,7 +72,7 @@
   width: 335px;
   height: 250px;
   background-color: white;
-  border-radius: 3px;
+  border-radius: 12px;
   padding: 15px;
   border: $green-color 0.2em solid;
   box-sizing: content-box;

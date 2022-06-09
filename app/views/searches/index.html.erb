@@ -1,50 +1,50 @@
 <div class="ctr-pages">
   <div class="row">
-    <div class="col-lg-4 block-profil">
-      <div class= "profil">
-        <h2> Mon profil </h2>
-        <br> <p>  Identifiant : <%= current_user.username.capitalize  %></p>
-        <p> Email : <%= current_user.email  %></p>
-          <div class="trait"><hr>
-          </div>
-        <br>
-      </div>
+    <div class="col-4">
+      <div class="block-profil">
+        <div class= "profil">
+          <h2> Mon profil </h2>
+          <br> <p>  Identifiant : <%= current_user.username.capitalize  %></p>
+          <p> Email : <%= current_user.email  %></p>
+          <%# <div class="trait"><hr>
+          </div> %>
+          <br>
+          <%= button_to root_path, method: :get, class:"cta" do %>
+            <span> Faire une nouvelle recherche </span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          <% end %>
 
-      <div>
+          <%= button_to adverts_path, method: :get, class:"cta" do %>
+            <%# <button class="cta"> %>
+            <span> Mes annonces immobilieres </span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          <% end %>
 
-      <%= button_to root_path, method: :get, class:"cta" do %>
-        <span> Faire une nouvelle recherche </span>
-        <svg viewBox="0 0 13 10" height="10px" width="15px">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-        <% end %>
+          <%= button_to tasks_path, method: :get, class:"cta" do %>
+            <%# <button class="cta"> %>
+            <span> Voir mes tâches </span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          <% end %>
+          <%# </button> %>
 
-
-        <%= button_to adverts_path, method: :get, class:"cta" do %>
-        <%# <button class="cta"> %>
-        <span> Mes annonces immobilieres </span>
-        <svg viewBox="0 0 13 10" height="10px" width="15px">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-        <% end %>
-
-
-        <%= button_to tasks_path, method: :get, class:"cta" do %>
-        <%# <button class="cta"> %>
-        <span> Voir mes tâches </span>
-        <svg viewBox="0 0 13 10" height="10px" width="15px">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-        <% end %>
-        <%# </button> %>
-      </div>
     </div>
+        </div>
+      </div>
+    <div>
+
+
    <%# <%= button_to "logout", destroy_user_session_path, method: :delete %>
-    <div class="col-lg-8">
-        <h3> Recherches récentes</h3>
+    <div class="col-8">
+        <h3>Recherches récentes</h3>
 
       <% if current_user.searches == nil %>
         <p> Vous n'avez pas de recherches </p>

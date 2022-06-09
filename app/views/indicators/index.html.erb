@@ -1,20 +1,16 @@
 <div class= "ctr-pages">
-  <h3>NOTEZ VOS CRITERES SUR 10</h3>
+  <h3>Note nos critères sur 10</h3>
   <div class="ctr-cards">
 
     <% @indicators.each do |indicator| %>
     <div class="card-indicator px-5" >
-      <p class="pt-2"><%= indicator.indicator_title.name %></p>
+      <div class="d-flex align-items-baseline justify-content-start">
+        <i class= "fa solid <%= @icons["#{indicator.indicator_title_id}"]%>"></i>
+        <p class="pl-8"><%= indicator.indicator_title.name %></p>
+      </div>
 
-      <p class="text-indicator"> Pour vous, il est plus ou moins important d'habiter dans un lieu proche des commodités pour
-        <%= @texts["#{indicator.indicator_title_id}"]+"."%>
+      <p class="text-indicator"> Mets 10, si tu <%= @texts["#{indicator.indicator_title_id}"]%>
       </p>
-
-      <%# <button class="btn"><i id= "link-info" class="fa-solid fa-info">
-      <div id="infras" class="d-none">
-        <p><%= infrastructures[@indicators.find_index(indicator)]</p>%>
-      <%# </div> %>
-      <%# </i></button> %>
 
       <%= simple_form_for(indicator, data: {controller:"search-indicators"}) do |f| %>
       <div class="d-flex w-100">

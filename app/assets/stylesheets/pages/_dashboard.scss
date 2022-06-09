@@ -6,21 +6,17 @@
 
 .block-profil {
 box-shadow: 10px 10px 12px lightgrey;
-padding: 3vh;
-width: 25%;
+// padding: 3vh;
+width: 100%;
 
 }
 
 .profil {
   width: 35vh;
-
-  // box-shadow: 0.3em 0.3em 0.7em #00000015;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin: 15px 0px;
   margin-bottom: 15px;
-  //padding: 15px 25px;
-  //height: 25vh;
-  border-radius: 2%;
+  border-radius: 12%;
   h2 {
    color: black;
    font-size: 14px;

@@ -5,13 +5,11 @@
   opacity: 1;
   padding: 12px 12px;
   text-align: center;
-  font-family: $headers-font;
-  font-size: 18px;
+  font-size: 21px;
   color: white;
   border-radius: 4px;
   &:hover{
     color: white;
-    // font-size: 18px;
     opacity: 0.9;
   }
 }
@@ -23,7 +21,7 @@
   text-align: center;
   font-family: $headers-font;
   color: white;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .btn-filter > p{

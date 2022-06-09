@@ -20,7 +20,7 @@ canvas {
 }
 
 body{
-  background-color: white;
+  background-color: #ffffff;
 }
 
 // containers that contain inside of page
@@ -43,11 +43,10 @@ body{
   margin-right: 64px;
 }
 
-h1, h3 {
-  font-family: $headers-font;
-}
-
-
 body {
   font-family: $body-font;
+}
+
+h1, h3 {
+  font-family: $headers-font;
 }
