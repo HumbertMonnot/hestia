@@ -4,9 +4,13 @@
 
     <%# modal %>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-basic orange btn-advert" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Créer une nouvelle tâche
-    </button>
+    <button type="button" class="cta ml-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <span class="w-hover">Créer une nouvelle tâche</span>
+    <svg viewBox="0 0 13 10" height="10px" width="15px">
+    <path d="M1,5 L11,5"></path>
+    <polyline points="8 1 12 5 8 9"></polyline>
+    </svg>
+  </button>
   </div>
 
   <!-- Modal -->
@@ -21,11 +25,8 @@
           <%= simple_form_for @task do |f| %>
             <%= f.input :title, label: "Titre" %>
             <%= f.input :description, label: "Description" %>
-            <%= f.button :submit, "Créer", class:"btn btn-basic btn-save orange" %>
+            <%= f.button :submit, "Créer", class:"btn btn-save orange" %>
           <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -40,14 +41,20 @@
       <div class="d-flex justify-content-between">
         <p><em><%= task.description %></em></p>
         <div id="link-heart">
+        <%= link_to task_path(task.id, state: "pas fait"), method: :patch do %>
+ 			    <i class="fa-brands fa-stack-overflow orange-list py-12"></i>
+        <% end %>
         <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
- 			    <i class="fa-solid fa-list-check green-hover py-12"></i>
+ 			   <i class="fa-solid fa-list-check pink-hover"></i>
+        <% end %>
+        <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
+ 			    <i class="fa-solid fa-check green-hover"></i>
         <% end %>
         </div>
       </div>
 <%# => delete %>
  			  <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
- 			    <i class="fa-solid fa-trash-can"></i>
+ 			      <i class="fa-solid fa-xmark"></i>
         <% end %>
  		  </div>
     <% end %>
@@ -60,13 +67,21 @@
  					<p class="title-card"><%= task.title %></p>
           <div class="d-flex justify-content-between">
             <p><em><%= task.description %></em></p>
-            <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
- 			        <i class="fa-solid fa-list-check pink-heart green-hover py-12"></i>
+            <div id="link-heart">
+            <%= link_to task_path(task.id, state: "pas fait"), method: :patch do %>
+ 			        <i class="fa-brands fa-stack-overflow orange-hover py-12"></i>
             <% end %>
+            <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
+ 			        <i class="fa-solid fa-list-check pink-heart"></i>
+            <% end %>
+            <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
+ 			        <i class="fa-solid fa-check green-hover"></i>
+            <% end %>
+            </div>
           </div>
 <%# delete %>
           <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
- 			      <i class="fa-solid fa-trash-can"></i>
+ 			      <i class="fa-solid fa-xmark"></i>
           <% end %>
 <%# updated %>
  				</div>
@@ -79,16 +94,25 @@
  				<div class="card-liked">
  					<p class="title-card"><%= task.title %></p>
           <div class="d-flex justify-content-between">
-        	  <p><em><%= task.description %></em></p>
-          <%# => updated %>
-            <i class="fa-solid fa-list-check green-heart"></i>
+            <p><em><%= task.description %></em></p>
+            <div id="link-heart">
+            <%= link_to task_path(task.id, state: "pas fait"), method: :patch do %>
+ 			        <i class="fa-brands fa-stack-overflow orange-hover py-12"></i>
+            <% end %>
+            <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
+ 			        <i class="fa-solid fa-list-check pink-hover"></i>
+            <% end %>
+            <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
+ 			        <i class="fa-solid fa-check green-heart"></i>
+            <% end %>
+            </div>
           </div>
 <%# delete %>
           <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
- 			      <i class="fa-solid fa-trash-can"></i>
+ 			      <i class="fa-solid fa-xmark"></i>
           <% end %>
-        </div>
+<%# updated %>
+ 				</div>
       <% end %>
-    </div>
-<%# end card "not liked" %>
+  </div>
 </div>

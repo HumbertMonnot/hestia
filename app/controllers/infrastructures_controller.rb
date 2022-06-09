@@ -23,8 +23,6 @@ class InfrastructuresController < ApplicationController
       deb = Time.now
       puts "#{ind + 1}ème polygone"
       infras_700 = Infrastructure.near(coords.reverse, 0.7)
-      # infras_500 = Infrastructure.near(coords.reverse, 0.5)
-      # infras = Infrastructure.near(coords.reverse, 0.7)
       scores << {
                   "animaux" => Geocoder::Calculations.distance_between(coords.reverse, Infrastructure.where(indicator_title_id: 1).near(coords.reverse).first),
                   "commerce_de_bouche" => infras_700.select{ |infra| infra.indicator_title_id == 2 }.length,

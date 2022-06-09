@@ -1,36 +1,45 @@
 // cards for the indicators on views/indicators/index.html.erb
+.ctr-cards-indicators{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  display: flex;
+  flex: column;
+  align-items: center;
+}
+
 .ctr-cards{
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
-  // margin-left: 64px;
-  // margin-right: 64px;
 }
 
 .card-indicator{
-  // display: flex;
-  // justify-content: space-between;
   margin: 16px;
   padding: 16px;
-  width: 350px;
+  width: 80%;
   box-shadow: 10px 10px 12px lightgray;
-  border-top: solid 5px $green-color;
+  border-top: solid 3px $green-color;
   border-radius: 12px;
   color: white;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 12xpx black;
   font-size: 18px;
-  height: 220px;
+  height: fit-content;
   &:hover{
     border-radius: 12px;
-    // border: solid 5px $green-color;
-    background-color: $green-color;
+    transform: translate(0px, -10px);
   }
+}
+
+.pl-8{
+  padding-left: 8px;
 }
 
 .text-indicator{
   font-size: 12px;
+  line-height: 18px;
 }
 
 .indicator_weight{
@@ -46,7 +55,7 @@
   }
   .ctr-cards{
     display: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
   }
@@ -59,6 +68,10 @@
   box-shadow: 10px 10px 12px lightgray;
   position: relative;
   margin-bottom: 24px;
+  &:hover{
+    border-radius: 12px;
+    transform: translate(0px, -10px);
+  }
 }
 
 
@@ -73,15 +86,15 @@
 }
 
 .card-pending{
-  border-top: 5px solid $orange-color;
+  border-top: 3px solid $orange-color;
 }
 
 .card-liked{
-  border-top: 5px solid $green-color;
+  border-top: 3px solid $green-color;
 }
 
 .card-disliked{
-  border-top: 5px solid $pink-color;
+  border-top: 3px solid $pink-color;
 }
 
 .pink-heart{
@@ -109,6 +122,15 @@
 .pink-hover:hover{
   color: $pink-color;
 }
+// hover sur le pending pour le update de task
+
+.orange-hover:hover{
+  color: $orange-color;
+}
+
+.orange-list {
+  color: $orange-color;
+}
 
 // textes des cards sur la page mes annonces immobilières
 i, p{
@@ -123,8 +145,8 @@ i, p{
 
 
 .title-card{
-  font-family: $headers-font;
-  font-size: 21px;
+  // font-family: $headers-font;
+  // font-size: 18px;
   border-bottom: 2px solid;
   padding-bottom: 12px;
 }

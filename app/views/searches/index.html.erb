@@ -1,75 +1,74 @@
 <div class="ctr-pages">
   <div class="row">
-    <div class="col-lg-4 block-profil">
-      <div class= "profil">
-        <h2> Mon profil </h2>
-        <br> <p>  Identifiant : <%= current_user.username.capitalize  %></p>
-        <p> Email : <%= current_user.email  %></p>
-          <div class="trait"><hr>
-          </div>
-        <br>
-      </div>
+    <div class="col-5">
+      <div class="block-profil">
 
-      <div>
-
-      <%= button_to root_path, method: :get, class:"cta" do %>
-        <span> Faire une nouvelle recherche </span>
-        <svg viewBox="0 0 13 10" height="10px" width="15px">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-        <% end %>
-
-
-        <%= button_to adverts_path, method: :get, class:"cta" do %>
-        <%# <button class="cta"> %>
-        <span> Mes annonces immobilieres </span>
-        <svg viewBox="0 0 13 10" height="10px" width="15px">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-        <% end %>
-
-
-        <%= button_to tasks_path, method: :get, class:"cta" do %>
-        <%# <button class="cta"> %>
-        <span> Voir mes tâches </span>
-        <svg viewBox="0 0 13 10" height="10px" width="15px">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-        <% end %>
-        <%# </button> %>
-      </div>
-    </div>
-   <%# <%= button_to "logout", destroy_user_session_path, method: :delete %>
-    <div class="col-lg-8">
-        <h3> Recherches récentes</h3>
-
-      <% if current_user.searches == nil %>
-        <p> Vous n'avez pas de recherches </p>
-      <% else  %>
-      <div class="glide p-5" data-controller="glide">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-            <% current_user.searches.each do |search|%>
-              <li class="glide__slide">
-                <%= link_to search_path(search) do %>
-                  <div class="card-liked mt-5">
-                    <p> Adresse : <%=  search.address %> </p>
-                    <br> <p> Temps : <%= search.duration %> minutes </p>
-                    <br> <p> Mode de transport : <%= I18n.t("#{search.profile}")  %> </p>
-                  </div>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
+        <div class= "profil">
+          <h3 class="pb-2">Mon profil</h3>
+          <p>Identifiant : <%= current_user.username.capitalize  %></p>
+          <p> Email : <%= current_user.email  %></p>
         </div>
-      <div class="glide__arrows" data-glide-el="controls">
-        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
-        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+
+
+          <%= button_to root_path, method: :get, class:"cta" do %>
+            <span class="w-hover"> Faire une nouvelle recherche </span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          <% end %>
+
+          <%= button_to adverts_path, method: :get, class:"cta" do %>
+            <%# <button class="cta"> %>
+            <span class="w-hover"> Mes annonces immobilieres </span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          <% end %>
+
+          <%= button_to tasks_path, method: :get, class:"cta" do %>
+            <%# <button class="cta"> %>
+            <span class="w-hover"> Voir mes tâches </span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          <% end %>
       </div>
     </div>
-    <% end %>
+
+
+    <div class="col-7">
+      <div class="card-search">
+        <h3 class="pt-3">Recherches récentes</h3>
+
+        <% if current_user.searches == nil %>
+          <p> Vous n'avez pas de recherches </p>
+        <% else  %>
+        <div class="glide" data-controller="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <% current_user.searches.each do |search|%>
+                <li class="glide__slide">
+                  <%= link_to search_path(search) do %>
+                    <div class="card-profile card-pending mt-5">
+                         <p class="pt-5"> &#128205 : <%=  search.address %> </p>
+                    <br> <p> &#8987 : <%= search.duration %> minutes </p>
+                    <br> <p> &#128694 : <%= I18n.t("#{search.profile}")  %> </p>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>

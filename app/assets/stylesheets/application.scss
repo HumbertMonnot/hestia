@@ -14,13 +14,133 @@
 @import "components/index";
 @import "pages/index";
 
+.vignets-right {
+    
+  animation: 1s linear 0s 1 alternate move_eye_right;
+  -webkit-animation: 1s linear 0s 1 alternate move_eye_right; /* Safari et Chrome */
+}
+
+.vignets-left {
+    
+  animation: 1s linear 0s 1 alternate move_eye_left;
+  -webkit-animation: 1s linear 0s 1 alternate move_eye_left; /* Safari et Chrome */
+}
+
+@keyframes move_eye_right {
+  from { right:-200px; }
+  to { right:10px; }
+}
+
+@-webkit-keyframes move_eye_right { /* sur Safari et Chrome */
+  from {right:-200px;}
+  to {right:10px;}
+}
+
+@keyframes move_eye_left {
+  from {left:-200px;}
+  to {left:10px;}
+}
+
+@-webkit-keyframes move_eye_left { /* sur Safari et Chrome */
+  from {left:-200px;}
+  to {left:10px;}
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #eeeeee;
+  border-radius: 8px;
+}
+
+progress[value].progress-green::-webkit-progress-value {
+  background-color: $green-color;
+  border-radius: 12px; 
+}
+
+progress[value].progress-orange::-webkit-progress-value {
+  background-color: $orange-color;
+  border-radius: 12px; 
+}
+
+progress[value].progress-red::-webkit-progress-value {
+  background-color: $pink-color;
+  border-radius: 12px; 
+}
+
+.filter-duration, .filter-indicators{
+  overflow: hidden;
+  width: 100%;
+  -webkit-appearance: none;
+  background-color: #eeeeee;
+  border-radius: 12px;
+}
+
+.filter-duration {
+  height: 25px;
+}
+
+.filter-indicators{
+  height: 15px;
+}
+
+input[type='range'].green-range::-webkit-slider-thumb {
+  width: 15px;
+  -webkit-appearance: none;
+  height: 15px;
+  border-radius: 50%;
+  background: $green-color;
+  box-shadow:  5px 5px 10px lightgrey;
+  &:hover{
+    border: solid 2px $green-color;
+  }
+}
+
+input[type='range'].orange-range::-webkit-slider-thumb {
+  width: 15px;
+  -webkit-appearance: none;
+  height: 15px;
+  border-radius: 50%;
+  background: $orange-color;
+  box-shadow:  5px 5px 10px lightgrey;
+  &:hover{
+    border: solid 2px $green-color;
+  }
+}
+
+input[type='range'].red-range::-webkit-slider-thumb {
+  width: 15px;
+  -webkit-appearance: none;
+  height: 15px;
+  border-radius: 50%;
+  background: $pink-color;
+  box-shadow:  5px 5px 10px lightgrey;
+  &:hover{
+    border: solid 2px $green-color;
+  }
+}
+
+// padding left for text duration hp
+.pl-12{
+  padding-left: 12px;
+  padding-right: 4px;
+}
+
+// + et - des ranges sur page indicators
+.fa-minus, .fa-plus {
+  font-size: 12px;
+}
+
 canvas {
   height: 95vh;
   width: 100%
 }
 
 body{
-  background-color: white;
+  background-color: #ffffff;
 }
 
 // containers that contain inside of page
@@ -39,15 +159,14 @@ body{
 // to use on the other pages to add margin under navbar
 .ctr-pages{
   margin-top: 150px;
-  margin-left: 64px;
-  margin-right: 64px;
+  margin-left: 140px;
+  margin-right: 140px;
+}
+
+body {
+  font-family: $body-font;
 }
 
 h1, h3 {
   font-family: $headers-font;
-}
-
-
-body {
-  font-family: $body-font;
 }
