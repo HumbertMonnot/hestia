@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :indicators, only: :update
 
-  resources :searches, only: [:index]
+  resources :searches, only: [:index, :destroy]
 
   resources :adverts, only: [:create, :update, :index, :destroy]
   resources :tasks, only: [:index, :create, :update, :destroy]

@@ -59,6 +59,9 @@
                     <p> Adresse : <%=  search.address %> </p>
                     <br> <p> Temps : <%= search.duration %> minutes </p>
                     <br> <p> Mode de transport : <%= I18n.t("#{search.profile}")  %> </p>
+                    <%= link_to search_path(search), method: :delete, data: { confirm: "Are you sure?" } do %>
+ 			                <i class="fa-solid fa-xmark"></i>
+                    <% end %>
                   </div>
                 <% end %>
               </li>
