@@ -263,6 +263,7 @@ export default class extends Controller {
         this.scorecardTarget.classList.add("d-none")
         this.annoncecardTarget.classList.add("d-none")
       } else {
+        this.map.flyTo({center: e.point.lngLat})
         for (const selectedFeature of selectedFeatures) {
           if (selectedFeature.layer.id == 'maine') this.#reactToClickHexa(selectedFeature)
           else {
@@ -317,6 +318,7 @@ export default class extends Controller {
   #reactToClickAnnonce = (annonce) => {
     annonce = this.#addAnnonceCard(annonce)
     this.map.moveLayer('points')
+    
     return annonce
   }
 
