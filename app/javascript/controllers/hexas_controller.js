@@ -53,11 +53,26 @@ export default class extends Controller {
 
     // Add a symbol layer
     this.map.addLayer({'id': 'my-address', 'type': 'symbol', 'source': 'my-address',
-                        'layout': { 'icon-image': 'star-11', 'icon-size': 1.5}});});
+                        'layout': { 'icon-image': 'star-11', 'icon-size': 1.5}});
+                      
+    // });
 
     // On construit la grid
     const poly = data.features[0].geometry.coordinates
     this.hexas = await this.#getGrid(poly)
+    
+    // On dessine le contour des ces polygones
+    var featuresJoined = this.hexas[0]
+    this.hexas.forEach((feature, index) => {
+        if(index>0) featuresJoined=turf.union(featuresJoined,feature)                      
+      })
+    // const hexasUnion = turf.union.apply(this, this.hexas)
+    
+    this.map.addSource('isotime', {'type': 'geojson', 'data': featuresJoined});
+    this.map.addLayer({ id: 'isotime', type: 'line',
+      source: 'isotime',
+      layout: {},
+      paint: { "line-color": "#61E294", 'line-width': 5 } });
 
     // On récupère les scores pour chaque hexagone
     const base_url = `/infras/api?address=${this.hexalistValue[0][0]},${this.hexalistValue[0][1]}&coords=`
@@ -148,7 +163,7 @@ export default class extends Controller {
     return grid_hexas_inter
   };
 
-  // Méthode pour ramener la meilleure note dans attr à 100
+  // Méthode pour ramener la meilleure note dans attr à 100 et la moins bonne à 0
   #smoothScore = (hexas, attr) => {
     let max = 0
     let min = 0
