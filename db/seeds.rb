@@ -58,9 +58,12 @@ search_5 = Search.create!(user: user_5, address:"16 rue des remparts 33000 borde
 puts 'finished for searches...'
 
 puts 'Creating Indicators...'
-indicator_1 = Indicator.create!(indicator_title_id: 2, weight: 0.8, search: search_5)
-indicator_2 = Indicator.create!(indicator_title_id: 3, weight: 0.3, search: search_2)
-indicator_3 = Indicator.create!(indicator_title_id: 7, weight: 0.5, search: search_3)
+Search.all.each do |search|
+  12.times do |index|
+    weight = Random.rand(-9..9).to_f/10
+    Indicator.create!(indicator_title_id: index + 1, search: search, weight: weight)
+  end
+end
 puts 'finished for Indicators...'
 
 puts 'Creating ads...'
