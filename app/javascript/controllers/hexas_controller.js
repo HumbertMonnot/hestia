@@ -50,10 +50,15 @@ export default class extends Controller {
       'coordinates': this.hexalistValue[0]
       }
       }] }});
+    
+    
+    const addres_icon_url = "https://i.ibb.co/h9Xrk1B/img-3d-hestya.png"
+    this.map.loadImage(addres_icon_url, (error, image) => { if (error) throw error;
+      this.map.addImage('the_center', image)});
 
     // Add a symbol layer
     this.map.addLayer({'id': 'my-address', 'type': 'symbol', 'source': 'my-address',
-                        'layout': { 'icon-image': 'star-11', 'icon-size': 1.5}});
+                        'layout': { 'icon-image': 'the_center', 'icon-size': 0.05}});
                       
     // });
 
@@ -117,6 +122,7 @@ export default class extends Controller {
     const icon_url = "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png"
     this.map.loadImage(icon_url, (error, image) => { if (error) throw error;
       this.map.addImage('custom-marker', image)});
+
   }
 
   // Méthode pour obtenir un isochrone après un appel API Mapbox à partir d'une adresse, une distance et un moyen de transport
@@ -245,6 +251,7 @@ export default class extends Controller {
                           'layout': { 'icon-image': 'custom-marker',
                                       'icon-size': 0.5,
                                       'text-field': ['get', 'price'],
+                                      'text-size': 10,
                                       'text-font': ['Open Sans Semibold'],
                                       'text-offset': [0, 1.25],
                                       'text-anchor': 'top'}});
@@ -312,6 +319,7 @@ export default class extends Controller {
     // On modifie la source
     this.map.getSource('points').setData({ 'type': 'FeatureCollection', 'features': annoncesfeatured });
     this.map.moveLayer('points')
+    this.map.moveLayer('my-address')
     }
 
 
@@ -348,17 +356,37 @@ export default class extends Controller {
   }
 
   #addScoreDiv = (properties) => {
-    let html_to_insert = `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+    let html_to_insert = ""
+    if (properties.weight_average < 30) {
+      html_to_insert += `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="progress-red flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+    } else if ((properties.weight_average < 60)) {
+      html_to_insert += `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="progress-orange flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+    } else {
+      html_to_insert += `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="progress-green flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+    }  
     let i = 0
     for (const prop of Object.entries(properties)) {
       if (i === 12) break;
       if (i === 6) html_to_insert += "</div><div class='d-flex flex-column'>"
-      let to_add = `<label for="file">${this.#capitalize(prop[0].split("_").join(" "))}</label>
-      <progress id="file" max="100" value="${prop[1]}"> ${prop[1]}% </progress>`
-      html_to_insert += to_add
-      i += 1
+      if (prop[1] < 30) {
+        let to_add = `<label for="file">${this.#capitalize(prop[0].split("_").join(" "))}</label>
+        <progress class="progress-red" id="file" max="100" value="${prop[1]}"> ${prop[1]}% </progress>`
+        html_to_insert += to_add
+        i += 1
+      } else if ((prop[1] < 60)) {
+        let to_add = `<label for="file">${this.#capitalize(prop[0].split("_").join(" "))}</label>
+        <progress class="progress-orange" id="file" max="100" value="${prop[1]}"> ${prop[1]}% </progress>`
+        html_to_insert += to_add
+        i += 1
+      } else {
+        let to_add = `<label for="file">${this.#capitalize(prop[0].split("_").join(" "))}</label>
+        <progress class="progress-green" id="file" max="100" value="${prop[1]}"> ${prop[1]}% </progress>`
+        html_to_insert += to_add
+        i += 1
+      }
     }
     this.scorecardTarget.innerHTML = html_to_insert + "</div></div>"
+
   }
 
   filter = (event) => {
@@ -376,6 +404,7 @@ export default class extends Controller {
     if (this.map.getLayer("points")) {
       this.map.moveLayer('points')
     }
+    this.map.moveLayer('my-address')
   }
 
   tofav = async (event) => {
@@ -412,12 +441,25 @@ export default class extends Controller {
       this.new_weights = this.weightsValue
     }
     // console.log(this.new_weights)
+    let class_indic = ""
+    if (event.currentTarget.value < -4) {
+      class_indic = "red-range"
+    } else if (event.currentTarget.value < 4) {
+      class_indic = "orange-range"
+    } else {
+      class_indic = "green-range"
+    }
     this.new_weights[event.currentTarget.id] = Number(event.currentTarget.value) / 10
     this.#weightedAverageScore(this.hexas, this.new_weights)
     this.#smoothScore(this.hexas, "weight_average")
     this.map.removeLayer('maine')
     this.map.removeSource('maine')
     this.buildGrid(this.hexas, this.map, "weight_average")
+    event.currentTarget.classList.remove("red-range")
+    event.currentTarget.classList.remove("orange-range")
+    event.currentTarget.classList.remove("green-range")
+    event.currentTarget.classList.add(class_indic)
+    console.log(event.currentTarget.classList)
   }
 
 }
