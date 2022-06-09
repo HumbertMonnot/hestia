@@ -1,16 +1,25 @@
 // cards for the indicators on views/indicators/index.html.erb
+.ctr-cards-indicators{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  display: flex;
+  flex: column;
+  align-items: center;
+}
+
 .ctr-cards{
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
-  padding: 0px 24px;
 }
 
 .card-indicator{
   margin: 16px;
   padding: 16px;
-  width: 350px;
+  width: 80%;
   box-shadow: 10px 10px 12px lightgray;
   border-top: solid 3px $green-color;
   border-radius: 12px;
@@ -46,7 +55,7 @@
   }
   .ctr-cards{
     display: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
   }
@@ -59,6 +68,10 @@
   box-shadow: 10px 10px 12px lightgray;
   position: relative;
   margin-bottom: 24px;
+  &:hover{
+    border-radius: 12px;
+    transform: translate(0px, -10px);
+  }
 }
 
 
@@ -123,8 +136,8 @@ i, p{
 
 
 .title-card{
-  font-family: $headers-font;
-  font-size: 21px;
+  // font-family: $headers-font;
+  // font-size: 18px;
   border-bottom: 2px solid;
   padding-bottom: 12px;
 }

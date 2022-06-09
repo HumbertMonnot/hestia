@@ -5,18 +5,20 @@
 }
 
 .block-profil {
-box-shadow: 10px 10px 12px lightgrey;
+  box-shadow: 10px 10px 12px lightgrey;
 // padding: 3vh;
-width: 100%;
-
+  width: 100%;
+  border-radius: 12px;
+  height: 70vh;
 }
 
+
 .profil {
-  width: 35vh;
-  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  margin: 15px 0px;
+  // width: 35vh;
+  // transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 15px 15px;
   margin-bottom: 15px;
-  border-radius: 12%;
+  border-radius: 12px;
   h2 {
    color: black;
    font-size: 14px;
@@ -33,7 +35,7 @@ width: 100%;
   padding: 10px;
   // height: 30vh;
   background: rgb(255, 255, 255);
-  border-radius: 0.4em;
+  border-radius: 4px;
   box-shadow: 0.3em 0.3em 0.7em #00000015;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: rgb(250, 250, 250) 0.2em solid;
@@ -72,14 +74,18 @@ width: 100%;
     background: none;
    }
 
+   .ml-0{
+     margin-left: 0px;
+   }
+
    .cta:before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     display: block;
-    border-radius: 50px;
-    background: $green-color;
+    border-radius: 4px;
+    background: $orange-color;
     width: 45px;
     height: 45px;
     transition: all 0.3s ease;
@@ -100,7 +106,7 @@ width: 100%;
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: $green-color;
+    stroke: $orange-color;
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.3s ease;
@@ -108,7 +114,7 @@ width: 100%;
 
    .cta:hover:before {
     width: 100%;
-    background: $green-color;
+    background: $orange-color;
    }
 
    .cta:hover svg {
@@ -119,8 +125,18 @@ width: 100%;
     transform: scale(0.95);
    }
 
+   //glide
+   .card-profile {
+    height: 300px;
+  }
+
+.w-hover:hover{
+  color: white;
+}
+
+
   .glide__arrow {
     font-weight: 700;
     color: white;
-    background-color: $green-color;
+    background-color: $orange-color;
      }

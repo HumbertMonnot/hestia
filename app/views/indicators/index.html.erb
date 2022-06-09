@@ -1,6 +1,6 @@
 <div class= "ctr-pages">
-  <h3>Note nos critères sur 10</h3>
-  <div class="ctr-cards">
+  <h3 class="pb-4">Note nos critères sur 10</h3>
+  <div class="ctr-cards-indicators">
 
     <% @indicators.each do |indicator| %>
     <div class="card-indicator px-5" >
@@ -8,10 +8,8 @@
         <i class= "fa solid <%= @icons["#{indicator.indicator_title_id}"]%>"></i>
         <p class="pl-8"><%= indicator.indicator_title.name %></p>
       </div>
-
       <p class="text-indicator"> Mets 10, si tu <%= @texts["#{indicator.indicator_title_id}"]%>
       </p>
-
       <%= simple_form_for(indicator, data: {controller:"search-indicators"}) do |f| %>
       <div class="d-flex w-100">
         <i class="fa-solid fa-minus px-3"></i>
@@ -28,6 +26,9 @@
 
       </div>
       <% end %>
+
+
+
 
     </div>
     <% end %>
