@@ -1,45 +1,54 @@
 <div class="ctr-pages">
   <div class="row">
-    <div class="col-5">
+    <div class="col-4">
       <div class="block-profil">
 
         <div class= "profil">
-          <h3 class="pb-2">Mon profil</h3>
+          <h3 class="pb-2 mon-profil">Mon profil</h3>
           <p>Identifiant : <%= current_user.username.capitalize  %></p>
           <p> Email : <%= current_user.email  %></p>
         </div>
 
+        <div class= "infos-profil ">
+          <p><%= @count %> : recherches effectuées </p>
+          <p><%= @count_advert %> : annonces immo sauvegardées</p>
+          <p><%= @task_to_do %> : tâches à faire</p>
+          <p><%= @task_pending %> : tâches en cours</p>
+          <p><%= @task_done %> : tâches réalisées</p>
+        </div>
 
-          <%= button_to root_path, method: :get, class:"cta" do %>
-            <span class="w-hover"> Faire une nouvelle recherche </span>
-            <svg viewBox="0 0 13 10" height="10px" width="15px">
+        <div class="btn-profil-group d-flex flex-column align-items-end">
+          <%= button_to root_path, method: :get, class:"btn btn-profil orange" do %>
+            <h4> Faire une nouvelle recherche </h4>
+            <%# <svg viewBox="0 0 13 10" height="10px" width="15px">
             <path d="M1,5 L11,5"></path>
             <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
+            </svg> %>
           <% end %>
 
-          <%= button_to adverts_path, method: :get, class:"cta" do %>
+          <%= button_to adverts_path, method: :get, class:"btn btn-profil orange" do %>
             <%# <button class="cta"> %>
-            <span class="w-hover"> Mes annonces immobilieres </span>
-            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <h4 class="w-hover"> Mes annonces immobilières </h4>
+            <%# <svg viewBox="0 0 13 10" height="10px" width="15px">
             <path d="M1,5 L11,5"></path>
             <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
+            </svg> %>
           <% end %>
 
-          <%= button_to tasks_path, method: :get, class:"cta" do %>
+          <%= button_to tasks_path, method: :get, class:"btn btn-profil orange" do %>
             <%# <button class="cta"> %>
-            <span class="w-hover"> Voir mes tâches </span>
-            <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <h4 class="w-hover"> Voir mes tâches </h4>
+            <%# <svg viewBox="0 0 13 10" height="10px" width="15px">
             <path d="M1,5 L11,5"></path>
             <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
+            </svg> %>
           <% end %>
+        </div>
       </div>
     </div>
 
 
-    <div class="col-7">
+    <div class="col-8">
       <div class="card-search">
         <h3 class="pt-3">Recherches récentes</h3>
 

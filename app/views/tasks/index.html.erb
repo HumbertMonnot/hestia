@@ -4,12 +4,12 @@
 
     <%# modal %>
     <!-- Button trigger modal -->
-    <button type="button" class="cta ml-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    <span class="w-hover">Créer une nouvelle tâche</span>
-    <svg viewBox="0 0 13 10" height="10px" width="15px">
+    <button type="button" class="btn btn-profil orange ml-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <h4 class="w-hover">Créer une nouvelle tâche</h4>
+    <%# <svg viewBox="0 0 13 10" height="10px" width="15px">
     <path d="M1,5 L11,5"></path>
     <polyline points="8 1 12 5 8 9"></polyline>
-    </svg>
+    </svg> %>
   </button>
   </div>
 
@@ -25,7 +25,7 @@
           <%= simple_form_for @task do |f| %>
             <%= f.input :title, label: "Titre" %>
             <%= f.input :description, label: "Description" %>
-            <%= f.button :submit, "Créer", class:"btn btn-save orange" %>
+            <%= f.button :submit, "Créer une tâche", class:"btn btn-profil orange" %>
           <% end %>
         </div>
       </div>

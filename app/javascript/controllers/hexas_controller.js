@@ -236,7 +236,7 @@ export default class extends Controller {
       layout: {},
       paint: {
         "fill-color": [ "interpolate", ["linear"], ["get", attr], 0, "#EC1162", 50, "orange", 100, "#61E294"],
-        "fill-opacity": 0.7
+        "fill-opacity": 0.5
       },
     });
     if (the_map.getLayer("points")) {
@@ -337,20 +337,22 @@ export default class extends Controller {
     let html_to_insert = ""
     if (Object.entries(annonce.properties).length > 8){
       html_to_insert += `<i class="fa-solid fa-star gold-heart py-12 favoris" data-action="click->hexas#tofav"></i>
-                          <div class="d-flex mb-3">`
+                          <div class="d-flex">`
     } else {
       html_to_insert += `<i class="fa-solid fa-star gold-hover py-12 favoris" data-action="click->hexas#tofav"></i>
-                          <div class="d-flex mb-3">`
+                          <div class="d-flex">`
     }
     if (typeof(annonce.properties.picture) != 'undefined') {html_to_insert += `<div class="img-annonces"> <img src='${annonce.properties.picture}' alt=""></div>`}
-    html_to_insert += `<div class=" mt-0">
-                          <p>Surface : ${annonce.properties.surface}m2</p>
-                          <p>Prix : ${annonce.properties.price}€</p>
+    html_to_insert += `<div class="d-flex flex-column justify-content-between">
+                          <p class="mt-2"><strong>${annonce.properties.title}</strong></p>
+                          <div class="annonce-infos">
+                            <p class="mb-2">Surface : <span id="span-green">${annonce.properties.surface}m2</span></p>
+                            <p class="mb-2">Prix : <span id="span-green">${annonce.properties.price}€</span></p>
+                          </div>
                         </div>
-                      </div>
-                      <p><strong>${annonce.properties.title}</strong></p>
-                      <p>${annonce.properties.description.slice(0, 60)}...</p>`
-    if (typeof(annonce.properties.url_annonce) != 'undefined') {html_to_insert += `<a href='${annonce.properties.url_annonce}' target="_blank"><i class="fa-solid fa-link"></i></a>`}
+                      </div>`
+                      // <p>${annonce.properties.description.slice(0, 60)}...</p>
+    if (typeof(annonce.properties.url_annonce) != 'undefined') {html_to_insert += `<a href='${annonce.properties.url_annonce}' target="_blank" class="link-annonce"><i class="fa-solid fa-link"></i></a>`}
     this.annoncecardTarget.innerHTML = html_to_insert
     return annonce
   }
@@ -358,11 +360,11 @@ export default class extends Controller {
   #addScoreDiv = (properties) => {
     let html_to_insert = ""
     if (properties.weight_average < 30) {
-      html_to_insert += `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="progress-red flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+      html_to_insert += `<div class="d-flex align-items-center"><h3 class="mx-3">Score</h3><progress class="progress-red flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
     } else if ((properties.weight_average < 60)) {
-      html_to_insert += `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="progress-orange flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+      html_to_insert += `<div class="d-flex align-items-center"><h3 class="mx-3">Score</h3><progress class="progress-orange flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
     } else {
-      html_to_insert += `<div class="d-flex align-items-center"><h4 class="mx-3">SCORES</h4><progress class="progress-green flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
+      html_to_insert += `<div class="d-flex align-items-center"><h3 class="mx-3">Score</h3><progress class="progress-green flex-grow-1" id="file" max="100" value="${properties['weight_average']}"> ${properties['weight_average']}% </progress></div><div class='d-flex'><div class='d-flex flex-column left-column-scores'>`
     }  
     let i = 0
     for (const prop of Object.entries(properties)) {

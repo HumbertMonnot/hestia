@@ -14,6 +14,7 @@
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin-top: 24px;
 }
 
 .card-indicator{
@@ -25,11 +26,11 @@
   border-radius: 12px;
   color: white;
   letter-spacing: 2px;
-  font-size: 18px;
+  font-size: 21px;
   height: fit-content;
   &:hover{
-    border-radius: 12px;
-    transform: translate(0px, -10px);
+    border-top: solid 5px $green-color;
+    padding-top: 14px;
   }
 }
 
@@ -38,7 +39,7 @@
 }
 
 .text-indicator{
-  font-size: 12px;
+  font-size: 16px;
   line-height: 18px;
 }
 
@@ -69,8 +70,8 @@
   position: relative;
   margin-bottom: 24px;
   &:hover{
-    border-radius: 12px;
-    transform: translate(0px, -10px);
+    border-top: 5px solid $orange-color;
+    padding-top: 22px;
   }
 }
 

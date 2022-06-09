@@ -1,8 +1,15 @@
 <div class= "ctr-pages">
-  <h3 class="pb-4">Note nos critères sur 10</h3>
+  <h3 class="pb-4">Note les critères sur 10</h3>
   <div class="ctr-cards-indicators">
 
     <% @indicators.each do |indicator| %>
+    <% if indicator.weight * 10 < -4 %>
+        <% class_indic = "red-range" %>
+    <% elsif indicator.weight * 10 < 4 %>
+        <% class_indic = "orange-range" %>
+    <% else %>
+        <% class_indic = "green-range" %>
+    <% end %>
     <div class="card-indicator px-5" >
       <div class="d-flex align-items-baseline justify-content-start">
         <i class= "fa solid <%= @icons["#{indicator.indicator_title_id}"]%>"></i>
@@ -15,8 +22,8 @@
         <i class="fa-solid fa-minus px-3"></i>
         <input type="range"
                 name="indicator[weight]"
-                class="range-indicators"
-                value= "0"
+                class="range-indicators <%= class_indic %>"
+                value= "<%= indicator.weight * 10%> "
                 min="-10"
                 max="10"
                 step="1"

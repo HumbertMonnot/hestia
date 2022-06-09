@@ -4,6 +4,7 @@
   left: 10px;
   z-index: 99;
   margin: 15px;
+  margin-top : 47px;
 }
 
 .mapboxgl-ctrl-attrib {
@@ -16,7 +17,7 @@
 
 .favoris {
   position: absolute;
-  top: 20px;
+  bottom: 30px;
   right: 20px;
 }
 
@@ -28,26 +29,55 @@
   justify-content: space-around;
   width: 100%;
   margin-right: 20px;
-  margin-top: 10px;
+  height: 64px;
+  background: white;
+  box-shadow: 10px 10px 12px lightgray;
 }
 
+.link-annonce {
+  position: absolute;
+  bottom: 50px;
+  right: 20px
+}
+
+#span-green{
+  background-color: $green-color;
+  border-radius: 2px;
+  padding: 4px;
+  color: white;
+}
+
+#span-orange{
+  background-color: $orange-color;
+  border-radius: 2px;
+  padding: 4px;
+  color: white;
+}
+
+.annonce-infos {
+  // border-left: 2px solid $green-color;
+}
 
 .over_map_scores {
+  // width: 335px;
   background-color: white;
   border-radius: 3px;
   padding: 15px;
   margin-bottom: 15px;
   align-items: flex-start;
-  border: $green-color 0.2em solid;
+
+  border-radius: 12px;
+  border-top: solid 3px $green-color;
   label {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
 
 #over_map_gauges { 
-  position: absolute; 
-  top: 140px; 
-  right: 10px; 
+  position: absolute;
+  width: 300px;
+  top: 140px;
+  right: 10px;
   z-index: 99;
   display: flex;
   flex-direction: column;
@@ -55,10 +85,12 @@
   border-radius: 3px;
   padding: 15px;
   align-items: flex-start;
-  border: $green-color 0.2em solid;
+  border-top: solid 3px $green-color;
   margin: 15px;
+  border-radius: 12px;
+  margin-top: 47px;
   label {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
@@ -71,13 +103,19 @@
 
 .card_map_annonces {
   width: 335px;
-  height: 250px;
+  height: fit-content;
   background-color: white;
   border-radius: 12px;
+  border-top: 3px solid $green-color;
+  // box-shadow: 10px 10px 12px white;
   padding: 15px;
-  border: $green-color 0.2em solid;
   box-sizing: content-box;
   position: relative;
+  p {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 0px;
+  }
 }
 
 .img-annonces {
@@ -91,7 +129,9 @@
 .img-annonces img {
   // height:fit-content;
   height: 100%;
+  max-width: 100%;
   object-fit: contain;
+  border-radius: 12px;
 }
 
 .left-column-scores {

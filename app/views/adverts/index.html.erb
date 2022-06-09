@@ -4,12 +4,12 @@
 
   <%# modal %>
   <!-- Button trigger modal -->
-  <button type="button" class="cta ml-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    <span class="w-hover">Sauvegarder une annonce</span>
-    <svg viewBox="0 0 13 10" height="10px" width="15px">
+  <button type="button" class="btn btn-profil orange ml-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <h4>Sauvegarder une annonce</h4>
+    <%# <svg viewBox="0 0 13 10" height="10px" width="15px">
     <path d="M1,5 L11,5"></path>
     <polyline points="8 1 12 5 8 9"></polyline>
-    </svg>
+    </svg> %>
   </button>
 </div>
 
@@ -29,7 +29,7 @@
           <%= f.input :size, label: "Surface", required: false %>
           <%= f.input :address, label: "Adresse", required: false %>
           <%= f.input :comment, label: "Commentaire", required: false %>
-          <%= f.button :submit, "Sauvegarder", class:"btn btn-save orange" %>
+          <%= f.button :submit, "Sauvegarder une annonce", class:"btn btn-profil orange" %>
         <% end %>
       </div>
     </div>

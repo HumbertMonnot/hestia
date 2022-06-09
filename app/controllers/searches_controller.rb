@@ -5,6 +5,11 @@ class SearchesController < ApplicationController
   def index
     @searches = current_user.searches
     @adverts = current_user.adverts
+    @count = @searches.length
+    @count_advert = @adverts.length
+    @task_to_do = Task.where(user: current_user, state: "pas fait").length
+    @task_done = Task.where(user: current_user, state: "fait").length
+    @task_pending = Task.where(user: current_user, state: "en cours").length
   end
 
   # Create #new method for searches => view associated (used as homepage if John approval)
@@ -19,7 +24,7 @@ class SearchesController < ApplicationController
     @search.user = current_user
 
     if @search.save
-      IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_title: indic) }
+      IndicatorTitle.all.each { |indic| Indicator.create(search: @search, indicator_title: indic, weight: 0) }
       redirect_to search_indicators_path(@search)
     else
       render :new

@@ -93,7 +93,7 @@ li{
   -webkit-appearance: none;
   background-color: white;
   border-radius: 12px;
-  border: solid 2px $green-color;
+  border: solid 1px $green-color;
 }
 
 .range-duration {
@@ -111,9 +111,7 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 50%;
   background: $green-color;
   box-shadow:  5px 5px 10px lightgrey;
-  &:hover{
-    background: $orange-color;
-  }
+
 }
 
 // padding left for text duration hp

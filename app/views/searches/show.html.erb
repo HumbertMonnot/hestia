@@ -2,7 +2,7 @@
 <div data-controller="hexas"
       data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
       data-hexas-weights-value=<%= @indicators.to_json() %>
-      data-hexas-hexalist-value=<%= @paras.to_json() %>    >
+      data-hexas-hexalist-value=<%= @paras.to_json() %> >
   <div>
 
     <map id="map"></map>
@@ -27,9 +27,9 @@
       <% end %>
     </div>
       <div class="filter-group">
-              <button class="btn-basic btn-filter green" data-action="click->hexas#filter" id="weight_average"><p>Général</p></button>
+              <button class="btn-basic btn-filter" data-action="click->hexas#filter" id="weight_average"><p>Général</p></button>
               <% @indic_names.each do |indic_name| %>
-                <button class="btn-basic btn-filter green"data-action="click->hexas#filter" id="<%= indic_name.name %>"><p><%= indic_name.name %></p></button>
+                <button class="btn-basic btn-filter" data-action="click->hexas#filter" id="<%= indic_name.name %>"><p><%= indic_name.name %></p></button>
               <% end %>
       </div>
 

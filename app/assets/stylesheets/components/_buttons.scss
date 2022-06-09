@@ -14,18 +14,51 @@
   }
 }
 
+.btn-profil-group {
+  float: right;
+  margin-right: 45px;
+}
+
+.btn-profil {
+  opacity: 1;
+  margin-bottom: 0;
+  margin-left: 15px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: white;
+  border-radius: 4px;
+  &:hover{
+    color: white;
+    opacity: 0.9;
+  }
+}
+
+.btn-profil h4 {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+
 .btn-filter {
-  height: 27px;
+  height: 34px;
   opacity: 1;
   padding: 4px 7px;
   text-align: center;
   font-family: $headers-font;
-  color: white;
   border-radius: 4px;
+  background-color: rgba($color: $green-color, $alpha: 1);
+  border: none;
+  margin-top: 13px;
+}
+.btn-filter-select {
+  background-color: $green-color;
 }
 
 .btn-filter > p{
-  font-size: 11px;
+  font-size: 15px;
+  color: white
 }
 
 a {

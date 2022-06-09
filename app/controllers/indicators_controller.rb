@@ -3,19 +3,19 @@ class IndicatorsController < ApplicationController
 
   def index
     @search = Search.find(params[:search_id])
-    @indicators = @search.indicators
+    @indicators = Indicator.where(search: @search)
     @texts = {'1' => "as l’âme proche de “Brigitte Bardot” et que tu as besoin d’être près des services liés à nos amis les bêtes.",
-      '2' => "as besoin d’aller chercher “ta chocolatine” et ton entrecôte tous les jours à une distance acceptable !",
-      '3' => "veux que tes enfants gagnent en autonomie en étant pas trop loin des écoles !",
-      '4' => "adores avoir le choix entre 18 marques de coquillettes et pouvoir faire le plein en grandes surfaces !",
-      '5' => "souhaites avoir le corps de Schwarzy  ou que ton mantra est proche de “un esprit sain, dans un cours sain.",
-      '6' => "es hypocondriaque ou que tu as besoin d’un suivi médical régulier ! Assure-toi d’être proche des docteurs!",
-      '7' => "n’as pas eu de chance dans la loterie génétique ou si tu as besoin d’une armée de spécialistes par trop loin !",
-      '8' => "as décidé de surpeupler la planète et veux ce qu'il y a de mieux pour eux, assure-toi d’avoir tout à côté !",
-      '9' => "un palais gourmet à sustenter et qu’il faut que tu restes très très éloigné de ta propre cuisine !",
-      '10' => "as besoin d'entretenir tes boucles soyeuses et d'avoir toujours tes chemises doucle col repassées  ",
-      '11' => "as le dressing de Kim Kardashian & qu’aller flâner dans les boutiques est une activité quotidienne !",
-      '12' => "es adeptes de FranceCulture et que tu as besoin aller au théâtre ou voir une expo 3 fois par semaine."}
+      '2' => "as besoin d’aller chercher “ta chocolatine” et ton entrecôte tous les jours à une distance acceptable.",
+      '3' => "veux que tes enfants gagnent en autonomie en étant pas trop loin des écoles.",
+      '4' => "adores avoir le choix entre 18 marques de coquillettes et pouvoir faire le plein en grandes surfaces.",
+      '5' => "souhaites avoir le corps de Schwarzy ou que ton mantra est proche de “un esprit sain, dans un cours sain.",
+      '6' => "es hypocondriaque ou que tu as besoin d’un suivi médical régulier. Assure-toi d’être proche des docteurs!",
+      '7' => "n’as pas eu de chance dans la loterie génétique ou si tu as besoin d’une armée de spécialistes pas trop loin.",
+      '8' => "as décidé de surpeupler la planète et veux ce qu'il y a de mieux pour eux, assure-toi d’avoir tout à côté.",
+      '9' => "un palais gourmet à sustenter et il faut que tu restes très très éloigné de ta propre cuisine.",
+      '10' => "as besoin d'entretenir tes boucles soyeuses et d'avoir toujours tes chemises double col repassées.",
+      '11' => "as le dressing de Kim Kardashian et aller flâner dans les boutiques est une activité quotidienne.",
+      '12' => "es adepte de FranceCulture et que tu as besoin d'aller au théâtre ou voir une expo 3 fois par semaine."}
 
       @icons = { '1' => 'fa-paw',
         '2' => "fa-solid fa-cheese",
