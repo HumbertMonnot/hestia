@@ -122,6 +122,15 @@
 .pink-hover:hover{
   color: $pink-color;
 }
+// hover sur le pending pour le update de task
+
+.orange-hover:hover{
+  color: $orange-color;
+}
+
+.orange-list {
+  color: $orange-color;
+}
 
 // textes des cards sur la page mes annonces immobilières
 i, p{

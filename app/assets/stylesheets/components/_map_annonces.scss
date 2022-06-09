@@ -31,7 +31,10 @@
   margin-top: 10px;
 }
 
+
 #over_map_scores {
+  animation: 1s linear 0s 1 alternate move_eye_left;
+  -webkit-animation: 1s linear 0s 1 alternate move_eye_left; /* Safari et Chrome */
   background-color: white;
   border-radius: 3px;
   padding: 15px;
@@ -43,10 +46,20 @@
   }
 }
 
-#over_map_gauges {
-  position: absolute;
-  top: 140px;
-  right: 10px;
+@keyframes move_eye_left {
+  from {left:-200px;}
+  to {left:10px;}
+}
+
+@-webkit-keyframes move_eye_left { /* sur Safari et Chrome */
+  from {left:-200px;}
+  to {left:10px;}
+}
+
+#over_map_gauges { 
+  position: absolute; 
+  top: 140px; 
+  right: 10px; 
   z-index: 99;
   display: flex;
   flex-direction: column;
