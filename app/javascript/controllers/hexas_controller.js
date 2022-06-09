@@ -35,12 +35,12 @@ export default class extends Controller {
     // On récupère l'isochrone
     const data = await this.#getIso()
 
-    // On l'ajoute à la carte
-    this.map.on('load', () => {
-      this.map.addLayer({ id: 'isotime', type: 'line',
-        source: { type: 'geojson', data: data },
-        layout: {},
-        paint: { "line-color": "#61E294", 'line-width': 5 } });
+    // // On l'ajoute à la carte
+    // this.map.on('load', () => {
+    //   this.map.addLayer({ id: 'isotime', type: 'line',
+    //     source: { type: 'geojson', data: data },
+    //     layout: {},
+    //     paint: { "line-color": "#61E294", 'line-width': 5 } });
 
     // On ajoute le marqueur de l'adresse
     this.map.addSource('my-address', {'type': 'geojson', 'data': { 'type': 'FeatureCollection', 'features': [{
@@ -106,7 +106,7 @@ export default class extends Controller {
 
   // Méthode pour obtenir un isochrone après un appel API Mapbox à partir d'une adresse, une distance et un moyen de transport
   #getIso = async () => {
-    const url = `https://api.mapbox.com/isochrone/v1/mapbox/${this.hexalistValue[1]}/${this.hexalistValue[0][0]},${this.hexalistValue[0][1]}?contours_minutes=${this.hexalistValue[2]}&polygons=true&access_token=${this.apiKeyValue}`;
+    const url = `https://api.mapbox.com/isochrone/v1/mapbox/${this.hexalistValue[1]}/${this.hexalistValue[0][0]},${this.hexalistValue[0][1]}?contours_minutes=${this.hexalistValue[2]}&polygons=true&access_token=${this.apiKeyValue}&generalize=75`;
     const response = fetch(url)
     const data = (await response).json()
     return data
@@ -115,7 +115,7 @@ export default class extends Controller {
   // Méthode pour construire la grid dans le polygon passé en object (dans le cas du projet, un isochrone)
   #getGrid = async (polygon) => {
     const bbox = [this.hexalistValue[0][0]-0.3, this.hexalistValue[0][1]-0.3, this.hexalistValue[0][0]+0.3, this.hexalistValue[0][1]+0.3];
-    const cellSide = 0.25;
+    const cellSide = 0.35;
     const options = { mask: turf.polygon(polygon) };
     const grid_hexas = turf.hexGrid(bbox, cellSide, options).features;
     const grid_hexas_inter = []
@@ -137,12 +137,14 @@ export default class extends Controller {
             'type': "Polygon",
             'coordinates': coords_poly
           }}
-          grid_hexas_inter.push(the_poly)
+          // console.log(turf.area(the_poly))
+          if (turf.area(the_poly)>30000) grid_hexas_inter.push(the_poly)
       })} else {
-        grid_hexas_inter.push(inter_poly)
+        // console.log(turf.area(inter_poly))
+        if (turf.area(inter_poly)>30000) grid_hexas_inter.push(inter_poly)
       }
     })
-    // console.log(grid_hexas_inter)
+    console.log(grid_hexas_inter.length)
     return grid_hexas_inter
   };
 
