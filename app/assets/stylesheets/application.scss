@@ -140,7 +140,7 @@ canvas {
 }
 
 body{
-  background-color: white;
+  background-color: #ffffff;
 }
 
 // containers that contain inside of page
@@ -159,15 +159,14 @@ body{
 // to use on the other pages to add margin under navbar
 .ctr-pages{
   margin-top: 150px;
-  margin-left: 64px;
-  margin-right: 64px;
+  margin-left: 140px;
+  margin-right: 140px;
+}
+
+body {
+  font-family: $body-font;
 }
 
 h1, h3 {
   font-family: $headers-font;
-}
-
-
-body {
-  font-family: $body-font;
 }

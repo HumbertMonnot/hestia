@@ -1,10 +1,10 @@
 <%= render 'shared/navbar' %>
-<div data-controller="hexas" 
+<div data-controller="hexas"
       data-hexas-api-key-value=<%= ENV['MAPBOX_API_KEY'] %>
       data-hexas-weights-value=<%= @indicators.to_json() %>
       data-hexas-hexalist-value=<%= @paras.to_json() %>    >
-  <div>    
-    
+  <div>
+
     <map id="map"></map>
     <div id="over_map_gauges" data-hexas-target="gaugecard" class="vignets-right">
       <% @indic_names.each do |indic_name| %>
@@ -37,8 +37,11 @@
       <div data-hexas-target="scorecard" class="vignets-left over_map_scores d-none">
       </div>
 
+
+      <div class="card_map_annonces p-4 d-none" data-hexas-target="annoncecard">
+
       <div class="card_map_annonces p-4 vignets-left d-none" data-hexas-target="annoncecard">
-        
+
       </div>
 
     </div>
