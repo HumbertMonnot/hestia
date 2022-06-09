@@ -6,13 +6,21 @@
   <div>    
     
     <map id="map"></map>
-    <div id="over_map_gauges" data-hexas-target="gaugecard" class="">
+    <div id="over_map_gauges" data-hexas-target="gaugecard" class="vignets-right">
       <% @indic_names.each do |indic_name| %>
-        <label for="weight"><%= indic_name.name %></label>
+        <% if @indicators[indic_name.id] * 10 < -4 %>
+           <% class_indic = "red-range" %>
+        <% elsif @indicators[indic_name.id] * 10 < 4 %>
+           <% class_indic = "orange-range" %>
+        <% else %>
+           <% class_indic = "green-range" %>
+        <% end %>
+        <label for="weight" class="mt-2"><%= indic_name.name %></label>
         <input type="range" 
               name="weight" 
               min="-10" 
-              max="10" 
+              max="10"
+              class="filter-indicators <%= class_indic %>"
               id="<%= indic_name.id %>" 
               value="<%= @indicators[indic_name.id] * 10 %>"
               data-action="change->hexas#changeweights">
@@ -26,10 +34,10 @@
       </div>
 
     <div class="left-col">
-      <div id="over_map_scores" data-hexas-target="scorecard" class="d-none">
+      <div data-hexas-target="scorecard" class="vignets-left over_map_scores d-none">
       </div>
 
-      <div class="card_map_annonces p-4 d-none" data-hexas-target="annoncecard">
+      <div class="card_map_annonces p-4 vignets-left d-none" data-hexas-target="annoncecard">
         
       </div>
 
