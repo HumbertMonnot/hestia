@@ -32,9 +32,7 @@
 }
 
 
-#over_map_scores {
-  animation: 1s linear 0s 1 alternate move_eye_left;
-  -webkit-animation: 1s linear 0s 1 alternate move_eye_left; /* Safari et Chrome */
+.over_map_scores {
   background-color: white;
   border-radius: 3px;
   padding: 15px;
@@ -44,16 +42,6 @@
   label {
     font-size: 9px;
   }
-}
-
-@keyframes move_eye_left {
-  from {left:-200px;}
-  to {left:10px;}
-}
-
-@-webkit-keyframes move_eye_left { /* sur Safari et Chrome */
-  from {left:-200px;}
-  to {left:10px;}
 }
 
 #over_map_gauges { 

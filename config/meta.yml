@@ -1,4 +1,6 @@
-eta_product_name: "Hestya"
+# config/meta.yml
+
+meta_product_name: "Hestya"
 meta_title: "Hestya - Choisis ton futur quartier avec Hestya"
 meta_description: "Choisis ton futur quartier avec un outil de personnalisation"
 meta_image: "3dPointerHestya.png" # should exist in `app/assets/images/`
