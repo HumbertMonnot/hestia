@@ -67,7 +67,6 @@ end
 puts 'finished for Indicators...'
 
 puts 'Creating ads...'
-# user: not user_id: !!
 ad_1 = Advert.create!(title: "Appartement 4 pièces", size: 85, price: 455_000, address: "Rue Saint Genès", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2169390755.htm", user: user_1 )
 ad_2 = Advert.create!(title: "Appartement 2 pièces", size: 36, price: 207_500, address: "Tram B arrêt cours du Médoc", state: "liked", url: "https://www.leboncoin.fr/ventes_immobilieres/2168280014.htm", user: user_2 )
 ad_3 = Advert.create!(title: "Appartement 5 pièces", size: 129, price: 618_000, address: "Rive droite, tram A station Jean Jaures", state: "pending", url: "https://www.leboncoin.fr/ventes_immobilieres/2169495252.htm", user: user_3 )
