@@ -1,6 +1,6 @@
 <div class="ctr-pages">
   <div>
-    <h3>Mes Taches pour mon déménagement</h2>
+    <h3>Mes Tâches</h2>
 
     <%# modal %>
     <!-- Button trigger modal -->
@@ -35,17 +35,17 @@
   <div class="ctr-cards pt-4">
     <div class="col-sm-12 col-md-3">
     <% @tasks.select {|state| state.state == "pas fait" }.each do |task|  %>
- 		  <div class="card-pending">
+ 		  <div class="card-disliked">
  			 <p class="title-card"><%= task.title %></p>
       <%# => update %>
       <div class="d-flex justify-content-between">
         <p><em><%= task.description %></em></p>
         <div id="link-heart">
         <%= link_to task_path(task.id, state: "pas fait"), method: :patch do %>
- 			    <i class="fa-brands fa-stack-overflow orange-list py-12"></i>
+ 			    <i class="fa-brands fa-stack-overflow pink-heart py-12"></i>
         <% end %>
         <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
- 			   <i class="fa-solid fa-list-check pink-hover"></i>
+ 			   <i class="fa-solid fa-list-check orange-hover"></i>
         <% end %>
         <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
  			    <i class="fa-solid fa-check green-hover"></i>
@@ -59,20 +59,20 @@
  		  </div>
     <% end %>
   </div>
-<%# end card "pending" %>
+<%# end card "pas fait" %>
 
   <div class="col-sm-12 col-md-3">
  			<% @tasks.select {|task_state| task_state.state == "en cours" }.each do |task|  %>
- 				<div class="card-disliked">
+ 				<div class="card-pending">
  					<p class="title-card"><%= task.title %></p>
           <div class="d-flex justify-content-between">
             <p><em><%= task.description %></em></p>
             <div id="link-heart">
             <%= link_to task_path(task.id, state: "pas fait"), method: :patch do %>
- 			        <i class="fa-brands fa-stack-overflow orange-hover py-12"></i>
+ 			        <i class="fa-brands fa-stack-overflow pink-hover py-12"></i>
             <% end %>
             <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
- 			        <i class="fa-solid fa-list-check pink-heart"></i>
+ 			        <i class="fa-solid fa-list-check orange-list"></i>
             <% end %>
             <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
  			        <i class="fa-solid fa-check green-hover"></i>
@@ -87,7 +87,7 @@
  				</div>
       <% end %>
   </div>
-<%# end card "liked" %>
+<%# end card "en cours" %>
 
   <div class="col-sm-12 col-md-3">
  			<% @tasks.select {|task_state| task_state.state == "fait" }.each do |task|  %>
@@ -97,10 +97,10 @@
             <p><em><%= task.description %></em></p>
             <div id="link-heart">
             <%= link_to task_path(task.id, state: "pas fait"), method: :patch do %>
- 			        <i class="fa-brands fa-stack-overflow orange-hover py-12"></i>
+ 			        <i class="fa-brands fa-stack-overflow pink-hover py-12"></i>
             <% end %>
             <%= link_to task_path(task.id, state: "en cours"), method: :patch do %>
- 			        <i class="fa-solid fa-list-check pink-hover"></i>
+ 			        <i class="fa-solid fa-list-check orange-hover"></i>
             <% end %>
             <%= link_to task_path(task.id, state: "fait"), method: :patch do %>
  			        <i class="fa-solid fa-check green-heart"></i>
