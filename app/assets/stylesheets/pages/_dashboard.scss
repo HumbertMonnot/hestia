@@ -12,15 +12,18 @@
   width: 100%;
   border-radius: 12px;
   border-top: 3px solid $orange-color;
-  height: 70vh;
+  height: 72vh;
   background-color: white;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .btn-profil {
     width: 300px
   }
   .btn-profil-group {
-    margin-top: 62px;
     margin-right: 45px;
+    margin-bottom: 15px;
   }
 }
 

@@ -2,19 +2,22 @@
   <div class="row">
     <div class="col-4">
       <div class="block-profil">
+        <div>
+          <div class= "profil">
+            <div class="d-flex justify-content-center">
+              <h3 class="pb-2 mon-profil">Mon profil</h3>
+            </div>
+            <p>Identifiant : <%= current_user.username.capitalize  %></p>
+            <p> Email : <%= current_user.email  %></p>
+          </div>
 
-        <div class= "profil">
-          <h3 class="pb-2 mon-profil">Mon profil</h3>
-          <p>Identifiant : <%= current_user.username.capitalize  %></p>
-          <p> Email : <%= current_user.email  %></p>
-        </div>
-
-        <div class= "infos-profil ">
-          <p><%= @count %> : recherches effectuées </p>
-          <p><%= @count_advert %> : annonces immo sauvegardées</p>
-          <p><%= @task_to_do %> : tâches à faire</p>
-          <p><%= @task_pending %> : tâches en cours</p>
-          <p><%= @task_done %> : tâches réalisées</p>
+          <div class= "infos-profil ">
+            <p><%= @count %> : recherches effectuées </p>
+            <p><%= @count_advert %> : annonces immo sauvegardées</p>
+            <p><%= @task_to_do %> : tâches à faire</p>
+            <p><%= @task_pending %> : tâches en cours</p>
+            <p><%= @task_done %> : tâches réalisées</p>
+          </div>
         </div>
 
         <div class="btn-profil-group d-flex flex-column align-items-end">
